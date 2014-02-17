@@ -18,4 +18,4 @@ A package of R.R. Wilcox' robust statistics functions.
     install_github("WRScpp", username="mrxiaohe")
     
     # fourth: install WRS
-    install_github("WRS", username="nicebread")
+    install_github("WRS", username="nicebread", subdir="pkg")
