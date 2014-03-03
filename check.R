@@ -14,7 +14,7 @@ library(tools)
 library(devtools)
 
 # check for non-ASCII characters
-for (nm in list.files(".", recursive=TRUE)) {
+for (nm in list.files("pkg/R", full.names=TRUE)) {
 	cat(nm,":")    
    showNonASCIIfile(nm)    
 	cat("\n")

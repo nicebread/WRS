@@ -2,15 +2,14 @@ Encoding: UTF-8
 Package: WRS
 Type: Package
 Title: A package of R.R. Wilcox' robust statistics functions
-Version: 0.24.1
-Date: 2014-02-17
+Version: 0.25
+Date: 2014-03-02
 Author: Rand R. Wilcox, Felix Schönbrodt
 Maintainer: Felix Schönbrodt <felix@nicebread.de>
-Depends:
+Suggests:
     MASS,
     akima,
-    robustbase
-Suggests:
+    robustbase,
     cobs,
     robust,
     mgcv,
@@ -27,6 +26,5 @@ Suggests:
     WRScpp
 Description: This is a packaged version of the robust statistic functions
     provided by R. R. Wilcox (http://dornsife.usc.edu/labs/rwilcox/software/).
-    So far only few help files are provided, but more and more will be added.
 License: GPL (>=2)
 LazyLoad: yes

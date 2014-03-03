@@ -1,6 +1,7 @@
 # WRS #
 
 A package of R.R. Wilcox' robust statistics functions.
+For more information, see [http://dornsife.usc.edu/labs/rwilcox/software/](http://dornsife.usc.edu/labs/rwilcox/software/).
 
 
 ## Installation ##
