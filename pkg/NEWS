@@ -1,5 +1,8 @@
-# Changes in WRS version 0.25
+# Changes in WRS version 0.25.1 #
 
+Fixed a bug in the NAMESPACE - now all functions are accessible again.
+
+# Changes in WRS version 0.25 #
 Three functions have been added that deal with comparing the regression
 lines of dependent groups. (Other minor changes have been made to some
 functions.) Details can be found in 
