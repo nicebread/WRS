@@ -46,7 +46,7 @@ Donoho-Gasko (Tukey) median is marked with a cross, +.
 }
 \usage{
 outpro(m, gval = NA, center = NA, plotit = TRUE, op = TRUE, MM = FALSE, 
-	cop = 3, xlab = "VAR 1", ylab = "VAR 2",STAND=FALSE,
+	cop = 3, xlab = "VAR 1", ylab = "VAR 2", STAND=TRUE,
 	tr = 0.2, q = 0.5, pr=TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.

@@ -1,5 +1,7 @@
-# Changes in WRS version 0.25.1 #
+# Changes in WRS version 0.25.2
+Fixed a bug in functions `bmpmul` and `stein2.tr`
 
+# Changes in WRS version 0.25.1 #
 Fixed a bug in the NAMESPACE - now all functions are accessible again.
 
 # Changes in WRS version 0.25 #
