@@ -13,11 +13,11 @@ citEntry(entry = "Manual",
   author = personList(as.person("Rand R. Wilcox"),
                   as.person("Felix D. Schönbrodt")),
   year = year,
-  url = "http://r-forge.r-project.org/projects/wrs/",
+  url = "https://github.com/nicebread/WRS",
 
   textVersion =
   paste("Wilcox, R.R., & Schönbrodt, F.D.",
        sprintf("(%s).", year),
        title,
-        "Retrieved from http://r-forge.r-project.org/projects/wrs/")
+        "Retrieved from https://github.com/nicebread/WRS")
 )
