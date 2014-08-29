@@ -1,4 +1,8 @@
-# Changes in WRS version 0.25.2
+# Changes in WRS version 0.26 #
+- Removed the few help files
+- Added two functions:
+
+# Changes in WRS version 0.25.2 #
 Fixed a bug in functions `bmpmul` and `stein2.tr`
 
 # Changes in WRS version 0.25.1 #

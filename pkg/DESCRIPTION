@@ -2,8 +2,8 @@ Encoding: UTF-8
 Package: WRS
 Type: Package
 Title: A package of R.R. Wilcox' robust statistics functions
-Version: 0.25.2
-Date: 2014-05-09
+Version: 0.26
+Date: 2014-08-28
 Author: Rand R. Wilcox, Felix Schönbrodt
 Maintainer: Felix Schönbrodt <felix@nicebread.de>
 Suggests:

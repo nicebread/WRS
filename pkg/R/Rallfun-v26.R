@@ -1,5 +1,5 @@
 # TOP
-#  Sept 12, 2013
+#  May 12, 2014
 
 DqdifMC<-function(x,y=NULL,q=.25,nboot=1000,plotit=TRUE,xlab='Group 1 - Group 2',SEED=TRUE,alpha=.05){
 #
@@ -40,6 +40,12 @@ ci=sbvec[low]
 ci[2]=sbvec[up]
 list(est.q=est1,est.1.minus.q=est2,conf.interval=ci,p.value=p)
 }
+
+winsd<-function(x,tr=.2,na.rm=FALSE){
+val=sqrt(winvar(x,tr=tr,na.rm=na.rm))
+val
+}
+
 
 difQMC_sub<-function(data,dif,q){
 es=hd(dif[data],q)+hd(dif[data],1-q)
@@ -487,7 +493,7 @@ if(!COLOR)temp$plane(vals)
 
 
 reg2plot<-function(x1,y1,x2,y2,regfun=tsreg,xlab="X",ylab="Y",xout=FALSE,outfun=out,
-STAND=FALSE,...){
+STAND=TRUE,...){
 #
 #  For convenience
 #  plot two regression lines
@@ -499,11 +505,14 @@ xy=elimna(cbind(x2,y2))
 x2=xy[,1]
 y2=xy[,2]
 if(xout){
-if(!STAND)flag=outfun(cbind(x1,y1))$keep
-if(STAND)flag=outpro(cbind(x1,y1),STAND=TRUE)$keep
+flago=identical(outfun,out)
+if(!flago)flag=outfun(x1,plotit=FALSE)$keep
+if(flago)flag=outpro(x1,STAND=STAND,plotit=FALSE)$keep
 x1=x1[flag]
 y1=y1[flag]
-flag=outfun(cbind(x2,y2))$keep
+if(!flago)flag=outfun(x2,plotit=FALSE)$keep
+if(flago)flag=outpro(x2,STAND=STAND,plotit=FALSE)$keep
+#flag=outfun(cbind(x2,y2))$keep
 x2=x2[flag]
 y2=y2[flag]
 }
@@ -736,7 +745,7 @@ mestseb<-function(x,nboot=1000,bend=1.28,SEED=TRUE){
 if(SEED)set.seed(1) # set seed of random number generator so that
 #   results can be duplicated.
 data<-matrix(sample(x,size=length(x)*nboot,replace=T),nrow=nboot)
-bvec<-apply(data,1,mest)
+bvec<-apply(data,1,mest,bend=bend)
 mestseb<-sqrt(var(bvec))
 mestseb
 }
@@ -881,7 +890,7 @@ list(ci=c(bvec[low],bvec[up]))
 }
 
 
-sint<-function(x,alpha=.05,pr=TRUE){
+sint<-function(x,alpha=.05,pr=FALSE){
 #
 #   Compute a 1-alpha confidence interval for the median using
 #   the Hettmansperger-Sheather interpolation method.
@@ -1157,7 +1166,7 @@ kstiesig<-1.-umat[m+1,n+1]/exp(term)
 kstiesig
 }
 
-yuen<-function(x,y,tr=.2,alpha=.05){
+yuen<-function(x,y=NULL,tr=.2,alpha=.05){
 #
 #  Perform Yuen's test for trimmed means on the data in x and y.
 #  The default amount of trimming is 20%
@@ -1167,10 +1176,26 @@ yuen<-function(x,y,tr=.2,alpha=.05){
 #  the trimmed mean of y is computed and returned in yuen$ci.
 #  The p-value is returned in yuen$p.value
 #
+#  x, y: The data for the two groups are stored in x and y
+#  tr=.2: indicates that the default amount of trimming is .2
+#         tr=0 results in using the sample mean
+#
+#  The function returns both a confidence interval and a p-value.
+#  
 #  For an omnibus test with more than two independent groups,
 #  use t1way.
 #  This function uses winvar from chapter 2.
 #
+if(is.null(y)){
+if(is.matrix(x) || is.data.frame(x)){
+y=x[,2]
+x=x[,1]
+}
+if(is.list(x)){
+y=x[[2]]
+x=x[[1]]
+}
+}
 if(tr==.5)stop("Using tr=.5 is not allowed; use a method designed for medians")
 if(tr>.25)print("Warning: with tr>.25 type I error control might be poor")
 x<-x[!is.na(x)]  # Remove any missing values in x
@@ -2272,7 +2297,7 @@ cilow<-tau+crit*sqrt(C)
 cihi<-tau-crit*sqrt(C)
 test<-tau/sqrt((2*(2*n+5))/(9*n*(n-1)))
 siglevel<-2*(1-pnorm(abs(test)))
-list(cor=tau,ci=c(cilow,cihi),siglevel=siglevel)
+list(cor=tau,ci=c(cilow,cihi),p.value=siglevel)
 }
 
 elimna<-function(m){
@@ -2679,6 +2704,12 @@ reglev<-function(x,y,plotit=TRUE,SEED=TRUE){
 #  in the variable dis.
 #
 library(MASS)
+xy=elimna(cbind(x,y))
+x=as.matrix(x)
+p=ncol(x)
+p1=p+1
+x=xy[,1:p]
+y=xy[,p1]
 plotit<-as.logical(plotit)
 if(SEED)set.seed(12)
 x<-as.matrix(x)
@@ -4962,7 +4993,7 @@ corv<-cor(m)
 test <-corv * sqrt((length(x) - 2)/(1. - corv^2))
 sig <- 2 * (1 - pt(abs(test), length(x) - 2))
 if(is.null(y[1]))sig<-matrix(sig,ncol=sqrt(length(sig)))
-list(cor=corv,siglevel = sig)
+list(cor=corv,p.value = sig)
 }
 
 
@@ -5847,12 +5878,12 @@ vec<-c(1:n)
 for(i in 1:n){
 flag[i]<-(x[i]< cl || x[i]> cu)
 }
-if(sum(flag)==0)outid<-NA
+if(sum(flag)==0)outid<-NULL
 if(sum(flag)>0)outid<-vec[flag]
 keep<-vec[!flag]
 outval<-x[flag]
 n.out=sum(length(outid))
-list(out.val=outval,out.id=outid,keep=keep,n.out=n.out,cl=cl,cu=cu)
+list(out.val=outval,out.id=outid,keep=keep,n=n,n.out=n.out,cl=cl,cu=cu)
 }
 
 mscov<-function(m,STAND=FALSE){
@@ -6106,7 +6137,7 @@ ifmad<-ifmad/(2*.6745*(val2+val1))
 y<-(x-tt)/mad(x)
 n<-length(x)
 b<-sum(y[abs(y)<=bend])/n
-a<-hpsi(y)*mad(x)-ifmad*b
+a<-hpsi(y,bend)*mad(x)-ifmad*b
 ifmest<-a/(length(y[abs(y)<=bend])/n)
 ifmest
 }
@@ -6397,6 +6428,8 @@ wmw<-function(x,y){
 # p-value using Hodges, Ramsey and Wechsler (1990) method
 # (See Wilcox, 2003, p. 559.)
 #
+x=elimna(x)
+y=elimna(y)
 m<-length(x)
 n<-length(y)
 com<-rank(c(x,y))
@@ -6414,7 +6447,7 @@ cv<-1+T1/kv+T2/kv^2
 sighrw<-2*(1-pnorm(abs(cv*yv)))
 z<-(u-(.5*m*n))/sqrt(sigsq)
 sig<-2*(1-pnorm(abs(z)))
-list(p.value=sig,sigad=sighrw)
+list(p.value=sig,sigad=sighrw,p.hat=u/(n*m))
 }
 
 lsfitNci<-function(x,y,alpha=.05){
@@ -6786,7 +6819,7 @@ list(phat=phat,zhat=zhat)
 
 lplot<-function(x,y,span=.75,pyhat=FALSE,eout=FALSE,xout=FALSE,outfun=outpro,plotit=TRUE,
 expand=.5,low.span=2/3,varfun=pbvar,cor.op=FALSE,cor.fun=pbcor,pr=TRUE,
-scale=FALSE,xlab="X",ylab="Y",zlab="",theta=50,phi=25,family="gaussian",
+scale=TRUE,xlab="X",ylab="Y",zlab="",theta=50,phi=25,family="gaussian",
 duplicate="error",pc="*",ticktype="simple",frame=TRUE,...){
 #
 # Plot regression surface using LOESS
@@ -7235,10 +7268,10 @@ center
 
 
 akerd<-function(xx,hval=NA,aval=.5,op=1,fr=.8,pyhat=FALSE,pts=NA,plotit=TRUE,
-xlab="",ylab="",zlab="",theta=50,phi=25,expand=.5,scale=TRUE,ticktype="simple"){
+xlab="",ylab="",zlab="",theta=50,phi=25,expand=.5,scale=TRUE,ticktype="simple",color='black'){
 #
 # Compute adaptive kernel density estimate
-# for univariate data
+# 
 # (See Silverman, 1986)
 #
 # op=1 Use expected frequency as initial estimate of the density
@@ -7246,7 +7279,7 @@ xlab="",ylab="",zlab="",theta=50,phi=25,expand=.5,scale=TRUE,ticktype="simple"){
 #      Use normal kernel to get initial estimate of the density
 #  ticktype="detailed" will create ticks as done for a two-dimensional plot
 #
-#  Note, when pyhat=T, returns estimate of density at these point AFTER
+#  Note, when pyhat=T, returns estimate of density at points if pts AFTER
 #  putting the points in ascending order.
 #
 xx=elimna(xx)
@@ -7297,9 +7330,8 @@ dhat[j]<-mean(epan/(alam*hval))
 }
 if(plotit){
 plot(pts,dhat,type="n",ylab=ylab,xlab=xlab)
-lines(pts,dhat)
+lines(pts,dhat,col=color)
 }
-#fval<-"Done"
 if(pyhat)fval<-dhat
 }
 fval
@@ -7627,7 +7659,7 @@ plotit=FALSE,op=1,SEED=TRUE){
 #
 #  Compute a 1-alpha confidence interval for the difference between
 #  the trimmed means corresponding to two independent groups.
-#  The bootstrap percentile t method is used.
+#  The bootstrap-t method is used.
 #
 #  The default amount of trimming is tr=.2
 #  side=T indicates two-sided method using absolute value of the
@@ -7730,7 +7762,7 @@ trimcibt<-mean(x,tr)-tval[icrit]*trimse(x,tr)
 trimcibt[2]<-mean(x,tr)+tval[icrit]*trimse(x,tr)
 p.value<-(sum(abs(test)<=abs(tval)))/nboot
 }
-list(estimate=mean(x,tr),ci=trimcibt,test.stat=test,p.value=p.value)
+list(estimate=mean(x,tr),ci=trimcibt,test.stat=test,p.value=p.value,n=length(x))
 }
 
 khomreg<-function(x,y,xout=FALSE,outfun=out,...){
@@ -8711,13 +8743,6 @@ med1way<-function(x,grp=NA,alpha=.05,crit=NA,iter=1000,SEED=TRUE,pr=T){
 #  Missing values are automatically removed.
 #
 if(is.data.frame(x))x=as.matrix(x)
-if(pr){
-print("NOTE: This function was modified in Dec. 2004")
-print("A new approximate critical value is used if crit=NA")
-print("This might improve type I error probabilities substantially")
-print("For discrete data with ties, this function is NOT recommended.")
-print("Use the function medpb; it is best for general use")
-}
 if(is.matrix(x)){
 y<-list()
 for(j in 1:ncol(x))y[[j]]<-x[,j]
@@ -9778,7 +9803,7 @@ list(test=test,ci.low=ci.low,ci.hi=ci.hi,p.value=p.value)
 medcipb<-function(x,alpha=.05,null.val=NA,nboot=500,SEED=TRUE,...){
 #
 #   Bootstrap confidence interval for the median of single variable.
-#
+#   The usual sample median is used. hdpb uses the Harrell--Davis estimator
 #   Missing values are allowed.
 #
 x<-elimna(x)
@@ -10766,14 +10791,6 @@ mat[i,9]<-test$p.value
 mat[i,10]<-critv
 }}
 if(plotit){
-#if(xout){
-#flag<-outfun(x1,...)$keep
-#x1<-x1[flag]
-#y1<-y1[flag]
-#flag<-outfun(x2,...)$keep
-#x2<-x2[flag]
-#y2<-y2[flag]
-#}
 runmean2g(x1,y1,x2,y2,fr=fr1,est=mean,tr=tr,sm=sm,xout=FALSE,LP=LP,...)
 }
 list(output=mat)
@@ -11308,7 +11325,7 @@ Qbc.siglevel <- 1 - pf(Qbc, (K - 1) * (L - 1), 999)
 cmat<-kron(cj,kron(ck,cl))  # Contrast matrix for factor A by B by C
 Qabc<-bwwtrim.sub(cmat, tmeans, v, h,p)
 Qabc.siglevel <-1-pf(Qabc,(J-1)*(K-1)*(L-1), 999)
-list(Qa=Qa,Qa.p.value=Qa.siglevel,Qb=Qb,Qb.crit=Qb.siglevel,
+list(Qa=Qa,Qa.p.value=Qa.siglevel,Qb=Qb,Qb.p.value=Qb.siglevel,
 Qc=Qc,Qc.p.value=Qc.siglevel,Qab=Qab,Qab.p.value=Qab.siglevel,
 Qac=Qac,Qac.p.value=Qac.siglevel,Qbc=Qbc,Qbc.p.value=Qbc.siglevel,
 Qabc=Qabc,Qabc.p.value=Qabc.siglevel)
@@ -11746,9 +11763,9 @@ Qabc=Qabc$teststat,Qabc.crit=Qabc$crit,Qabc.p.value=Qabc.pv)
 }
 
 
-olshc4<-function(x,y,alpha=.05,CN=FALSE,xout=FALSE,outfun=outpro,HC3=FALSE,...){
+olshc4<-function(x,y,alpha=.05,CN=FALSE,xout=FALSE,outfun=outpro,HC3=FALSE,plotit=FALSE,xlab = "X", ylab = "Y", zlab = "Z",...){
 #
-# Compute confidence for least squares
+# Compute confidence intervals via least squares
 # regression using heteroscedastic method
 # recommended by Cribari-Neto (2004).
 # CN=F, degrees of freedom are n-p
@@ -11758,6 +11775,7 @@ olshc4<-function(x,y,alpha=.05,CN=FALSE,xout=FALSE,outfun=outpro,HC3=FALSE,...){
 #  HC3=TRUE, will replace the HC4 estimator with the HC3 estimator.
 #
 x<-as.matrix(x)
+pnum=ncol(x)
 if(nrow(x) != length(y))stop("Length of y does not match number of x values")
 m<-cbind(x,y)
 m<-elimna(m)
@@ -11768,7 +11786,7 @@ nrem=n
 n.keep=length(y)
 x<-as.matrix(x)
 if(xout){
-flag<-outfun(x,...)$keep
+flag<-outfun(x,plotit=FALSE,...)$keep
 x<-as.matrix(x)
 x<-x[flag,]
 y<-y[flag]
@@ -11805,10 +11823,20 @@ ci[j,5]<-2*(1-pt(abs(test),df))
 if(CN)ci[j,5]<-2*(1-pnorm(abs(test),df))
 }
 ci[,6]=sqrt(diag(hc4))
+if(plotit){
+if(pnum==1){
+plot(x[,-1],y,xlab=xlab,ylab=ylab)
+abline(ci[,2])
+}
+if(pnum==2){
+regp2plot(x[,-1],y,regfun=ols,xlab=xlab,ylab=ylab,zlab=zlab)
+}}
 list(n=nrem,n.keep=n.keep,ci=ci, cov=hc4)
 }
 
-hc4test<-function(x,y,pval=c(1:ncol(x)),xout=FALSE,outfun=outpro,...){
+olsci<-olshc4
+
+hc4test<-function(x,y,pval=c(1:ncol(x)),xout=FALSE,outfun=outpro,pr=TRUE,...){
 #
 # Perform omnibus test using OLS and HC4 estimator
 # That is, test the hypothesis that all of the slope parameters
@@ -11819,7 +11847,7 @@ hc4test<-function(x,y,pval=c(1:ncol(x)),xout=FALSE,outfun=outpro,...){
 # Unknown how large n must be when p>1
 #
 x<-as.matrix(x)
-if(ncol(x)>1)print("WARNING: more than 1 predictor, olstest might be better")
+if(ncol(x)>1 && pr)print("WARNING: more than 1 predictor, olstest might be better")
 if(nrow(x) != length(y))stop("Length of y does not match number of x values")
 m<-cbind(x,y)
 m<-elimna(m)
@@ -11869,63 +11897,8 @@ p.value<-1-pchisq(test,df)
 list(n=nrem,n.keep=n.keep,test=test,p.value=p.value)
 }
 
-trimpb<-function(x,y,tr=.2,alpha=.05,nboot=2000,WIN=FALSE,win=.1,
-plotit=FALSE,pop=1,null.value=0,pr=TRUE,xlab="X"){
-#
-#   Compute a 1-alpha confidence interval for
-#   a trimmed mean.
-#
-#   The default number of bootstrap samples is nboot=2000
-#
-#   win is the amount of Winsorizing before bootstrapping
-#   when WIN=T.
-#
-#   Missing values are automatically removed.
-#
-#  nv is null value. That test hypothesis trimmed mean equals nv
-#
-#  plotit=TRUE gives a plot of the bootstrap values
-#  pop=1 results in the expected frequency curve.
-#  pop=2 kernel density estimate
-#  pop=3 boxplot
-#  pop=4 stem-and-leaf
-#  pop=5 histogram
-#  pop=6 adaptive kernel density estimate.
-#
-if(pr){
-print("The p-value returned by the this function is based on the")
-print("null value specified by the argument null.value, which defaults to 0")
-}
-x<-x[!is.na(x)]
-if(WIN){
-if(win > tr)stop("The amount of Winsorizing must be <= to the amount of trimming")
-x<-winval(x,win)
-}
-crit<-alpha/2
-icl<-round(crit*nboot)+1
-icu<-nboot-icl
-bvec<-NA
-set.seed(2) # set seed of random number generator so that
-#             results can be duplicated.
-#print("Taking bootstrap samples. Please wait.")
-data<-matrix(sample(x,size=length(x)*nboot,replace=TRUE),nrow=nboot)
-bvec<-apply(data,1,mean,tr) # Bootstrapped trimmed means
-bvec<-sort(bvec)
-p.value<-sum(bvec<null.value)/nboot
-p.value<-2*min(p.value,1-p.value)
-ci<-NA
-ci[1]<-bvec[icl]
-ci[2]<-bvec[icu]
-if(plotit){
-if(pop==1)rdplot(as.vector(bvec),fr=fr,xlab=xlab)
-if(pop==2)kdplot(as.vector(bvec),rval=rval)
-if(pop==3)boxplot(as.vector(bvec),fr=fr)
-if(pop==4)stem(as.vector(bvec))
-if(pop==5)hist(as.vector(bvec))
-if(pop==6)akerd(as.vector(bvec),xlab=xlab)
-}
-list(ci=ci,p.value=p.value)
-}
+
+
 standm<-function(x,locfun=lloc,est=mean,scat=var,...){
 # standardize a matrix x
 #
@@ -11946,7 +11919,7 @@ lev.col=c(1:2),var.col=3,pr=TRUE,IV1=NULL,IV2=NULL){
 #  The R variable x is assumed to contain the raw
 #  data stored in list mode, or a matrix with columns
 #  corresponding to groups. If stored in list mode, x[[1]] contains the data
-#  for the first level of all three factors: level 1,1,.
+#  for the first level of both factors: level 1,1,.
 #  x[[2]] is assumed to contain the data for level 1 of the
 #  first factor and level 2 of the second factor: level 1,2
 #
@@ -12761,8 +12734,8 @@ if(is.matrix(x))x<-listm(x)
 if(is.na(grp[1]))grp<-c(1:length(x))
 if(!is.list(x))stop("Data are not stored in a matrix or in list mode")
 J<-length(grp)  # The number of groups to be compared
-print("The number of groups to be compared is")
-print(J)
+#if(pr)print("The number of groups to be compared is")
+#print(J)
 h<-1
 xbar<-1
 ybar<-1
@@ -12788,7 +12761,7 @@ sig<-1-pf(D,nu1,nu2)
 # Next, estimate the Winsorized intraclass correlation
 sighat<-mean(ell*(ybar-(sum(ell*ybar)/sum(ell)))^2)
 rho<-sighat/(sighat+winmean(wvar,tr))
-list(teststat=D,df=c(nu1,nu2),siglevel=sig,rho=rho)
+list(teststat=D,df=c(nu1,nu2),p.value=sig,rho=rho,num.groups=J)
 }
 
 
@@ -13754,22 +13727,25 @@ mom
 }
 
 
-momci<-function(x,alpha=.05,nboot=2000,bend=2.24){
+momci<-function(x,alpha=.05,nboot=2000,bend=2.24,SEED=TRUE,null.value=0){
 #
 #   Compute a bootstrap, .95 confidence interval for the
 #   MOM-estimator of location based on Huber's Psi.
 #   The default number of bootstrap samples is nboot=500
 #
-set.seed(2) # set seed of random number generator so that
+if(SEED)set.seed(2) # set seed of random number generator so that
 #             results can be duplicated.
-print("Taking bootstrap samples. Please wait.")
+#print("Taking bootstrap samples. Please wait.")
 data<-matrix(sample(x,size=length(x)*nboot,replace=TRUE),nrow=nboot)
+est=mom(x,bend=bend)
 bvec<-apply(data,1,mom,bend)
 bvec<-sort(bvec)
 low<-round((alpha/2)*nboot)
 up<-nboot-low
 low<-low+1
-list(ci=c(bvec[low],bvec[up]))
+pv=mean(bvec>null.value)+.5*mean(bvec==null.value)
+pv=2*min(c(pv,1-pv))
+list(ci=c(bvec[low],bvec[up]),p.value=pv,est.mom=est)
 }
 
 
@@ -13845,7 +13821,7 @@ center<-m[temp2[1],]
 list(center=center,distance=dis)
 }
 
-onesampb<-function(x,est=onestep,alpha=.05,nboot=2000,SEED=TRUE,nv=0,...){
+onesampb<-function(x,est=onestep,alpha=.05,nboot=2000,SEED=TRUE,nv=0,null.value=nv,...){
 #
 #   Compute a bootstrap, .95 confidence interval for the
 #   measure of location corresponding to the argument est.
@@ -15011,9 +14987,9 @@ dif=elimna(dif)
 n<-length(dif)
 dif<-dif[dif!=0]  # Remove any zero values.
 flag<-(dif<0)
-if(!AC)temp<-binomci(y=flag,alpha=alpha)
-if(AC)temp<-acbinomciv2(y=flag,alpha=alpha)
-list(Prob_x_less_than_y=temp$phat,ci=temp$ci,n=n,N=length(flag))
+if(!AC)temp<-binomcipv(y=flag,alpha=alpha)
+if(AC)temp<-acbinomcipv(y=flag,alpha=alpha)
+list(Prob_x_less_than_y=temp$phat,ci=temp$ci,n=n,N=length(flag),p.value=temp$p.value)
 }
 
 signtpv<-function(x,y,nullval=.5,alpha=.05,AC=FALSE){
@@ -16264,7 +16240,7 @@ lines(xx[c(temp[1],temp[length(temp)]),])
 ndepth
 }
 
-fdepth<-function(m,pts=NA,plotit=TRUE,cop=2,center=NA,xlab="VAR 1",
+fdepth<-function(m,pts=NA,plotit=TRUE,cop=3,center=NA,xlab="VAR 1",
 ylab="VAR 2"){
 #
 # Determine depth of points in pts,  relative to
@@ -16397,7 +16373,7 @@ dep<-apply(m,2,min)
 dep
 }
 
-opreg<-function(x,y,regfun=tsreg,cop=3,MC=FALSE,varfun=pbvar,corfun=pbcor,STAND=FALSE){
+opreg<-function(x,y,regfun=tsreg,cop=3,MC=FALSE,varfun=pbvar,corfun=pbcor,STAND=TRUE){
 #
 # Do regression on points not labled outliers
 # using projection-type outlier detection method
@@ -17415,7 +17391,7 @@ if(pyhat)m<-yhat
 m
 }
 
-mscor<-function(m,corfun=spear,cop=3,MM=FALSE,gval=NA,ap=TRUE,pw=TRUE,STAND=FALSE){
+mscor<-function(m,corfun=spear,cop=3,MM=FALSE,gval=NA,ap=TRUE,pw=TRUE,STAND=TRUE){
 #
 # m is an n by p matrix
 #
@@ -17633,6 +17609,7 @@ if(LP){
 ord=order(x)
 x=x[ord]
 rmd=rmd[ord]
+y=y[ord]
 rmd=lplot(x,rmd,plotit=FALSE,pyhat=TRUE,pr=FALSE)$yhat
 }
 if(plotit){
@@ -20669,11 +20646,7 @@ coef<-nelderv2(X,np,FN=qreg.sub,START=START,qval=qval)
 if(v2){
 if(pr){
 print("v2=T attempts to use a faster version by calling")
-print("the function rq, which is stored in the library quantreg,")
-print("which can be downloaded from")
-print("http://cran.r-project.org/src/contrib/PACKAGES.html")
-print("On a PC, store quantreg in the library subdirectory of R")
-print("On a unix machine, try the command install.packages('quantreg')")
+print("the function rq")
 print("To avoid this message, use pr=FALSE")
 print(" ")
 }
@@ -22041,6 +22014,18 @@ list(out.id=outid,keep=keep,distances=temp$dis)
 splot<-function(x,op=TRUE,VL=FALSE,xlab="X",ylab="Rel. Freq.",frame.plot=TRUE){
 #
 # Frequency plot
+# 
+# For each unique value in x, 
+# the relatively frequency is determined and plotted.
+#
+# op=TRUE a line connecting the relative frequencies is drawn if VL=FALSE.
+# VL=TRUE, a vertical line is drawn for each unique value in x;
+# the height of the line indicates the relative frequency.
+#
+# op=FALSE. No lines are drawn
+#
+# The function returns the sample size as well as the frequencies 
+# associated with each unique value stored in x.  
 #
 x<-x[!is.na(x)]
 temp<-sort(unique(x))
@@ -25055,7 +25040,7 @@ temp<-NA
 m<-elimna(m)
 m<-as.matrix(m)
 if(op==2)temp<-outmgv(m,plotit=FALSE,op=mgv.op)$keep
-if(op==1)temp<-outpro(m,plotit=FALSE,MM=MM,cop=outpro.cop,STAND=STAND)$keep
+if(op==1)temp<-outpro(m,plotit=FALSE,MM=MM,cop=outpro.cop,STAND=STAND,pr=FALSE)$keep
 val<-var(m[temp,])
 val
 }
@@ -25088,14 +25073,13 @@ x<-as.matrix(x)
 p<-ncol(x)
 pp<-p+1
 temp<-lsfit(x,y)
+Rsq=ols(x,y)$R.squared
 yhat<-mean(y)
 res<-y-yhat
-#s<-lsfitNci4(x, y)$cov[-1, -1]
 s<-olshc4(x, y)$cov[-1, -1]
 si<-solve(s)
 b<-temp$coef[2:pp]
 wtest<-t(b)%*%si%*%b
-print("Taking boostrap samples. Please wait.")
 if(RAD)data<-matrix(ifelse(rbinom(length(y)*nboot,1,0.5)==1,-1,1),nrow=nboot)
 if(!RAD){
 data<-matrix(runif(length(y)*nboot),nrow=nboot)
@@ -25104,7 +25088,7 @@ data<-(data-.5)*sqrt(12) # standardize the random numbers.
 rvalb<-apply(data,1,lstest4,yhat,res,x)
 sum<-sum(rvalb>= wtest[1,1])
 p.val<-sum/nboot
-list(p.value=p.val)
+list(p.value=p.val,R.squared=Rsq)
 }
 lscale<-function(x,m,q)
 {
@@ -25288,12 +25272,16 @@ val<-abs(mean(chival)-del)
 val
 }
 
-rmba<-function(x, csteps = 5,na.rm=TRUE)
+rmba<-function(x, csteps = 5,na.rm=TRUE,plotit=FALSE)
 {
 # computes the reweighted MBA estimator
 # Code supplied by David Olive
 #
 #       x is assumed to be a matrix
+#
+#  plotit=FALSE is used to avoid problems when this function is called
+#  by other function in WRS
+#
 x=as.matrix(x)
 if(na.rm)x=elimna(x)
 	p <- dim(x)[2]
@@ -26404,6 +26392,8 @@ for(j in 1:J)temp[1:nval[j],j]<-x[[j]]
 temp
 }
 
+list2mat=matl
+
 list2vec<-function(x){
 if(!is.list(x))stop("x should have list mode")
 res=as.vector(matl(x))
@@ -26718,7 +26708,7 @@ done
 }
 
 scor<-function(x,y=NULL,corfun=pcor,gval=NA,plotit=TRUE,op=TRUE,cop=3,xlab="VAR 1",
-ylab="VAR 2",STAND=FALSE,pr=TRUE,SEED=TRUE,MC=FALSE){
+ylab="VAR 2",STAND=TRUE,pr=TRUE,SEED=TRUE,MC=FALSE){
 #
 # Compute a skipped correlation coefficient.
 #
@@ -26750,12 +26740,11 @@ xlab=xlab,ylab=ylab,STAND=STAND,pr=pr)$keep
 if(MC)temp<-outproMC(m,gval=gval,plotit=plotit,op=op,cop=cop,
 xlab=xlab,ylab=ylab,STAND=STAND,pr=pr)$keep
 tcor<-corfun(m[temp,])$cor
-#if(ncol(m)==2)tcor<-tcor[1,2]
 if(!is.null(dim((m))))tcor<-tcor[1,2]
 test<-abs(tcor*sqrt((nrow(m)-2)/(1-tcor**2)))
 if(ncol(m)!=2)diag(test)<-NA
 crit<-6.947/nrow(m)+2.3197
-list(cor.values=tcor,test.stat=test,crit.05=crit)
+list(cor.value=tcor,test.stat=test,crit.05=crit)
 }
 
 
@@ -28239,7 +28228,7 @@ Rval=Rsq(x,y)
 list(n=n,n.keep=n.keep,summary=coef,coef=coef[,1],Ftest.p.value=Ftest.p.value,R.squared=Rval)
 }
 
-olstest<-function(x,y,nboot=500,SEED=TRUE,RAD=TRUE,xout=FALSE,outfun=out,...){
+olstest<-function(x,y,nboot=500,SEED=TRUE,RAD=TRUE,xout=FALSE,outfun=outpro,...){
 #
 # Test the hypothesis that all OLS slopes are zero.
 # Heteroscedasticity is allowed.
@@ -28266,7 +28255,6 @@ temp<-lsfit(x,y)
 yhat<-mean(y)
 res<-y-yhat
 test<-sum(temp$coef[2:pp]^2)
-print("Taking bootstrap sample, please wait.")
 if(RAD)data<-matrix(ifelse(rbinom(length(y)*nboot,1,0.5)==1,-1,1),nrow=nboot)
 if(!RAD){
 data<-matrix(runif(length(y)*nboot),nrow=nboot)#
@@ -29346,7 +29334,8 @@ vec1<-outer(ys,ys,"-")
 vec2<-outer(xs,xs,"-")
 v1<-vec1[vec2>0]
 v2<-vec2[vec2>0]
-slope<-median(v1/v2,na.rm=TRUE)
+if(!HD)slope<-median(v1/v2,na.rm=TRUE)
+if(HD)slope<-hd(v1/v2,na.rm=TRUE)
 if(!HD)coef<-median(y,na.rm=TRUE)-slope*median(x,na.rm=TRUE)
 if(HD)coef<-hd(y,na.rm=TRUE)-slope*hd(x,na.rm=TRUE)
 names(coef)<-"Intercept"
@@ -29373,7 +29362,7 @@ plot(gval,vals,xlab=xlab,ylab=ylab)
 }
 
 trimpb<-function(x,tr=.2,alpha=.05,nboot=2000,WIN=FALSE,win=.1,
-plotit=FALSE,pop=1,null.value=0,pr=TRUE,xlab="X",fr=NA){
+plotit=FALSE,pop=1,null.value=0,pr=TRUE,xlab="X",fr=NA,SEED=TRUE){
 #
 #   Compute a 1-alpha confidence interval for
 #   a trimmed mean.
@@ -29412,9 +29401,9 @@ crit<-alpha/2
 icl<-round(crit*nboot)+1
 icu<-nboot-icl
 bvec<-NA
-set.seed(2) # set seed of random number generator so that
+if(SEED)set.seed(2) # set seed of random number generator so that
 #             results can be duplicated.
-print("Taking bootstrap samples. Please wait.")
+#print("Taking bootstrap samples. Please wait.")
 data<-matrix(sample(x,size=length(x)*nboot,replace=TRUE),nrow=nboot)
 bvec<-apply(data,1,mean,tr) # Bootstrapped trimmed means
 bvec<-sort(bvec)
@@ -30179,7 +30168,7 @@ x<-as.matrix(x)
 n.keep=nrow(x)
 }
 if(ncol(x)==1){
-temp1<-tsp1reg(x,y)
+temp1<-tsp1reg(x,y,HD=HD)
 coef<-temp1$coef
 res<-temp1$res
 }
@@ -30801,7 +30790,7 @@ sband(xy[[1]],xy[[2]])
 par(mfrow=c(1,1))
 }
 
-yuenv2<-function(x,y,tr=.2,alpha=.05,plotit=FALSE,plotfun=splot,op=TRUE,VL=TRUE,cor.op=FALSE,loc.fun=median,
+yuenv2<-function(x,y=NULL,tr=.2,alpha=.05,plotit=FALSE,plotfun=splot,op=TRUE,VL=TRUE,cor.op=FALSE,loc.fun=median,
 xlab="Groups",ylab="",PB=FALSE,nboot=100,SEED=TRUE){
 #
 #  Perform Yuen's test for trimmed means on the data in x and y.
@@ -30820,6 +30809,16 @@ xlab="Groups",ylab="",PB=FALSE,nboot=100,SEED=TRUE){
 #
 if(tr==.5)stop("Use medpb to compare medians.")
 if(tr>.5)stop("Can't have tr>.5")
+if(is.null(y)){
+if(is.matrix(x) || is.data.frame(x)){
+y=x[,2]
+x=x[,1]
+}
+if(is.list(x)){
+y=x[[2]]
+x=x[[1]]
+}
+}
 library(MASS)
 if(SEED)set.seed(2)
 x<-x[!is.na(x)]  # Remove any missing values in x
@@ -31387,7 +31386,7 @@ estit=regfun(x,y,xout=xout,...)$coef
 if(xout){
 if(pr)print("Default for argument outfun is now outpro")
 m<-cbind(x,y)
-flag<-outfun(x,plotit=F,...)$keep
+flag<-outfun(x,plotit=FALSE,...)$keep
 m<-m[flag,]
 x<-m[,1:p]
 y<-m[,p1]
@@ -33180,8 +33179,8 @@ print(temp$psihat)
 }}
 }
 
-out<-function(x,cov.fun=cov.mve,plotit=TRUE,SEED=TRUE,xlab="X",ylab="Y",qval=.975,
-crit=NULL,...){
+out<-function(x,cov.fun=cov.mve,SEED=TRUE,xlab="X",ylab="Y",qval=.975,
+crit=NULL,plotit=FALSE,...){
 #
 #  Search for outliers using robust measures of location and scatter,
 #  which are used to compute robust analogs of Mahalanobis distance.
@@ -33209,6 +33208,9 @@ crit=NULL,...){
 #  covmba2 (the MBA or median ball algorithm)
 #  rmba  (an adjustment of MBA suggested by D. Olive)
 #  cov.roc (Rocke's TBS estimator)
+#
+#  plotit=FALSE used to avoid problems when other functions in WRS call 
+#  this function
 #
 library(MASS)
 if(SEED)set.seed(12)
@@ -33713,8 +33715,8 @@ outputA
 bwwmcppb.sub<-function(J, K,L, x, est=tmean, JKL = J * K*L, con = 0,
  alpha = 0.05, grp =c(1:JKL), nboot = 500, bhop=FALSE,SEED = TRUE, ...){
         #
-        # A percentile bootstrap for multiple comparisons among
-        # multiple comparisons for all main effects and interactions
+        # A percentile bootstrap for multiple comparisons 
+        # for all main effects and interactions.
         # The analysis is done by generating bootstrap samples and
         # using an appropriate linear contrast.
         #
@@ -34003,8 +34005,8 @@ bwwmcppb<-function(J, K,L, x, est=tmean,JKL = J * K*L,
  alpha = 0.05, grp =c(1:JKL), nboot = 500, bhop=FALSE,SEED = TRUE,...)
 {
         #
-        # A percentile bootstrap for multiple comparisons among
-        # multiple comparisons for all main effects and interactions
+        # A percentile bootstrap for multiple comparisons 
+        # for all main effects and interactions
         # The analysis is done by generating bootstrap samples and
         # using an appropriate linear contrast.
         #
@@ -34176,7 +34178,7 @@ list(TEST=TEST,nu1=nu1,nu2=nu2,siglevel=sig,Var.Explained=e.pow,
 Effect.Size=sqrt(e.pow))
 }
 
-snmreg<-function(x,y,SEED=TRUE,xout=FALSE,outfun=outpro,initreg=chreg,...){
+snmreg<-function(x,y,SEED=TRUE,xout=FALSE,outfun=outpro,initreg=chregF,...){
 #
 # Compute regression S-estimator via Nelder-Mead method
 # The measure of scale is taken to be the percentage bend midvariance
@@ -34257,8 +34259,6 @@ if(length(temp[[j]])==p){
 ic=ic+1
 vals[ic]=gvarg(cbind(y,x[,temp[[j]]]),cov.fun)
 z=cbind(y,x[,temp[[j]]])
-#vals[ic]=prod(eigen(scor(z,plotit=FALSE)$cor.values)$values)
-#vals[ic]=gvarg(cbind(y,x[,temp[[j]]]),cov.fun)
 }}}
 vals
 }
@@ -34267,8 +34267,8 @@ bwmcppb<-function(J, K, x, est=tmean,JK = J * K,
  alpha = 0.05, grp =c(1:JK), nboot = 500, bhop=FALSE,SEED = TRUE,...)
 {
         #
-        # A percentile bootstrap for multiple comparisons among
-        # multiple comparisons for all main effects and interactions
+        # A percentile bootstrap for multiple comparisons 
+        # for all main effects and interactions
         # The analysis is done by generating bootstrap samples and
         # using an appropriate linear contrast.
         #
@@ -34301,8 +34301,8 @@ list(Fac.A=A,Fac.B=B,Fac.AB=AB)
 bwmcppb.sub<-function(J, K, x, est=tmean, JK = J * K, con = 0,
  alpha = 0.05, grp =c(1:JK), nboot = 500, bhop=FALSE,SEED = TRUE, ...){
         #
-        # A percentile bootstrap for multiple comparisons among
-        # multiple comparisons for all main effects and interactions
+        # A percentile bootstrap for multiple comparisons 
+        #  for all main effects and interactions
         # The analysis is done by generating bootstrap samples and
         # using an appropriate linear contrast.
         #
@@ -36225,11 +36225,10 @@ bvec<-array(0,c(J,2,nboot))
 hval<-vector("numeric",J)
 if(SEED)set.seed(2) # set seed of random number generator so that
 #             results can be duplicated.
-print("Taking bootstrap samples. Please wait.")
 for(j in 1:J){
 hval[j]<-length(x[[grp[j]]])-2*floor(tr*length(x[[grp[j]]]))
    # hval is the number of observations in the jth group after trimming.
-print(paste("Working on group ",grp[j]))
+#print(paste('Working on group',grp[j]))
 xcen<-x[[grp[j]]]-mean(x[[grp[j]]],tr)
 data<-matrix(sample(xcen,size=length(x[[grp[j]]])*nboot,replace=TRUE),nrow=nboot)
 bvec[j,,]<-apply(data,1,trimparts,tr) # A 2 by nboot matrix. The first row
@@ -36256,9 +36255,9 @@ print("Some bootstrap estimates of the test statistic could not be computed")
 print("Effective number of bootstrap samples was")
 print(sum(!is.na(testb)))
 }
-test<-t1way(x,tr=tr,grp=grp)
+test<-t1wayv2(x,tr=tr,grp=grp)
 pval<-mean(test$TEST<=testb,na.rm=TRUE)
-list(test=test$TEST,p.value=pval)
+list(test=test$TEST,p.value=pval,Var.Explained=test$Var.Explained,Effect.Size=test$Effect.Size)
 }
 
 cidM<-function(x,nboot=1000,alpha=.05,MC=FALSE,SEED=TRUE,g=NULL,dp=NULL){
@@ -36934,7 +36933,7 @@ weighted Kolmogorov-Smirnov test statistic is not exact."))
 list(test=ks,critval=crit,p.value=siglevel)
 }
 
-bbw2list<-function(x,grp.col,lev.col,pr=T){
+bbw2list<-function(x,grp.col,lev.col,pr=TRUE){
 #
 #  for a between-by-between-by-within design
 #  grp.col indicates the columns where values of the  levels of between factor
@@ -37071,7 +37070,7 @@ x[[it]]<-as.numeric(mm[flag,ic])
 list(x=x,grpn=grpn)
 }
 
-bw2list<-function(x,grp.col,lev.col,pr=T){
+bw2list<-function(x,grp.col,lev.col,pr=TRUE){
 #
 #  for a between by within design
 #  grp.col is column indicating levels of between factor.
@@ -37092,7 +37091,7 @@ res$x
 }
 
 
-rmc2list<-function(x,grp.col,lev.col,pr=T){
+rmc2list<-function(x,grp.col,lev.col,pr=TRUE){
 #
 #  for a between by within design
 #  grp.col is column indicating levels of between factor.
@@ -37212,7 +37211,7 @@ lines(xx,phat2,lty=2)
 }
 
 
-medpb2<-function(x,y,alpha=.05,nboot=2000,SEED=TRUE){
+medpb2<-function(x,y=NULL,alpha=.05,nboot=2000,SEED=TRUE){
 #
 #   Compare 2 independent groups using medians.
 #
@@ -37223,6 +37222,16 @@ medpb2<-function(x,y,alpha=.05,nboot=2000,SEED=TRUE){
 #
 #   Missing values are automatically removed.
 #
+if(is.null(y)){
+if(is.matrix(x) || is.data.frame(x)){
+y=x[,2]
+x=x[,1]
+}
+if(is.list(x)){
+y=x[[2]]
+x=x[[1]]
+}
+}
 x=elimna(x)
 y=elimna(y)
 xx<-list()
@@ -38130,32 +38139,6 @@ Factor.AB=Factor.AB,Factor.AC=Factor.AC,Factor.BC=Factor.BC,
 Factor.ABC=Factor.ABC)
 }
 
-
-regplot<-function(x,y,regfun=tsreg,xlab="X",ylab="Y",xout=FALSE,outfun=out,...){
-x=as.matrix(x)
-if(ncol(x)!=1)stop("One predictor only is allowed. For 2 predictors, use regp2plot")
-if(xout){
-xy=cbind(x,y)
-flag=outfun(x)$keep
-x=xy[flag,1]
-y=xy[flag,2]
-}
-plot(x,y,xlab=xlab,ylab=ylab)
-abline(regfun(x,y)$coef)
-}
-olsplot<-function(x,y,regfun=lsfit,xlab="X",ylab="Y"){
-plot(x,y,xlab=xlab,ylab=ylab)
-abline(regfun(x,y)$coef)
-}
-tlist<-function(z){
-#
-# check for any tied values in z, which is assumed to have list mode
-#
-chk=lapply(z,"duplicated")
-s=lapply(chk,"sum")
-val=sum(matl(s)) # if  val=0, duplicate values detected.
-val
-}
 
 wmwaov<-function(x,nboot=500,MC=FALSE,SEED=TRUE,MM=FALSE){
 #
@@ -40672,7 +40655,7 @@ results
 }
 
 outmgvad<-function(m,center=NA,plotit=TRUE,op=1,
-xlab="VAR 1",ylab="VAR 2",rate=.05,iter=100,ip=6,pr=T){
+xlab="VAR 1",ylab="VAR 2",rate=.05,iter=100,ip=6,pr=TRUE){
 #
 # Adjusts the critical value, gval used by outmgv,
 # so that the outside rate per observation, under normality
@@ -40773,7 +40756,7 @@ if(!COLOR)temp$plane(vals)
 }
 }
 
-ees.ci<-function(x,y,SEED=TRUE,nboot=400,tr=.2,alpha=.05,pr=T){
+ees.ci<-function(x,y,SEED=TRUE,nboot=400,tr=.2,alpha=.05,pr=TRUE){
 #
 # Compute a 1-alpha  confidence interval
 # for a robust, heteroscedastic  measure of effect size
@@ -41996,7 +41979,7 @@ res=est(x[data,],...)
 res
 }
 
-fac2Mlist<-function(x,grp.col,lev.col,pr=T){
+fac2Mlist<-function(x,grp.col,lev.col,pr=TRUE){
 #
 #  sort and store data in a matrix or data frame into
 #  groups, where the jth group
@@ -42035,7 +42018,7 @@ y
 
 
 
-fac2BBMlist<-function(x,grp.col,lev.col,pr=T){
+fac2BBMlist<-function(x,grp.col,lev.col,pr=TRUE){
 #
 #  This function is useful when dealing with a two-way MANOVA
 #  It takes data stored in x, a matrix or data frame,
@@ -42744,7 +42727,6 @@ for(j in 1:J){
 data<-matrix(sample(nvec[[j]],size=nvec[[j]]*nboot,replace=TRUE),nrow=nboot)
 bvec[j,,]<-apply(data,1,linconMpb.sub,x[[j]],est,...) # Bootstrapped values for jth group
 }
-#print(bvec[1,,])
 test<-NA
 for (d in 1:ncon){
 tv=matrix(0,nboot,ncol(x[[1]])) #nboot by p matrix reflecting Psi hat
@@ -43250,7 +43232,7 @@ bot=(h-1)*sqrt(n)
 se=top/bot
 se
 }
-winci<-function(x,tr=.2,alpha=.05,null.value=0,pr=T){
+winci<-function(x,tr=.2,alpha=.05,null.value=0,pr=TRUE){
 #
 #  Compute a 1-alpha confidence interval for the Winsorized mean
 #
@@ -43978,6 +43960,7 @@ ancovamp<-function(x1,y1,x2,y2,fr1=1,fr2=1,tr=.2,alpha=.05,pts=NA,SEED=T){
 # the regression lines--a running interval smoother is used.
 # Design points are chosen based on depth of points in x1 if pts=NA
 #  Assume data are in x1 y1 x2 and y2
+#  x1 and x2 should be matrices with two or more columns.
 #
 if(SEED)set.seed(2) # now cov.mve always returns same result
 x1=as.matrix(x1)
@@ -44455,7 +44438,13 @@ binband<-function(x,y,KMS=FALSE,alpha=.05,ADJ.P=FALSE){
 #  For each value that occurs, say x, test P(X=x)=P(Y=x)
 #  So this method is useful when dealing with highly discrete data.
 #
-#  If KMS=T, use Kulinskaya, Morgenthaler and Staudte (2010) method for comparing binomials
+#  If KMS=T, use Kulinskaya, Morgenthaler and Staudte (2010)
+#   method for comparing binomials
+# Kulinskaya, E., Morgenthaler, S. and Staudte, R. (2010). 
+# Variance Stabilizing the Difference of two Binomial
+#  Proportions. {\em American Statistician, 64}, 
+#  350--356 DOI:10.1198/tast.2010.09096
+
 #  Otherwise use Storer and Kim.
 #
 #   ADJ.P=T means that critical p-value is adjusted to control FWE when the sample
@@ -45755,7 +45744,6 @@ chkit<-bi2KMS(r1=r1,n1=n1,r2=r2,n2=n2,x=x,y=x,alpha=alph[i])
 if(chkit$ci[1]>nullval || chkit$ci[2]<nullval)break
 }}
 est=bi2KMS(r1=r1,n1=n1,r2=r2,n2=n2,x=x,y=y)
-#list(est.p1=est$p1,est.p2=est$p2,p.value=p.value)
 list(ci=est$ci,est.p1=est$p1,est.p2=est$p2,p.value=p.value)
 }
 
@@ -45787,7 +45775,6 @@ HT[i]=(C1[i]+C2[i])/(n1+n2)
 p1hat=C1/n1
 p2hat=C2/n2
 test=sum((p1hat-p2hat)^2)
-#test=max(abs(p1hat-p2hat))
 tv=NULL
 TB=NA
 VP=NA
@@ -46203,77 +46190,6 @@ output[[i]]<-test(g1,g2,...)
 if(plotit)
 runmean2g(x1,y1,x2,y2,fr=fr1,est=mean,tr=tr,sm=sm,xout=xout,outfun=outfun,...)
 list(mat,output)
-}
-
-ancovampG<-function(x1,y1,x2,y2,fr1=1,fr2=1,alpha=.05,pts=NULL,SEED=TRUE,test=medpb2,DH=FALSE,FRAC=.5,...){
-#
-#  This function generalizes the R function ancovamp so that any hypothesis testing method
-#  can be used to compare groups at specified design points.
-#
-# No parametric assumption is made about the form of
-# the regression lines--a running interval smoother is used.
-# Design points are chosen based on depth of points in x1 if pts=NULL
-#  Assume data are in x1 y1 x2 and y2
-#
-#  test: argument test determines the method that will be used to compare groups.
-#
-#  pts can be a matrix of design points for which groups are compared
-#
-#  DH=T, groups compared at the deepest (1-FRAC) design points.
-#
-if(SEED)set.seed(2) # now cov.mve always returns same result
-x1=as.matrix(x1)
-p=ncol(x1)
-p1=p+1
-m1=elimna(cbind(x1,y1))
-x1=m1[,1:p]
-y1=m1[,p1]
-x2=as.matrix(x2)
-p=ncol(x2)
-p1=p+1
-m2=elimna(cbind(x2,y2))
-x2=m2[,1:p]
-y2=m2[,p1]
-#
-#
-#
-if(is.null(pts[1])){
-x1<-as.matrix(x1)
-pts<-ancdes(x1,DH=DH,FRAC=FRAC)
-}
-pts<-as.matrix(pts)
-n1<-1
-n2<-1
-vecn<-1
-mval1<-cov.mve(x1)
-mval2<-cov.mve(x2)
-for(i in 1:nrow(pts)){
-n1[i]<-length(y1[near3d(x1,pts[i,],fr1,mval1)])
-n2[i]<-length(y2[near3d(x2,pts[i,],fr2,mval2)])
-}
-flag<-rep(T,nrow(pts))
-for(i in 1:nrow(pts))if(n1[i]<10 || n2[i]<10)flag[i]<-F
-pts<-pts[flag,]
-if(sum(flag)==1)pts<-t(as.matrix(pts))
-if(sum(flag)==0)stop("No comparable design points found, might increase span.")
-mat<-matrix(NA,nrow(pts),3)
-dimnames(mat)<-list(NULL,c("n1","n2","p.value"))
-output=list()
-for (i in 1:nrow(pts)){
-g1<-y1[near3d(x1,pts[i,],fr1,mval1)]
-g2<-y2[near3d(x2,pts[i,],fr2,mval2)]
-g1<-g1[!is.na(g1)]
-g2<-g2[!is.na(g2)]
-temp=test(g1,g2,...)
-if(is.null(temp$p.value))print("Apparently argument test is a function that does not return a p-value")
-mat[i,3]=temp$p.value
-output[[i]]=temp
-mat[i,1]<-length(g1)
-mat[i,2]<-length(g2)
-if(length(g1)<=5)print(paste("Warning, there are",length(g1)," points corresponding to the design point X=",pts[i,]))
-if(length(g2)<=5)print(paste("Warning, there are",length(g2)," points corresponding to the design point X=",pts[i,]))
-}
-list(points=pts,results=mat)
 }
 
 mat2list<-function(m,grp.dat){
@@ -47142,6 +47058,9 @@ if(chkit[1]>nullval || chkit[2]<nullval)break
 }}
 list(n=nn,phat=res$phat,ci=res$ci,p.value=p.value)
 }
+
+acbinomcipv=acbinomciv2
+
 
 longreg<-function(x,x.col,y.col,s.id,regfun=tsreg,est=tmean){
 #
@@ -49120,7 +49039,7 @@ ols1way<-function(x,y,xout=FALSE,outfun=outpro,STAND=FALSE,alpha=.05,pr=TRUE,BLO
 #
 #  (To compare slopes only, use ols1way2g)
 #
-#  Strategy: Use bootstrap estimate of standard errors followed by
+#  Strategy: Use HC4 or HC3 estimate of standard errors followed by
 #  Johansen MANOVA type test statistic.
 #
 #  x and y are assumed to have list mode having length J equal to the number of groups
@@ -49437,7 +49356,7 @@ list(n.out=no,p.value=mean(val>=no))
 rplot<-function(x,y,est=tmean,scat=TRUE,fr=NA,plotit=TRUE,pyhat=FALSE,efr=.5,
 theta=50,phi=25,scale=TRUE,expand=.5,SEED=TRUE,varfun=pbvar,outfun=outpro,
 nmin=0,xout=FALSE,out=FALSE,eout=FALSE,xlab='X',ylab='Y',zscale=FALSE,
-zlab=' ',pr=TRUE,duplicate='error',ticktype='simple',LP=TRUE,...){
+zlab=' ',pr=TRUE,duplicate='error',ticktype='simple',LP=TRUE,OLD=FALSE,...){
 # duplicate='error'
 # In some situations where duplicate values occur, when plotting with
 # two predictors, it is necessary to set duplicate='strip'
@@ -49450,8 +49369,11 @@ zlab=' ',pr=TRUE,duplicate='error',ticktype='simple',LP=TRUE,...){
 # 
 # efr is the span when computing explanatory strength of associaion
 #
+# cf qplot in the R package ggplot2
+#
 x<-as.matrix(x)
 p=ncol(x)
+if(pr && !OLD)print('A new estimate of the strength of the association is used by default. To get the old estimate, set OLD=TRUE')
 xx<-cbind(x,y)
 xx<-elimna(xx)
 if(eout){
@@ -49483,9 +49405,12 @@ val<-rung3d(x,y,est=est,fr=fr,plotit=plotit,pyhat=TRUE,SEED=SEED,nmin=nmin,LP=LP
 scale=scale,phi=phi,theta=theta,expand=expand,zscale=zscale,pr=FALSE,
 duplicate='error',xlab=xlab,ylab=ylab,zlab=zlab,ticktype=ticktype,...)
 }
-#E.power=rplotCV(x,y,fr=fr,varfun=varfun,est=est)$VAR.Y.HAT/varfun(y)
+E.power=NULL
+if(OLD){
 E.power=varfun(val)/varfun(y)
 if(E.power>1)E.power=.99
+}
+if(!OLD)E.power=smRstr(x,y,fr=fr)$str^2
 stra=sqrt(E.power)
 # Best correction at the moment. Not sure when or if needed. 
 # Maybe a correlation option is better, but need to check this.
@@ -50018,7 +49943,7 @@ olsWmcp<-function(x,y,xout=TRUE,outfun=outpro,STAND=FALSE,alpha=.05,pr=TRUE,BLO=
 #  comparison of first slope, etc.
 #  using OLS  estimator.
 #
-#  Strategy: Use bootstrap estimate of standard errors followed by
+#  Strategy: Use HC4 estimate of standard errors followed by
 #  Welch-type test statistic.
 #
 #  x and y are assumed to have list mode having length J equal to the number of groups
@@ -50919,7 +50844,7 @@ abline(coef)
 list(coef=coef)
 }
 tshdreg<-function(x,y,HD=TRUE,xout=FALSE,outfun=out,iter=10,varfun=pbvar,
-corfun=pbcor,plotit=FALSE,tol=.0001,RES=FALSE,...){
+corfun=pbcor,plotit=FALSE,tol=.0001,RES=FALSE,xlab='X',ylab='Y',...){
 #
 #  Compute Theil-Sen regression estimator
 #
@@ -50943,7 +50868,7 @@ y<-y[flag]
 x<-as.matrix(x)
 }
 if(ncol(x)==1){
-temp1<-tshd(x,y,HD=HD)
+temp1<-tshd(x,y,HD=HD,plotit=plotit,xlab=xlab,ylab=ylab)
 coef<-temp1$coef
 res<-y-coef[2]*x-coef[1]
 }
@@ -51311,6 +51236,7 @@ lam=k*term1/(k-1)
 lam=lam/term 
 list(coef.alpha=res1,robust.alpha=lam)
 }
+
 Dancova<-function(x1,y1,x2,y2,fr1=1,fr2=1,tr=.2,alpha=.05,plotit=TRUE,pts=NA,sm=FALSE,xout=FALSE,outfun=out,DIF=FALSE,LP=TRUE,...){
 #
 # Compare two dependent  groups using a method  similar to the one used by the R function ancova
@@ -52207,7 +52133,7 @@ outfun=outfun,plotit=plotit,xlab=xlab,ylab=ylab,...)
 v
 }
 
-qhdsm<-function(x,y,qval=.5,q=NULL,pr=FALSE,xout=FALSE,outfun=outpro,plotit=TRUE,xlab='X',ylab='Y',zlab='Z',pyhat=FALSE,fr=NULL,LP=TRUE,theta=50,phi=25,ticktype='simple',nmin=0,scale=FALSE,pr.qhd=TRUE,...){
+qhdsm<-function(x,y,qval=.5,q=NULL,pr=FALSE,xout=FALSE,outfun=outpro,plotit=TRUE,xlab='X',ylab='Y',zlab='Z',pyhat=FALSE,fr=NULL,LP=TRUE,theta=50,phi=25,ticktype='simple',nmin=0,scale=TRUE,pr.qhd=TRUE,...){
 #
 # Compute the quantile regression line for one or more quantiles 
 # using combination of hd, running interval smoother and LOESS
@@ -52229,7 +52155,7 @@ x<-as.matrix(x)
 y<-X[,np]
 if(xout){
 x<-as.matrix(x)
-flag<-outfun(x,...)$keep
+flag<-outfun(x,plotit=FALSE,...)$keep
 x<-x[flag,]
 y<-y[flag]
 x<-as.matrix(x)
@@ -52708,7 +52634,7 @@ ancGLOB_pv<-function(n1,n2,est=tmean,fr1=.8,fr2=.8,nboot=500,SEED=TRUE,iter=1000
 #
 #  Determine critical p-value when using the function ancGLOB
 #  Strategy: generage data from a normal distribution, NULL true
-#  compute p-value, repeate
+#  compute p-value, repeat
 #  iter times (iter=100 is default)
 #  (a larger choice for iter is recommended. To reduce execution time use ancGLOB_pv_C
 #
@@ -53277,7 +53203,7 @@ if(is.null(p.crit)){
 if(pts.flag){
 if(cpp){
 library(WRScpp)
-ve=ancGLOB_pv_C(N1,N2,est=est,iter=iter,fr1=fr1,fr2=fr2,nboot=nboot,SEED=SEED,...)
+ve=ancGLOB_pv(N1,N2,est=est,iter=iter,fr1=fr1,fr2=fr2,nboot=nboot,SEED=SEED,...)
 v=hd(ve,q=alpha)
 }
 else{
@@ -53499,7 +53425,7 @@ res
 
 DancovaV2<-function(x1=NULL,y1=NULL,x2=NULL,y2=NULL,xy=NULL,fr1=1,fr2=1,p.crit=NULL,
 est=tmean,alpha=.05,plotit=TRUE,xlab='X',ylab='Y',pts=NULL,qvals=c(.25,.5,.75),sm=FALSE,
-xout=FALSE,eout=FALSE,outfun=out,DIF=FALSE,LP=TRUE,nboot=500,SEED=TRUE,iter=2000,MC=FALSE,cpp=TRUE,
+xout=FALSE,eout=FALSE,outfun=out,DIF=FALSE,LP=TRUE,nboot=500,SEED=TRUE,iter=2000,MC=TRUE,cpp=FALSE,
 nmin=12,q=.5,...){
 #
 # Compare two dependent  groups using the ancova method.
@@ -53553,7 +53479,7 @@ xlab=xlab,ylab=ylab,...)
 
 if(is.null(p.crit)){
 if(cpp)library(WRScpp)
-p.crit=DancGLOB_pv_C(n,fr1=fr1,fr2=fr2,nboot=nboot,est=est,SEED=SEED,iter=iter,
+p.crit=DancGLOB_pv(n,fr1=fr1,fr2=fr2,nboot=nboot,est=est,SEED=SEED,iter=iter,
 nmin=nmin,MC=MC,alpha=alpha,qvals=qvals,cpp=cpp)$p.crit
 #$
 }
@@ -53615,7 +53541,7 @@ est1
 
 ancovaV2<-function(x1=NULL,y1=NULL,x2=NULL,y2=NULL,fr1=1,fr2=1,p.crit=NULL,
 est=tmean,alpha=.05,plotit=TRUE,xlab='X',ylab='Y',pts=NULL,qvals=c(.25,.5,.75),sm=FALSE,
-xout=FALSE,eout=FALSE,outfun=out,LP=TRUE,nboot=500,SEED=TRUE,iter=2000,MC=FALSE,cpp=TRUE,
+xout=FALSE,eout=FALSE,outfun=out,LP=TRUE,nboot=500,SEED=TRUE,iter=2000,MC=FALSE,cpp=FALSE,
 nmin=12,q=.5,...){
 #
 # Compare two independent  groups using the ancova method.
@@ -53663,11 +53589,10 @@ xlab=xlab,ylab=ylab,...)
 if(ef)runmean2g(xy1[,1],xy1[,2],xy2[,1],xy2[,2],fr=fr1,est=hd,sm=sm,xout=xout,LP=LP,q=q,eout=eout,
 xlab=xlab,ylab=ylab,...)
 }
-
 if(is.null(p.crit)){
 n=min(c(n1,n2))
 if(cpp)library(WRScpp)
-p.crit=DancGLOB_pv_C(n,fr1=fr1,fr2=fr2,nboot=nboot,est=est,SEED=SEED,iter=iter,
+p.crit=DancGLOB_pv(n,fr1=fr1,fr2=fr2,nboot=nboot,est=est,SEED=SEED,iter=iter,
 nmin=nmin,MC=MC,alpha=alpha,qvals=qvals,cpp=cpp)$p.crit
 # this function is stored in the package WRScpp $
 }
@@ -53855,7 +53780,8 @@ medhd2g<-function(x, y, alpha = 0.05, nboot = 2000,SEED=TRUE,pr=TRUE, ...){
 res=pb2gen(x,y,alpha=alpha,nboot=2000,est=hd,SEED=SEED,pr=pr, ...) 
 res
 }
-med.effect<-function(x,y,HD=TRUE,eq.var=FALSE,nboot=100,loc.fun=median){
+
+med.effect<-function(x,y,HD=TRUE,eq.var=FALSE,nboot=100,loc.fun=median,varfun=pbvar){
 #
 #  Compute robust analog of Cohen's d using
 #  the median and the percentage bend midvariance
@@ -53877,8 +53803,8 @@ e1=median(x)
 e2=median(y)
 }
 if(eq.var){
-s1sq=pbvar(x)
-s2sq=pbvar(y)
+s1sq=varfun(x)
+s2sq=varfun(y)
 spsq<-(n1-1)*s1sq+(n2-1)*s2sq
 sp<-sqrt(spsq/(n1+n2-2))
 dval=(e1-e2)/sp
@@ -53886,7 +53812,7 @@ dval=(e1-e2)/sp
 if(!eq.var){
 n1=length(x)
 n2=length(x)
-if(n1==n2)dval=var(c(e1,e2))/pbvar(c(x,y))
+if(n1==n2)dval=var(c(e1,e2))/varfun(c(x,y))
 if(n1!=n2){
 N=min(c(n1,n2))
 vals=0
@@ -53906,14 +53832,14 @@ if(!HD){
 e1=median(x)
 e2=median(y)
 }
-val=var(c(e1,e2))/pbvar(c(x,y))
+val=var(c(e1,e2))/varfun(c(x,y))
 val
 }
 
 
 
 
-outms<-function(x,crit=2,plotit=FALSE){
+outms<-function(x,crit=2){
 x=elimna(x)
 x=as.matrix(x)
 if(ncol(x)==1){
@@ -53925,7 +53851,7 @@ nums=c(1:length(x))
 keep=nums[!flag]
 }
 if(ncol(x)>1)stop('Use function	out with outfun=wmean.cov')
-list(n.out=n.out,out.value=x[flag],out.id=nums[flag],keep=keep)
+list(n=length(x),n.out=n.out,out.value=x[flag],out.id=nums[flag],keep=keep)
 }
 wmean.cov<-function(x,tr=0){
 #
@@ -54066,7 +53992,7 @@ num.sig=sum(test[,3]<=test[,4])
 list(n=nval,test=test,psihat=psihat,num.sig=num.sig)
 }
 
-g5plot<-function(x1,x2,x3=NULL,x4=NULL,x5=NULL,fr=.8,aval=.5,xlab='X',ylab=''){
+g5plot<-function(x1,x2,x3=NULL,x4=NULL,x5=NULL,fr=.8,aval=.5,xlab='X',ylab='',color=rep('black',5)){
 #
 # plot estimates of the density functions for up to 5 groups.
 # using an adaptive kernel density estimator
@@ -54101,14 +54027,14 @@ if(!is.null(x3))z3=akerd(x3,aval=aval,fr=fr,pyhat=TRUE,plotit=FALSE)
 if(!is.null(x4))z4=akerd(x4,aval=aval,fr=fr,pyhat=TRUE,plotit=FALSE)
 if(!is.null(x5))z5=akerd(x5,aval=aval,fr=fr,pyhat=TRUE,plotit=FALSE)
 plot(c(x1,x2,x3,x4,x5),c(z1,z2,z3,z4,z5), xlab =xlab, ylab =ylab, type = 'n')
-lines(x1,z1)
-lines(x2,z2,lty=2)
-if(!is.null(x3))lines(x3,z3,lty=3)
-if(!is.null(x4))lines(x4,z4,lty=4)
-if(!is.null(x5))lines(x5,z5,lty=5)
+lines(x1,z1,col=color[1])
+lines(x2,z2,lty=2,col=color[2])
+if(!is.null(x3))lines(x3,z3,lty=3,col=color[3])
+if(!is.null(x4))lines(x4,z4,lty=4,col=color[4])
+if(!is.null(x5))lines(x5,z5,lty=5,col=color[5])
 }
 
-Qanova<-function(x,q=.5,nboot=600,MM=FALSE,MC=FALSE,SEED=TRUE){
+Qanova<-function(x,q=.5,nboot=600,MC=FALSE,SEED=TRUE){
 res=pbadepth(x,est=hd,q=q,op=3,allp=T,MC=MC,na.rm=T)
 res
 }
@@ -54154,3 +54080,564 @@ pred=predict(fit,pts)
 list(n=n.orig,n.keep=n.keep,yhat=pred)
 }
 
+regse<-function(x,y,xout=FALSE,regfun=tsreg,outfun=outpro,nboot=200,SEED=TRUE,...){
+#
+#  Estimate the standard erros and 
+#  covariance matrix associated with the estiimates of
+#  the regression parameters based on the estimator indicated by the
+#  argument
+#  regfun:  default is Theil--Sen. 
+#  So the diagonal elements of the matrix returned by this function
+#  are the squared standard errors of the intercept estimator, etc.
+#
+#  Function returns
+# param.estimates: the estimate	of the intercept and slopes
+# covar: the covariance matrix	associated with the estimator used
+# s.e.:	 the standard errors.
+#
+
+if(SEED)set.seed(2)
+x<-as.matrix(x)
+p1<-ncol(x)+1
+p<-ncol(x)
+xy<-cbind(x,y)
+xy<-elimna(xy)
+x<-xy[,1:p]
+y<-xy[,p1]
+nrem=length(y)
+estit=regfun(x,y,xout=xout,...)$coef
+if(xout){
+m<-cbind(x,y)
+flag<-outfun(x,plotit=FALSE,...)$keep
+m<-m[flag,]
+x<-m[,1:p]
+y<-m[,p1]
+}
+x<-as.matrix(x)
+if(SEED)set.seed(2) # set seed of random number generator so that
+#             results can be duplicated.
+data<-matrix(sample(length(y),size=length(y)*nboot,replace=TRUE),nrow=nboot)
+bvec<-apply(data,1,regboot,x,y,regfun,xout=FALSE,...)
+#Leverage points already removed.
+# bvec is a p+1 by nboot matrix. The first row
+#                     contains the bootstrap intercepts, the second row
+#                     contains the bootstrap values for first predictor, etc.
+sqe=var(t(bvec))
+list(param.estimates=estit,covar=sqe,s.e.=sqrt(diag(sqe)))
+}
+smRstr<-function(x,y,fr=1,est=tmean,nmin=1,varfun=winvar,xout=FALSE,outfun=outpro,...){
+#
+# Estimate explanatory strength of an association (a generlization of
+# Pearson's correlation) based on a running interval smoother
+# and a leave-one-out cross-validation technique.
+# Prediction error is estimated as well. 
+#
+# Arguments:
+# est: the measure of location to be used by rplot
+# varfun: the measure of variation used when estimating prediction error
+#   Example: varfun=pbvar would compute the percentage bend measure of
+#            of varition between observed and predicted values of the
+#            dependent variable. 
+# fr: the span used by rplot
+#
+# Function returns
+# str: strength of the association
+# pred.error: prediction error
+#
+xy=elimna(cbind(x,y))
+if(xout){
+flag=outfun(x,plotit=FALSE)$keep
+xy=xy[flag,]
+}
+p=ncol(xy)
+pm1=p-1
+x=xy[,1:pm1]
+y=xy[,p]
+x=as.matrix(x)
+px=ncol(x)
+px1=px+1
+n=nrow(xy)
+val=NA   
+for(i in 1:n){
+if(px==1)val[i]=runhat(xy[-i,1:px],xy[-i,px1],x[i,1:px],fr=fr,nmin=nmin,est=est)
+if(px>1)val[i]=rung3hat(xy[-i,1:px],xy[-i,px1],pts=t(as.matrix(x[i,1:px])),fr=fr,est=est,...)$rmd
+}
+dif=y-val
+dif=elimna(dif)
+pe=varfun(dif)
+nopre=locCV(y,varfun=varfun,locfun=est,...)# no predictor
+rat=(nopre-pe)/nopre
+str=0
+if(rat>0)str=sqrt(rat)
+list(str=str,pred.error=pe)
+}
+
+s2plot<-function(x1,x2,xlab='X',ylab='Rel. Freq.',frame.plot=TRUE){
+#
+# Plot two discrete distributions
+#
+x1<-x1[!is.na(x1)]
+temp1<-sort(unique(x1))
+freq1<-NA
+for(i in 1:length(temp1)){
+freq1[i]<-sum(x1==temp1[i])
+}
+x2<-x2[!is.na(x2)]
+temp2<-sort(unique(x2))
+freq2<-NA
+for(i in 1:length(temp2)){
+freq2[i]<-sum(x2==temp2[i])
+}
+rmfreq1=freq1
+nval1=sum(freq1)
+freq1<-freq1/length(x1)
+tfreq1<-freq1
+tfreq1[1]<-0
+tfreq1[2]<-max(freq1)
+rmfreq2=freq2
+nval2=sum(freq2)
+freq2<-freq2/length(x2)
+tfreq2<-freq2
+tfreq2[1]<-0
+tfreq2[2]<-max(freq2)
+
+plot(c(temp1,temp2),c(tfreq1,tfreq2),xlab=xlab,ylab=ylab,type='n',frame.plot=frame.plot)
+points(temp1,freq1,pch='*')
+points(temp2,freq2,pch='o')
+lines(temp1,freq1)
+lines(temp2,freq2,lty=2)
+list(n1=nval1,n2=nval2)
+}
+
+clnorm<-function(n,epsilon=.1,k=10){
+#
+# generate n observations from a contaminated lognormal
+# distribution
+#
+#  Using default values, median is approximately 1.14 and 20% trimmed mean is 1.33
+if(epsilon>1)stop('epsilon must be less than or equal to 1')
+if(epsilon<0)stop('epsilon must be greater than or equal to 0')
+if(k<=0)stop('k must be greater than 0')
+val<-rlnorm(n)
+uval<-runif(n)
+flag<-(uval<=1-epsilon)
+val[!flag]<-k*val[!flag]
+val
+}
+twoKlin<-function(x=NULL,x1=NULL,x2=NULL,tr=.2,alpha=.05,pr=TRUE,opt=1){
+#
+#  A step-down MCP based on K independent tests.
+#  Use Fisher method based on p-values coupled with Hochberg
+# 
+# Data are assumed to be stored in two R variables, x1 and x2 or in one 
+#  R variable, x
+#
+# If stored in x1 and x2, they are assumed to be matrices with K columns
+# or to have list mode, both having length K.
+#
+# If the data are stored in x, 
+# x is assumed to have 2K columns if a matrix or length 2K if it has list mode.
+#
+# If data are stored in x1 and x2, for each column, compute a p-value.
+# That is, perform a test based on the data in column 1 of x1 and x2, 
+# followed by a test using the data in column 2 of x1 and x2, etc.
+#
+# If data are stored in x, the first test is based 
+# on the data in columns 1 and K+1,
+# the second test is based on columns 2 and K+2, etc. 
+#
+#  opt=1  Fisher's method
+#  opt=2  Chen-Nadarajah method
+#  opt=3  Max method
+#
+if(is.null(x[1])){
+if(is.matrix(x1))x=cbind(x1,x2)
+if(is.list(x1))x=c(x1,x2)
+}
+if(is.matrix(x))x=listm(x)
+crit=NA
+n1=NA
+n2=NA
+if(is.matrix(x) || is.data.frame(x))K2=ncol(x)
+if(is.list(x))K2=length(x)
+K=floor(K2/2)
+if(2*K!=K2)stop('Total number of groups, K2, should be an even number') 
+ic=0
+ic2=K
+pv=NULL
+for(i in 1:K){
+ic=ic+1
+ic2=ic2+1
+testit=yuen(x[[ic]],x[[ic2]],tr=tr,alpha=alpha)
+n1[ic]=testit$n1
+n2[ic]=testit$n2
+pv[ic]=testit$p.value 
+}  
+pick=NULL
+v=order(pv)
+ic=0
+for(i in K:1){
+K2=2*K
+flag=TRUE
+if(opt==1){
+i2=i*2
+if(i==K)res=(0-2)*sum(log(pv))  # Fisher test statistic
+if(i<K)res=(0-2)*sum(log(pv[-pick]))  # Fisher test statistic
+pvF=1-pchisq(res,i2)   #Fisher p-value based on all tests.
+}
+if(opt==2){
+if(i==K)res=sum(qnorm(pv/2)^2)  # C-N test
+if(i<K)res=sum(qnorm(pv[-pick]/2)^2)
+pvF=1-pchisq(res,i)
+}
+if(opt==3){
+if(i==K)res=max(pv)
+if(i<K)res=max(pv[-pick])
+pvF=pbeta(res,i,1)
+}
+if(pvF>alpha)flag=TRUE
+if(pvF<=alpha/(K+1-i)){
+ic=ic+1
+pick=c(pick,v[ic])
+flag=FALSE
+if(pv[v[ic]]>alpha)flag=TRUE
+}
+if(flag)break
+}
+Decision=rep('Not Sig',length(pv))
+if(!is.null(pick))Decision[pick]='Reject'
+nsig=sum(length(pick))
+list(n1=n1,n2=n2,p.values=pv,
+Decisions=as.matrix(Decision),num.sig=nsig)
+}
+
+
+
+
+twobicipv<-function(r1=sum(x),n1=length(x),r2=sum(y),n2=length(y),x=NA,y=NA,alpha=.05){
+#
+# Compute a p-value based on Beal's method for comparing two independent
+# binomials.
+#
+alph=seq(.001,.999,.001)
+for(i in 1:length(alph)){
+pv=alph[i]
+chk=twobici(r1=r1,n1=n1,r2=r2,n2=n2,x=x,y=y,alpha=alph[i])$ci #$
+if(chk[1]>0 && chk[2]>0)break
+if(chk[1]<0 && chk[2]<0)break
+}
+reg=twobici(r1=r1,n1=n1,r2=r2,n2=n2,x=x,y=y,alpha=alpha)
+list(p.value=pv,ci=reg$ci,p1=reg$p1,p2=reg$p2)
+}
+
+ols2ci<-function(x1,y1,x2,y2,xout=FALSE,outfun=outpro,STAND=FALSE,alpha=.05,HC3=FALSE,plotit=TRUE,xlab='X',ylab='Y',...){
+#
+# Compare the OLS regression parameters for two independent groups
+#
+p=ncol(as.matrix(x1))
+if(p==1 && plotit)reg2plot(x1,y1,x2,y2,xlab='X',ylab='Y',xout=xout,outfun=outpro,regfun=ols,...)
+x=list()
+y=list()
+x[[1]]=x1
+x[[2]]=x2
+y[[1]]=y1
+y[[2]]=y2
+ivl=c(1:ncol(as.matrix(x1)))
+iv=ncol(as.matrix(x1))
+iv1=iv+1
+rlab=paste('slope',ivl)
+rlab=c('intercept',rlab)
+res=olsWmcp(x,y,xout=xout,outfun=outfun,STAND=STAND,alpha=alpha,HC3=HC3)
+n=res$n
+nk=res$n.keep
+est1=ols(x1,y1)$coef
+est2=ols(x2,y2)$coef
+res=res$output[,3:5]
+outp=matrix(NA,nrow=iv1,ncol=5)
+outp[,1]=est1
+outp[,2]=est2
+outp[,3:5]=res
+dimnames(outp)=list(rlab,c('Est.Group.1','Est.Group.2','ci.low','ci.up','p.value'))
+list(n=n,n.keep=nk,output=outp)
+}
+ancovampG<-function(x1,y1,x2,y2,fr1=1,fr2=1,alpha=.05,pts=NULL,SEED=TRUE,test=yuen,DH=FALSE,FRAC=.5,cov.fun=skip.cov,pr=FALSE,...){
+#
+#  ANCOVA:
+#
+#  This function generalizes the R function ancovamp 
+#  so that any hypothesis testing method
+#  can be used to compare groups at specified design points.
+#
+# No parametric assumption is made about the form of
+# the regression surface--a running interval smoother is used.
+# Design points are chosen based on depth of points in x1 if pts=NULL
+#  Assume data are in x1 y1 x2 and y2
+#
+#  test: argument test determines the method that will be used to compare groups.
+#        Example: test=medpb2 would compare medians using a percentile bootstrap
+#
+#  pts: a matrix of design points at which groups are compared
+#
+#  DH=T, groups compared at the deepest (1-FRAC) design points.
+#
+#  SEED=TRUE sets the seed for the random number generator 
+#       so that same result is always returned when 
+#        using a bootstrap method or when using cov.mve or cov.mcd
+#
+#   cov.fun: returns covariance matrix in $cov (e.g. 
+#   skipcov does not return it in $cov, but skip.cov does. So cov.mve could be used)
+#
+#   Returns:
+#   designs points where comparisons were made.
+#   n's used, p-values
+#   crit.p.value: critical p-value based on Hochberg's method for controlling FWE
+#   sig=1 if a signficant result based on Hochberg; 0 otherwise
+#
+x1=as.matrix(x1)
+p=ncol(x1)
+p1=p+1
+m1=elimna(cbind(x1,y1))
+x1=m1[,1:p]
+y1=m1[,p1]
+x2=as.matrix(x2)
+p=ncol(x2)
+p1=p+1
+m2=elimna(cbind(x2,y2))
+x2=m2[,1:p]
+y2=m2[,p1]
+#
+#
+#
+if(is.null(pts[1])){
+x1<-as.matrix(x1)
+pts<-ancdes(x1,DH=DH,FRAC=FRAC)
+}
+pts<-as.matrix(pts)
+n1<-1
+n2<-1
+vecn<-1
+mval1<-cov.fun(x1)
+mval2<-cov.fun(x2)
+
+for(i in 1:nrow(pts)){
+n1[i]<-length(y1[near3d(x1,pts[i,],fr1,mval1)])
+n2[i]<-length(y2[near3d(x2,pts[i,],fr2,mval2)])
+}
+flag<-rep(T,nrow(pts))
+for(i in 1:nrow(pts))if(n1[i]<10 || n2[i]<10)flag[i]<-F
+pts<-pts[flag,]
+if(sum(flag)==1)pts<-t(as.matrix(pts))
+dd=NULL
+if(sum(flag)==0){
+print('No comparable design points found, might increase span.')
+pts=NULL
+mat=NULL
+dd=NULL
+}
+if(sum(flag)>0){
+mat<-matrix(NA,nrow(pts),5)
+mat[,5]=0
+dimnames(mat)<-list(NULL,c('n1','n2','p.value','crit.p.value','Sig'))
+output=list()
+for (i in 1:nrow(pts)){
+g1<-y1[near3d(x1,pts[i,],fr1,mval1)]
+g2<-y2[near3d(x2,pts[i,],fr2,mval2)]
+g1<-g1[!is.na(g1)]
+g2<-g2[!is.na(g2)]
+temp=test(g1,g2,...)
+if(is.null(temp$p.value))print('Apparently argument test is a function that does not return a p-value')
+mat[i,3]=temp$p.value
+output[[i]]=temp
+mat[i,1]<-length(g1)
+mat[i,2]<-length(g2)
+if(length(g1)<=5)print(paste('Warning, there are',length(g1),' points corresponding to the design point X=',pts[i,]))
+if(length(g2)<=5)print(paste('Warning, there are',length(g2),' points corresponding to the design point X=',pts[i,]))
+}
+npt=nrow(pts)
+dvec=alpha/c(1:npt)
+temp2<-order(0-mat[,3])
+sigvec<-(mat[temp2,3]>=dvec)
+dd=0
+if(sum(sigvec)<npt)dd<-npt-sum(sigvec) #number that are sig.
+mat[temp2,4]=dvec
+flag=mat[,3]<=mat[,4]
+if(sum(flag)>0)mat[flag,5]=1
+}
+list(points=pts,results=mat,num.sig=dd)
+}
+
+Qregci<-function(x,y,nboot=100,alpha=.05,
+qval=.5,q=NULL,SEED=T,pr=T,xout=F,outfun=outpro,...){
+#
+#  Test the hypothesis that the quantile regression slopes are zero.
+#  Can use the .5 quantile regression line only,
+#  the .2 and .8 quantile regression lines, or
+#  the .2, .5 and .8 quantile regression lines.
+#  In the latter two cases, FWE is controlled for alpha=.1, .05, .025 and .01.
+#
+if(!is.null(q))qval=q
+xx<-elimna(cbind(x,y))
+np<-ncol(xx)
+p<-np-1
+y<-xx[,np]
+x<-xx[,1:p]
+x<-as.matrix(x)
+if(xout){
+x<-as.matrix(x)
+flag<-outfun(x,...)$keep
+x<-x[flag,]
+y<-y[flag]
+}
+x<-as.matrix(x)
+n<-length(y)
+if(SEED)set.seed(2) # set seed of random number generator so that
+#             results can be duplicated.
+if(pr)print("Taking bootstrap samples. Please wait.")
+data<-matrix(sample(length(y),size=length(y)*nboot,replace=T),nrow=nboot)
+# determine critical value.
+crit<-NA
+if(alpha==.1)crit<-1.645-1.19/sqrt(n)
+if(alpha==.05)crit<-1.96-1.37/sqrt(n)
+if(alpha==.025)crit<-2.24-1.18/sqrt(n)
+if(alpha==.01)crit<-2.58-1.69/sqrt(n)
+crit.fwe<-crit
+if(length(qval)==2 || p==2){
+if(alpha==.1)crit.fwe<-1.98-1.13/sqrt(n)
+if(alpha==.05)crit.fwe<-2.37-1.56/sqrt(n)
+if(alpha==.025)crit.fwe<-2.60-1.04/sqrt(n)
+if(alpha==.01)crit.fwe<-3.02-1.35/sqrt(n)
+}
+if(length(qval)==3 || p==3){
+if(alpha==.1)crit.fwe<-2.145-1.31/sqrt(n)
+if(alpha==.05)crit.fwe<-2.49-1.49/sqrt(n)
+if(alpha==.025)crit.fwe<-2.86-1.52/sqrt(n)
+if(alpha==.01)crit.fwe<-3.42-1.85/sqrt(n)
+}
+if(is.na(crit.fwe)){
+print("Could not determine a critical value")
+print("Only alpha=.1, .05, .025 and .01 are allowed")
+}
+if(p==1){
+bvec<-apply(data,1,Qindbt.sub,x,y,qval=qval)
+estsub<-NA
+for(i in 1:length(qval)){
+estsub[i]<-Qreg(x,y,qval[i])$coef[2]
+}
+if(is.matrix(bvec))se.val<-sqrt(apply(bvec,1,FUN=var))
+if(!is.matrix(bvec))se.val<-sqrt(var(bvec))
+test<-abs(estsub)/se.val
+ci.mat<-matrix(nrow=length(qval),ncol=3)
+dimnames(ci.mat)<-list(NULL,c("Quantile","ci.lower","ci.upper"))
+ci.mat[,1]<-qval
+ci.mat[,2]<-estsub-crit*se.val
+ci.mat[,3]<-estsub+crit*se.val
+}
+if(p>1){
+if(length(qval)>1){
+print("With p>1 predictors,only the first qval value is used")
+}
+bvec<-apply(data,1,regboot,x,y,regfun=Qreg,qval=qval[1])
+se.val<-sqrt(apply(bvec,1,FUN=var))
+estsub<-Qreg(x,y,qval=qval[1])$coef
+test<-abs(estsub)/se.val
+ci.mat<-matrix(nrow=np,ncol=3)
+dimnames(ci.mat)<-list(NULL,c("Predictor","ci.lower","ci.upper"))
+ci.mat[,1]<-c(0:p)
+ci.mat[,2]<-estsub-crit*se.val
+ci.mat[,3]<-estsub+crit*se.val
+}
+list(test=test,se.val=se.val,crit.val=crit,crit.fwe=crit.fwe,est.values=estsub,ci=ci.mat)
+}
+
+
+
+
+Qindbt.sub<-function(isub,x,y,qval){
+#
+#  Perform regression using x[isub] to predict y[isub]
+#  isub is a vector of length n,
+#  a bootstrap sample from the sequence of integers
+#  1, 2, 3, ..., n
+#
+#  This function is used by other functions when computing
+#  bootstrap estimates.
+#
+#  regfun is some regression method already stored in R
+#  It is assumed that regfun$coef contains the  intercept and slope
+#  estimates produced by regfun.  The regression methods written for
+#  this  book, plus regression functions in R, have this property.
+#
+#  x is assumed to be a matrix containing values of the predictors.
+#
+xmat<-matrix(x[isub,],nrow(x),ncol(x))
+regboot<-NA
+for(i in 1:length(qval)){
+regboot[i]<-Qreg(xmat,y[isub],qval[i])$coef[2]
+}
+regboot
+}
+binomcipv<-function(x=sum(y),nn=length(y),y=NULL,n=NA,alpha=.05,nullval=.5){
+#  Compute a p-value when testing the hypothesis that the probability of
+#  success for a binomial distribution is equal to
+#  nullval, which defaults to .5
+#  Pratt's  method is used.
+#
+#  y is a vector of 1s and 0s.
+#  Or can use the argument
+#  x = the number of successes observed among
+#  n=nn trials.
+#
+if(is.logical(y)){
+y=elimna(y)
+temp=rep(0,length(y))
+temp[y]=1
+y=temp
+}
+res=binomci(x=x,nn=nn,y=y,alpha=alpha)
+ci=res$ci
+alph<-c(1:99)/100
+for(i in 1:99){
+irem<-i
+chkit<-binomci(x=x,nn=nn,y=y,alpha=alph[i])$ci
+if(chkit[1]>nullval || chkit[2]<nullval)break
+}
+p.value<-irem/100
+if(p.value<=.1){
+iup<-(irem+1)/100
+alph<-seq(.001,iup,.001)
+for(i in 1:length(alph)){
+p.value<-alph[i]
+chkit<-binomci(x=x,nn=nn,y=y,alpha=alph[i])$ci
+if(chkit[1]>nullval || chkit[2]<nullval)break
+}}
+if(p.value<=.001){
+alph<-seq(.0001,.001,.0001)
+for(i in 1:length(alph)){
+p.value<-alph[i]
+chkit<-binomci(x=x,nn=nn,y=y,alpha=alph[i])$ci
+if(chkit[1]>nullval || chkit[2]<nullval)break
+}}
+list(n=nn,phat=res$phat,ci=res$ci,p.value=p.value)
+}
+
+regplot<-function(x,y,regfun=tsreg,xlab='X',ylab='Y',zlab='Z',
+xout=FALSE,outfun=out,theta=50, phi=25,ticktype='simple',...){
+x=as.matrix(x)
+if(ncol(x)>2)stop('One or two predictors only is allowed,')
+p=ncol(x)
+p1=p+1
+if(xout){
+xy=cbind(x,y)
+flag=outfun(x)$keep
+x=xy[flag,1:p]
+y=xy[flag,p1]
+}
+if(p==1){
+plot(x,y,xlab=xlab,ylab=ylab)
+abline(regfun(x,y)$coef)
+}
+if(p==2){
+pyhat=regYhat(x,y,regfun=regfun,...)
+temp=rplot(x,pyhat,scat=F,theta=theta,phi=phi,xlab=xlab,ylab=ylab,zlab=zlab,ticktype=ticktype,pr=FALSE)
+}
+}
