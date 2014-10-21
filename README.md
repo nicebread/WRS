@@ -16,7 +16,7 @@ For more information, see [http://dornsife.usc.edu/labs/rwilcox/software/](http:
     # third: install an additional package which provides some C functions
     install.packages("devtools")
     library("devtools")
-    install_github("WRScpp", username="mrxiaohe")
+    install_github("mrxiaohe/WRScpp")
     
     # fourth: install WRS
-    install_github("WRS", username="nicebread", subdir="pkg")
+    install_github("nicebread/WRS", subdir="pkg")
