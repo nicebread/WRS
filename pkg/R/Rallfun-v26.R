@@ -400,7 +400,7 @@ list(dstat=dstat,wstat=wstat,p.value.d=p.value.d,p.value.w=p.value.w)
 }
 
 
- lloc<-function(x,est=tmean,...){
+lloc<-function(x,est=tmean,...){
 if(is.data.frame(x)){
 x=as.matrix(x)
 x=apply(x,2,as.numeric) # earlier versions of R require this command
