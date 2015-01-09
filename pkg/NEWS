@@ -1,3 +1,14 @@
+# Changes in WRS version 0.27 #
+- Fixed a bug in adrun / adtest
+- MEDanova  tests the gobal hypothesis of equal medians.
+- Qmcp performs multiple comparisons and can be used with other quantiles even when there are tied values. If the sample space is small, say 11, might need n>=50 for a highly skewed distribution
+when comparing quartiles.
+- twoKlin performs multiple comparisons for independent tests and can have a power advantage compared to other methods. A paper is in press for that method.
+- qsm is a smoother for quantiles. It can be substantially better than  COBS, the method highlighted in my book. A paper describing the advantages is submitted.
+- Regarding quantile smoother, the function qhdsm is a good choice for general use. It's the most recently added function and can handle p>1 independent variables. (qsm only allows one.)
+- qhdsm2g plots quantile smooth via qhdsm for two groups.
+
+
 # Changes in WRS version 0.26 #
 - Removed the few help files
 - Added two functions:
