@@ -7,7 +7,8 @@ when comparing quartiles.
 - qsm is a smoother for quantiles. It can be substantially better than  COBS, the method highlighted in my book. A paper describing the advantages is submitted.
 - Regarding quantile smoother, the function qhdsm is a good choice for general use. It's the most recently added function and can handle p>1 independent variables. (qsm only allows one.)
 - qhdsm2g plots quantile smooth via qhdsm for two groups.
-
+- Fixed a bug in Qanova
+- Fixed a minor issue with Qmcp
 
 # Changes in WRS version 0.26 #
 - Removed the few help files
