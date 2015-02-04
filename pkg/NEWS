@@ -1,3 +1,6 @@
+# Changes in WRS version 0.27.5 #
+- Fixed a bug in bbmcppb. When there are unequal sample sizes, it returns NA of p-values.
+
 # Changes in WRS version 0.27 #
 - Fixed a bug in adrun / adtest
 - MEDanova  tests the gobal hypothesis of equal medians.
