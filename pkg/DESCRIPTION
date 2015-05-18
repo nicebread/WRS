@@ -19,7 +19,6 @@ Suggests:
     lars,
     pwr,
     trimcluster,
-    parallel,
     mc2d,
     psych,
     Rfit,
