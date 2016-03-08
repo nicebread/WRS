@@ -1,3 +1,8 @@
+# Changes in WRS version 0.30 #
+News from Rand: "Many new functions have been added and bugs in various other functions have been
+corrected.  Am working on the 4th edition of my robust book, which will describe the new functions. It should be out around Jan 1."
+
+
 # Changes in WRS version 0.27.5 #
 - Fixed a bug in bbmcppb. When there are unequal sample sizes, it returns NA of p-values.
 
