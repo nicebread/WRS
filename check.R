@@ -28,8 +28,7 @@ for (nm in list.files(".", pattern=".*\\.Rd", recursive=TRUE)) {
 }
 
 
-setwd("pkg")
-devtools::check()
+devtools::check("pkg")
+devtools::install("pkg")
 
-setwd("pkg")
-devtools::install()
+
