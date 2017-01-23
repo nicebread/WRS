@@ -7,10 +7,7 @@
 Wilcox' Robust Statistics
 }
 \description{
-This is a packaged version of the robust statistic functions provided by R.R. Wilcox (http://www-rcf.usc.edu/~rwilcox/). So far only few help files are provided, but more and more will be added.
-}
-\details{
-
+This is a packaged version of the robust statistic functions provided by R.R. Wilcox (http://www-rcf.usc.edu/~rwilcox/). No help files are provided, please refer to the books for the usage of these functions.
 }
 \author{
 Robust functions by R.R. Wilcox

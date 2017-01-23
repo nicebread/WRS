@@ -1,0 +1,176 @@
+# Changes in WRS version 0.30.1 #
+Fixed NAMESPACE export issue
+
+# Changes in WRS version 0.30 #
+News from Rand: "Many new functions have been added and bugs in various other functions have been
+corrected.  Am working on the 4th edition of my robust book, which will describe the new functions. It should be out around Jan 1."
+
+
+# Changes in WRS version 0.27.5 #
+- Fixed a bug in bbmcppb. When there are unequal sample sizes, it returns NA of p-values.
+
+# Changes in WRS version 0.27 #
+- Fixed a bug in adrun / adtest
+- MEDanova  tests the gobal hypothesis of equal medians.
+- Qmcp performs multiple comparisons and can be used with other quantiles even when there are tied values. If the sample space is small, say 11, might need n>=50 for a highly skewed distribution
+when comparing quartiles.
+- twoKlin performs multiple comparisons for independent tests and can have a power advantage compared to other methods. A paper is in press for that method.
+- qsm is a smoother for quantiles. It can be substantially better than  COBS, the method highlighted in my book. A paper describing the advantages is submitted.
+- Regarding quantile smoother, the function qhdsm is a good choice for general use. It's the most recently added function and can handle p>1 independent variables. (qsm only allows one.)
+- qhdsm2g plots quantile smooth via qhdsm for two groups.
+- Fixed a bug in Qanova
+- Fixed a minor issue with Qmcp
+
+# Changes in WRS version 0.26 #
+- Removed the few help files
+- Added two functions:
+
+# Changes in WRS version 0.25.2 #
+Fixed a bug in functions `bmpmul` and `stein2.tr`
+
+# Changes in WRS version 0.25.1 #
+Fixed a bug in the NAMESPACE - now all functions are accessible again.
+
+# Changes in WRS version 0.25 #
+Three functions have been added that deal with comparing the regression
+lines of dependent groups. (Other minor changes have been made to some
+functions.) Details can be found in 
+
+> Wilcox, R. R. \& Clark, F. (in press). Comparing  robust regression lines associated with two dependent  groups when there is heteroscedasticity. Computational Statistics.
+
+All three are based on a fit using a robust regession estimator. 
+The default is to use Theil--Sen estimator, but as usual some
+other robust estimator can be used via the argument regfun
+
+The functions are:
+
+1. DregG performs a global test that the slopes and intercept parameters
+are equal.
+2. difreg compares the individual slopes as well as the intercepts.
+3. Dancts compares the regression lines at specified values associated with 
+the independent variable. That is, is the typical Y value at X=6, say, the same
+at times 1 and 2.  
+
+
+In the last upate, I mentioned some ANCOVA methods based on smoothers that
+deal with curvature in a flexible manner. These new functions
+assume a parametric fit, such as a straight line. 
+Power might be higher, compared to using a smoother,
+when parametric model gives a good approximation of the actual
+regression line. But if there is curvature that is not modeled well by
+the parametric regression line, a smoother might have more power and
+it can provide a better sense of where and how the regression lines differ.
+
+- Fixed a bug in winmean (na.rm parameter now is recognized; thanks to Giulio Costantini)
+- Moved all libraries to "Suggest"
+
+# Changes in WRS version 0.24.1
+
+- Moved to Github: https://github.com/nicebread/WRS
+
+
+# Changes in WRS version 0.23.2
+
+Bug fix: Due to a missing NAMESPACE the functions were not exported.
+
+
+# Changes in WRS version 0.23.1
+
+Some details about recently developed methods implemented in the WRS package:
+
+## R FUNCTIONS RECENTLY ADDED TO THE WRS PACKAGE ##
+
+### REGRESSION:
+
+- tshdreg: This is a modification of the Theil–Sen estimator. When there are tied values among the dependent variable, this modification might result in substantially higher power. A paper (Wilcox & Clark, in press) provides details. The function tsreg now checks whether there are any tied values and prints a message suggesting that you might want to use tshdreg instead.
+
+- qhdsm: A quantile regression smoother. That is, plot the regression line when predicting some quantile without specifying a parametric form for the regression line. Multiple quan- tile regression lines can be plotted. The method can be more satisfactory than using the function qsmcobs, which often creates waves and curvature that give an incorrect sense of the association. Another advantage of qhsdm is that it can be used with more than one predictor; qsmcobs is limited to one predictor only. The strategy behind qhdsm is to get an initial approximation of the regression line using a running interval smoother that is then smoothed again via LOESS. It seems that often an association is found when predicting quartiles rather than the median.
+
+- qhdsm2g: Plots regression lines for two groups using the function qhdsm.
+- rplot has been updated: setting the argument LP=TRUE gives a smoother regression line.
+- rplotCI. Same as rplot but includes lines indicating a confidence interval for the predicted Y values
+- rplotpbCI. Same as rplotCI, only use a bootstrap method to compute confidence intervals.
+
+### ANCOVA OR COMPARING REGRESSION LINES ASSOCIATED WITH INDEPENDENT GROUPS:
+
+- ancJN: The function fits a robust regression line for each group and then determines whether the predicted Y values differ significantly at specified points. So it has connections to the classic Johnson-Neyman method. That is, the method provides an indication of where the regression lines cross. As usual, heteroscedasticity is allowed.
+- anctspb: Like ancJN but uses a percentile bootstrap method that might help when there are tied values among the dependent variable.
+- ancGLOB. A robust global ANCOVA method. Like the function ancova, it provides a flexible way of dealing with curvature and heteroscedasticity is allowed. But this function can reject in situations where ancova does not reject. The function returns a p-value and the hypothesis of identical regression lines is rejected if the p-value is less than or equal to a critical p-value. In essence, it can beat reliance on improved versions of the Bonferroni method. (Details are in a paper submitted for publication.) It does not dominate ancova in terms of power, but have encountered situations where it makes a practical difference. An advantage of ancova is that has the potential of providing a more detailed sense of where regression lines differ and by how much. It determines a critical p-value via the R function ancGLOB_pv. In essence, simulations are used. By default, the number of replications is iter=500. But suggest using iter=2000 or larger. Execution time can be reduced substantially with cpp=TRUE, which calls a C++ version of the function written by Xiao He. Here are the commands to install the C++ version:
+    
+    install.packages(‘devtools’)
+    library(‘devtools’)
+    install_github( ‘WRScpp’, ‘mrxiaohe’)
+	
+- ancdifplot: This supplements the function ancova. It plots the estimated difference over the range of x values where a confidence interval can be computed. A plot of the confidence intervals is included.
+- ancGpar: a global test that two parametric regression lines are identical. See Wilcox, R. R. & Clark, F. (in press). Heteroscedastic global tests that the regression parameters for two or more independent groups are identical. Communications in Statistics– Simulation and Computation.
+
+
+### ANCOVA OR COMPARING REGRESSION LINES ASSOCIATED WITH DEPENDENT GROUPS:
+
+- Dancova: ANCOVA for two dependent groups that provides a flexible way of dealing with curvature. Both types of heteroscedasticity are allowed. Roughly, approximate the regression lines with a running interval smoother and at specified design points compare the regression lines. This is an extension of the R function ancova to dependent groups. The function can do an analysis on either the marginal measures of location or a measure of location based on the difference scores. Defaults to using a trimmed mean.
+- Dancovamp: Like Dancova only designed to handle multiple covariates.
+- Danctspb: Compare regression lines of two dependent groups using a robust regression estimator. The default is to use Theil–Sen, but any estimator can be used via the argu- ment regfun. So in contrast to Dancova, a parametric form for the regression line is made. As usual, can eliminate outliers among the independent variable by setting the argument xout=TRUE. When a parametric regression line provides a more accurate fit, can have more power compared to using a smoother. But when there is curvature that is not modeled well with a parametric fit, the reverse can happen.
+- DanctspbMC: Same as Danctspb but designed to use a multi-core processor if one is available.Note: a version of ancGLOB for dependent groups is being studied. 
+
+### COEFFICIENT ALPHA
+
+- Rcoefalpha: computes a robust analog of coefficient alpha. See Wilcox, R. R. (1992). Robust generalizations of classical test reliability and Cronbach’s alpha. British Journal of Mathematical and Statistical Psychology, 45, 239–254.
+
+
+# Changes in WRS version 0.23
+
+New functions:
+- Rcoefalpha
+- Dancova
+- Dancovamp
+- rplotCI
+- rplotpbCI
+- ancdifplot
+- Danctspb
+- DanctspbMC
+- anctspb
+- qhdsm
+- rmdzeroG
+- yuendv2
+- qhdsm2g
+- ancGLOB
+- ancGLOB_pv_pts
+
+Thanks to Xiao He, a few of the R functions have been written in C++. They deal with robust regression estimators and can reduce execution time. These C functions ar enot yet in this package; download and usage instructions can be found at
+http://dornsife.usc.edu/labs/rwilcox/software/
+
+# Changes in WRS version 0.21
+
+- Removed dependence on "multicore" package; using "parallel" instead
+
+# Changes in WRS version 0.20.1
+
+- R 3.0.0 compatibility
+
+
+# Changes in WRS version 0.20
+
+Additional functions for new ANCOVA methods:
+- olsJ2
+- ebarplot.med
+- MULtsreg
+- mlts
+- ancCR
+- JNH_sub1
+- JNH_sub2
+- ancCR
+- ancJNhet_sub
+- tsregNW
+- reg2cimcp
+- ancJNhet
+- epowv2
+
+# Changes in WRS version 0.19
+
+Included are some new ANCOVA methods. 
+
+# Changes in WRS version 0.17
+
+Updated to Wilcox's version 17.
+
+0.17.1: Fixed a minor bug in qcomhd (labeling of significance according to the Hochberg method)

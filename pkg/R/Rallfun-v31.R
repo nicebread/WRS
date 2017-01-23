@@ -55798,9 +55798,9 @@ mcpKadjp <- function (p, k=1, proc = c('Holm'), rawp=p) {
 # p: The p-values to be adjusted.
 # k: The  value for k-FWER
 #  proc: indicates the method to be used. Choices are:
-#' Holm' 
+# ' Holm' 
 # 'Hochberg', 
-#' 'RS', 	Romano-Shaikh procedure
+# 'RS', 	Romano-Shaikh procedure;
  # 'Sarkar',
  # 'BH' , Benjamini--Hochberg
 #

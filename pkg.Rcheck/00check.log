@@ -1,0 +1,2276 @@
+* using log directory ‘/Users/felix/Github/WRS/pkg.Rcheck’
+* using R version 3.3.2 (2016-10-31)
+* using platform: x86_64-apple-darwin13.4.0 (64-bit)
+* using session charset: UTF-8
+* checking for file ‘pkg/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘WRS’ version ‘0.30.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .DS_Store
+  .Rapp.history
+  R/.DS_Store
+  inst/.DS_Store
+  man/.DS_Store
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘WRS’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Checking should be performed on sources prepared by ‘R CMD build’.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' calls in package code:
+  ‘DepthProc’ ‘MASS’ ‘Rfit’ ‘WRScpp’ ‘akima’ ‘class’ ‘cobs’ ‘fda’
+  ‘lars’ ‘mc2d’ ‘mgcv’ ‘parallel’ ‘psych’ ‘pwr’ ‘quantreg’ ‘robust’
+  ‘robustbase’ ‘rrcov’ ‘scatterplot3d’ ‘stats’ ‘trimcluster’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+* checking S3 generic/method consistency ... WARNING
+print:
+  function(x, ...)
+print.trq:
+  function(object, digits)
+
+anova:
+  function(object, ...)
+anova.nestA:
+  function(x, tr)
+
+anova:
+  function(object, ...)
+anova.nestAP:
+  function(x, tr)
+
+See section ‘Generic functions and methods’ in the ‘Writing R
+Extensions’ manual.
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Aband: no visible global function definition for ‘rnorm’
+Aband: no visible global function definition for ‘ks.test’
+Aband: no visible binding for global variable ‘v1’
+Aband: no visible binding for global variable ‘v2’
+BCI: no visible global function definition for ‘runif’
+BCI: no visible global function definition for ‘sd’
+Bband: no visible global function definition for ‘rnorm’
+Bband: no visible global function definition for ‘ks.test’
+Bband: no visible binding for global variable ‘v1’
+Bband: no visible binding for global variable ‘v2’
+CLASSanc: no visible global function definition for ‘lm’
+CLASSanc: no visible global function definition for ‘summary.aov’
+CompClassicDist: no visible global function definition for
+  ‘mahalanobis’
+CompClassicDist: no visible global function definition for ‘qchisq’
+CompClassicDist: no visible global function definition for ‘var’
+CompClassicDist: no visible global function definition for ‘qnorm’
+CompRobustDist: no visible global function definition for ‘mahalanobis’
+CompRobustDist: no visible global function definition for ‘qchisq’
+CompRobustDist: no visible global function definition for ‘qnorm’
+D.akp.effect: no visible global function definition for ‘area’
+D.akp.effect: no visible global function definition for ‘qnorm’
+DEPanc: no visible binding for global variable ‘na.rm’
+DEPancpb: no visible binding for global variable ‘grp’
+DancCR: no visible global function definition for ‘optim’
+DancGLOB_pv: no visible global function definition for ‘DancGLOB_pv_C’
+DancGLOBv2: no visible global function definition for ‘mclapply’
+Dancdet: no visible global function definition for ‘plot’
+Dancdet: no visible global function definition for ‘lines’
+Dancols: no visible binding for global variable ‘lsfit’
+Dancols: no visible global function definition for ‘pt’
+Dancols: no visible global function definition for ‘plot’
+Dancols: no visible global function definition for ‘points’
+Dancols: no visible global function definition for ‘abline’
+Dancols: no visible global function definition for ‘lsfit’
+Dancols_sub: no visible binding for global variable ‘lsfit’
+Dancols_sub: no visible global function definition for ‘pt’
+Dancols_sub: no visible global function definition for ‘plot’
+Dancols_sub: no visible global function definition for ‘points’
+Dancols_sub: no visible global function definition for ‘abline’
+Dancols_sub: no visible global function definition for ‘lsfit’
+DancovaUB: no visible global function definition for ‘mclapply’
+DancovaV2: no visible global function definition for ‘mclapply’
+Dancovamp: no visible binding for global variable ‘cov.mve’
+Dancovapts: warning in matrix(NA, nrow = npts, nco = 9): partielle
+  Übereinstimmung des Argumentes 'nco' mit 'ncol'
+Dancts: no visible global function definition for ‘pnorm’
+Dancts: no visible global function definition for ‘plot’
+Dancts: no visible global function definition for ‘points’
+Dancts: no visible global function definition for ‘abline’
+Danctspb: no visible global function definition for ‘plot’
+Danctspb: no visible global function definition for ‘points’
+Danctspb: no visible global function definition for ‘abline’
+DanctspbMC: no visible global function definition for ‘mclapply’
+DanctspbMC: no visible global function definition for ‘plot’
+DanctspbMC: no visible global function definition for ‘points’
+DanctspbMC: no visible global function definition for ‘abline’
+Dqcomhd: no visible global function definition for ‘plot’
+Dqcomhd: no visible global function definition for ‘points’
+Dqcomhd: no visible global function definition for ‘lines’
+DqdifMC: no visible global function definition for ‘mclapply’
+DregGMC: no visible global function definition for ‘mclapply’
+DregGOLS: no visible binding for global variable ‘lsfit’
+DregGOLS: no visible global function definition for ‘cov’
+DregGOLS: no visible global function definition for ‘lsfit’
+DregGOLS: no visible global function definition for ‘pf’
+FQplot: no visible global function definition for ‘plot’
+FQplot: no visible global function definition for ‘lines’
+FisherLSD: no visible global function definition for ‘pairwise.t.test’
+Flplot: no visible global function definition for ‘plot’
+Flplot: no visible global function definition for ‘lines’
+Flplot2g: no visible global function definition for ‘plot’
+Flplot2g: no visible global function definition for ‘lines’
+GBY3Fs: no visible global function definition for ‘pnorm’
+GBY3Fsm: no visible global function definition for ‘pnorm’
+HuberTun: no visible global function definition for ‘qchisq’
+HuberTun: no visible global function definition for ‘pchisq’
+KNN: no visible global function definition for ‘knn’
+KNNdist: no visible global function definition for ‘knn’
+KNNdist: no visible global function definition for ‘plot’
+KNNdist: no visible global function definition for ‘points’
+Kmeans: no visible global function definition for ‘kmeans’
+Kmeans.grp: no visible global function definition for ‘kmeans’
+L1medcen: no visible binding for global variable ‘median’
+L1median: no visible binding for global variable ‘median’
+LCO.CI: no visible global function definition for ‘dbinom’
+M2m.loc: no visible binding for global variable ‘gprc’
+MADstand: no visible global function definition for ‘mad’
+MARONNA.sub: no visible binding for global variable ‘n’
+MLRplot: no visible global function definition for ‘lsfit’
+MLRplot: no visible global function definition for ‘ls.diag’
+MLRplot: no visible global function definition for ‘par’
+MLRplot: no visible global function definition for ‘plot’
+MLRplot: no visible global function definition for ‘abline’
+MLRplot: no visible global function definition for ‘points’
+MLRplot: no visible global function definition for ‘identify’
+MLRplot: no visible global function definition for ‘title’
+MMreg: no visible global function definition for ‘lmrob’
+MULtr.anova: no visible global function definition for ‘qchisq’
+Mreglde: no visible global function definition for ‘var’
+Mreglde: no visible global function definition for ‘lsfit’
+ODDSR.CI: no visible global function definition for ‘qnorm’
+OGK: no visible global function definition for ‘CovOgk’
+Ppca.summary: no visible global function definition for ‘mclapply’
+Qancsm: no visible global function definition for ‘plot’
+Qancsm: no visible global function definition for ‘cobs’
+Qancsm: no visible global function definition for ‘points’
+Qancsm: no visible global function definition for ‘lines’
+Qdepthcomsub: no visible global function definition for ‘median’
+Qdepthcomsub: no visible global function definition for ‘mad’
+Qdepthcomsub: no visible global function definition for ‘cobs’
+Qdepthcomsub: no visible global function definition for ‘predict’
+Qreg: no visible global function definition for ‘optim’
+Qreg: no visible global function definition for ‘plot’
+Qreg: no visible global function definition for ‘abline’
+Qregci: no visible binding for global variable ‘var’
+Qregci: no visible global function definition for ‘var’
+Rfit: no visible global function definition for ‘rfit’
+RobRsq: no visible global function definition for ‘lmRob’
+Rpca: no visible global function definition for ‘runif’
+Rsq: no visible global function definition for ‘lsfit’
+Rsq: no visible global function definition for ‘var’
+SPCA: no visible binding for global variable ‘na.fail’
+SPCA: no visible global function definition for ‘PcaLocantore’
+Scheffe: no visible global function definition for ‘pf’
+Scheffe: no visible global function definition for ‘qf’
+Scov: no visible global function definition for ‘CovSest’
+T.HSD: no visible global function definition for ‘aov’
+T.HSD: no visible global function definition for ‘TukeyHSD’
+T.HSD: no visible global function definition for ‘plot’
+TKmeans: no visible binding for global variable ‘data’
+TKmeans: no visible global function definition for ‘trimkmeans’
+TWOpNOV: no visible global function definition for ‘cor’
+TWOpov: no visible global function definition for ‘cor’
+Tplt: no visible global function definition for ‘lsfit’
+Tplt: no visible global function definition for ‘plot’
+Tplt: no visible global function definition for ‘abline’
+Tplt: no visible global function definition for ‘identify’
+YYmanova: no visible global function definition for ‘pf’
+YYmcp: no visible binding for global variable ‘nboot’
+acbinomci: no visible global function definition for ‘qnorm’
+adcom: no visible global function definition for ‘approx’
+adpchk: no visible global function definition for ‘abline’
+adrun: no visible global function definition for ‘interp’
+adrun: no visible global function definition for ‘persp’
+adrunl: no visible global function definition for ‘interp’
+adrunl: no visible global function definition for ‘persp’
+adtest: no visible global function definition for ‘approx’
+adtest: no visible global function definition for ‘runif’
+adtestl: no visible global function definition for ‘approx’
+adtestl: no visible global function definition for ‘runif’
+adtestv2: no visible global function definition for ‘approx’
+akerd: no visible global function definition for ‘mad’
+akerd: no visible global function definition for ‘qnorm’
+akerd: no visible global function definition for ‘density’
+akerd: no visible global function definition for ‘var’
+akerd: no visible global function definition for ‘plot’
+akerd: no visible global function definition for ‘lines’
+akerdcdf: no visible global function definition for ‘mad’
+akerdcdf: no visible global function definition for ‘qnorm’
+akerdcdf: no visible global function definition for ‘density’
+akerdcdf: no visible global function definition for ‘var’
+akerdcdf: no visible global function definition for ‘plot’
+akerdcdf: no visible global function definition for ‘lines’
+akerdmul: no visible global function definition for ‘var’
+akerdmul: no visible global function definition for ‘interp’
+akerdmul: no visible global function definition for ‘persp’
+akp.effect: no visible global function definition for ‘area’
+akp.effect: no visible global function definition for ‘qnorm’
+anc2COV.CV: no visible global function definition for ‘mclapply’
+ancCR: no visible global function definition for ‘optim’
+ancCR: no visible binding for global variable ‘JNH_sub1’
+ancCR: no visible binding for global variable ‘JNH_sub2’
+ancGLOB: no visible global function definition for ‘ancGLOB_pv_C’
+ancGLOB_pv: no visible global function definition for ‘mclapply’
+ancGLOB_pv_pts: no visible global function definition for ‘mclapply’
+ancGpar: no visible global function definition for ‘plot’
+ancGpar: no visible global function definition for ‘points’
+ancGpar: no visible global function definition for ‘abline’
+ancGparMC: no visible global function definition for ‘plot’
+ancGparMC: no visible global function definition for ‘points’
+ancGparMC: no visible global function definition for ‘abline’
+ancJN: no visible binding for global variable ‘boxplot’
+ancJN: no visible global function definition for ‘pnorm’
+ancJN: no visible global function definition for ‘plot’
+ancJN: no visible global function definition for ‘points’
+ancJN: no visible global function definition for ‘abline’
+ancJNmp: no visible global function definition for ‘pnorm’
+ancJNmp: no visible global function definition for ‘qnorm’
+ancJNmp: no visible global function definition for ‘plot’
+ancJNmp: no visible global function definition for ‘points’
+ancJNmpcp: no visible global function definition for ‘mclapply’
+ancbbmed: no visible binding for global variable ‘median’
+ancdet: no visible global function definition for ‘qnorm’
+ancdet: no visible global function definition for ‘plot’
+ancdet: no visible global function definition for ‘lines’
+ancdet.pv: no visible global function definition for ‘mclapply’
+ancdet2C: no visible binding for global variable ‘p.crit2’
+ancdet2C: no visible global function definition for ‘plot’
+ancdet2C: no visible global function definition for ‘points’
+ancdet2C.pv: no visible global function definition for ‘mclapply’
+ancdifplot: no visible global function definition for ‘plot’
+ancdifplot: no visible global function definition for ‘lines’
+ancdifplot: no visible global function definition for ‘points’
+anclin: no visible global function definition for ‘qnorm’
+anclin: no visible global function definition for ‘pnorm’
+anclin: no visible global function definition for ‘plot’
+anclin: no visible global function definition for ‘points’
+anclin: no visible global function definition for ‘abline’
+ancmg: no visible global function definition for ‘cov.mve’
+ancmg1: no visible global function definition for ‘median’
+ancom: possible error in indt(x, y, tr = tr, nboot = nboot, alpha =
+  alpha, SEED = SEED): unbenutzte Argumente (tr = tr, alpha = alpha)
+ancov2COV: warning in lplot(points[, 1:2], results[, 3], xlab = xlab,
+  ylab = ylab, zlab = zlab, tick = "det", span = span): partielle
+  Übereinstimmung des Argumentes 'tick' mit 'ticktype'
+ancov2COV: warning in lplot(points[, 1:2], est.dif, xlab = xlab, ylab =
+  ylab, zlab = zlab, tick = "det", span = span): partielle
+  Übereinstimmung des Argumentes 'tick' mit 'ticktype'
+ancova: no visible global function definition for ‘qt’
+ancovaUB: no visible global function definition for ‘mclapply’
+ancovaUB: no visible global function definition for ‘p.adjust’
+ancovaUB.pv: no visible global function definition for ‘rnorm’
+ancovaUB.pv: no visible global function definition for ‘mclapply’
+ancovaV2: no visible global function definition for ‘mclapply’
+ancovaV2: no visible global function definition for ‘p.adjust’
+ancovaV2.pv: no visible global function definition for ‘rnorm’
+ancovaV2.pv: no visible global function definition for ‘mclapply’
+ancovam: no visible global function definition for ‘median’
+ancovam: no visible global function definition for ‘qnorm’
+ancovam: no visible binding for global variable ‘median’
+ancovamp: no visible global function definition for ‘cov.mve’
+ancovamp: no visible global function definition for ‘qt’
+ancovampG: no visible global function definition for ‘plot’
+ancovampG: no visible global function definition for ‘points’
+anctgen: no visible global function definition for ‘qt’
+ancts: no visible binding for global variable ‘boxplot’
+ancts: no visible global function definition for ‘pnorm’
+ancts: no visible global function definition for ‘plot’
+ancts: no visible global function definition for ‘points’
+ancts: no visible global function definition for ‘abline’
+anctsmp: no visible global function definition for ‘pnorm’
+anctsmp: no visible global function definition for ‘qnorm’
+anctspb: no visible global function definition for ‘plot’
+anctspb: no visible global function definition for ‘points’
+anctspb: no visible global function definition for ‘abline’
+anova1: no visible global function definition for ‘pf’
+anova_power: no visible global function definition for
+  ‘power.anova.test’
+aov2depth: no visible global function definition for ‘na.omit’
+aov2depth: no visible global function definition for ‘var’
+aov2depth: no visible global function definition for ‘mahalanobis’
+aov2depth: no visible global function definition for ‘plot’
+aov2depth: no visible global function definition for ‘points’
+aov2depth: no visible global function definition for ‘chull’
+aov2depth: no visible global function definition for ‘lines’
+aov2depth: no visible global function definition for ‘scatterplot3d’
+apanova: no visible global function definition for ‘pf’
+apgdis: no visible global function definition for ‘median’
+apgdis: no visible global function definition for ‘mad’
+attract: no visible global function definition for ‘l1fit’
+attract: no visible global function definition for ‘par’
+attract: no visible global function definition for ‘plot’
+attract: no visible global function definition for ‘title’
+attract: no visible global function definition for ‘lines’
+bbwtrim: no visible global function definition for ‘pf’
+bd1GLOB: no visible global function definition for ‘mclapply’
+bd1GLOB: no visible global function definition for ‘var’
+bd1GLOB1: no visible global function definition for ‘var’
+bd1way: no visible global function definition for ‘var’
+bd1way1: no visible global function definition for ‘var’
+bdanova1: no visible global function definition for ‘var’
+bdanova1: no visible global function definition for ‘qf’
+bdanova1: no visible global function definition for ‘qnorm’
+bdanova2: no visible global function definition for ‘var’
+bdms1: no visible global function definition for ‘pf’
+bg2ci: no visible global function definition for ‘median’
+bg2ci: no visible global function definition for ‘qt’
+bi2CR: no visible global function definition for ‘dbinom’
+bi2CR: no visible global function definition for ‘plot’
+bi2CR: no visible global function definition for ‘points’
+bi2KMS: no visible global function definition for ‘qnorm’
+bicov: no visible global function definition for ‘median’
+bicov: no visible global function definition for ‘qnorm’
+bicov: no visible global function definition for ‘mad’
+biloc: no visible global function definition for ‘median’
+biloc: no visible global function definition for ‘mad’
+biloc: no visible global function definition for ‘qnorm’
+binomci: no visible global function definition for ‘qnorm’
+bivar: no visible global function definition for ‘median’
+bivar: no visible global function definition for ‘qnorm’
+bivar: no visible global function definition for ‘mad’
+bkreg: no visible global function definition for ‘plot’
+bkreg: no visible global function definition for ‘lines’
+bkreg: no visible global function definition for ‘interp’
+bkreg: no visible global function definition for ‘persp’
+bmp: no visible global function definition for ‘pt’
+bmp: no visible global function definition for ‘qt’
+bmp: no visible binding for global variable ‘rval’
+bmp: no visible global function definition for ‘boxplot’
+bmp: no visible global function definition for ‘stem’
+bmp: no visible global function definition for ‘hist’
+bmreg: no visible global function definition for ‘lsfit’
+bmreg: no visible global function definition for ‘hat’
+bmreg: no visible global function definition for ‘median’
+bmreg: no visible global function definition for ‘qnorm’
+bootcov: no visible binding for global variable ‘median’
+bootcov: no visible global function definition for ‘var’
+bootdse: no visible binding for global variable ‘median’
+bootdse: no visible global function definition for ‘var’
+bootse: no visible binding for global variable ‘median’
+bootse: no visible global function definition for ‘var’
+box1way: no visible global function definition for ‘pf’
+boxdif: no visible global function definition for ‘boxplot’
+bpmed: no visible global function definition for ‘median’
+bpmed: no visible global function definition for ‘qnorm’
+bpmedse: no visible global function definition for ‘pbinom’
+bpmedse: no visible global function definition for ‘qnorm’
+bprm: no visible global function definition for ‘var’
+bprm: no visible global function definition for ‘pf’
+bsqrm: no visible global function definition for ‘qnorm’
+bsqrm: no visible global function definition for ‘median’
+bsqrm: no visible global function definition for ‘mad’
+btsqrk: no visible global function definition for ‘qnorm’
+btsqrk: no visible global function definition for ‘qchisq’
+btsqrk: no visible global function definition for ‘pchisq’
+bwiJ2plot: no visible global function definition for ‘boxplot’
+bwmedimcp: no visible global function definition for ‘median’
+bwmedimcp: no visible binding for global variable ‘con’
+bwrank: no visible global function definition for ‘var’
+bwrank: no visible global function definition for ‘pf’
+bwwtrim: no visible global function definition for ‘pf’
+cbmhd: no visible global function definition for ‘boxplot’
+cbmhd: no visible global function definition for ‘stem’
+cbmhd: no visible global function definition for ‘hist’
+cbmhdMC: no visible global function definition for ‘mclapply’
+cbmhdMC: no visible global function definition for ‘boxplot’
+cbmhdMC: no visible global function definition for ‘stem’
+cbmhdMC: no visible global function definition for ‘hist’
+cci: no visible global function definition for ‘var’
+cci: no visible global function definition for ‘qt’
+cgci: no visible global function definition for ‘median’
+cgci: no visible global function definition for ‘mad’
+cgci: no visible global function definition for ‘var’
+cgci: no visible global function definition for ‘qt’
+cgen.bt: no visible global function definition for ‘qchisq’
+chi.int: no visible global function definition for ‘pchisq’
+chi.int.p: no visible global function definition for ‘dchisq’
+chi.int2: no visible global function definition for ‘pchisq’
+chi.int2.p: no visible global function definition for ‘dchisq’
+chi.test.ind: no visible global function definition for ‘pchisq’
+chreg: no visible binding for global variable ‘plotit’
+chreg: no visible global function definition for ‘median’
+chreg: no visible global function definition for ‘mad’
+chreg: no visible global function definition for ‘cov.mve’
+chreg: no visible global function definition for ‘mahalanobis’
+chreg: no visible global function definition for ‘qchisq’
+chregF: no visible binding for global variable ‘plotit’
+chregF: no visible global function definition for ‘median’
+chregF: no visible global function definition for ‘mad’
+chregF: no visible global function definition for ‘cov.mve’
+chregF: no visible global function definition for ‘mahalanobis’
+chregF: no visible global function definition for ‘qchisq’
+ci2bin: no visible global function definition for ‘qchisq’
+cid: no visible global function definition for ‘var’
+cid: no visible global function definition for ‘qnorm’
+cid: no visible global function definition for ‘boxplot’
+cid: no visible global function definition for ‘stem’
+cid: no visible global function definition for ‘hist’
+cidmul: no visible global function definition for ‘pnorm’
+clnorm: no visible global function definition for ‘rlnorm’
+clnorm: no visible global function definition for ‘runif’
+cmanova: no visible global function definition for ‘pchisq’
+cmba2: no visible global function definition for ‘var’
+cmba2: no visible global function definition for ‘mahalanobis’
+cmba2: no visible global function definition for ‘median’
+cmba2: no visible binding for global variable ‘median’
+cmba2: no visible global function definition for ‘plot’
+cmba2: no visible global function definition for ‘identify’
+cmba2: no visible global function definition for ‘pairs’
+cmba2: no visible global function definition for ‘qchisq’
+cnorm: no visible global function definition for ‘rnorm’
+cnorm: no visible global function definition for ‘runif’
+cobs2g: no visible global function definition for ‘plot’
+cobs2g: no visible global function definition for ‘cobs’
+cobs2g: no visible global function definition for ‘points’
+cobs2g: no visible global function definition for ‘lines’
+coefalpha: no visible global function definition for ‘alpha’
+comdvar: no visible global function definition for ‘var’
+comvar2: no visible global function definition for ‘var’
+comvar2: no visible binding for global variable ‘var’
+conc2: no visible global function definition for ‘l1fit’
+concmv: no visible global function definition for ‘rnorm’
+concmv: no visible global function definition for ‘var’
+concmv: no visible binding for global variable ‘median’
+concmv: no visible global function definition for ‘mahalanobis’
+concmv: no visible global function definition for ‘median’
+concmv: no visible binding for global variable ‘mad’
+concmv: no visible global function definition for ‘plot’
+concmv: no visible global function definition for ‘points’
+concmv: no visible global function definition for ‘identify’
+concsim: no visible global function definition for ‘rnorm’
+concsim: no visible global function definition for ‘mahalanobis’
+concsim: no visible global function definition for ‘var’
+concsim: no visible global function definition for ‘median’
+concsim: no visible binding for global variable ‘median’
+concsim: no visible binding for global variable ‘mad’
+concsim: no visible global function definition for ‘cov.mcd’
+contab: no visible global function definition for ‘pnorm’
+contab: no visible global function definition for ‘qnorm’
+corCOMmcp: no visible global function definition for ‘mclapply’
+corCOMmcp: no visible global function definition for ‘p.adjust’
+corbMC: no visible global function definition for ‘mclapply’
+cori: no visible global function definition for ‘median’
+correg: no visible binding for global variable ‘median’
+corrsim: no visible global function definition for ‘rnorm’
+corrsim: no visible global function definition for ‘var’
+corrsim: no visible global function definition for ‘mahalanobis’
+corrsim: no visible global function definition for ‘cov.mcd’
+corrsim: no visible global function definition for ‘qchisq’
+corrsim: no visible global function definition for ‘median’
+corrsim: no visible global function definition for ‘cor’
+cov.roc: no visible global function definition for ‘covRob’
+covdgk: no visible global function definition for ‘var’
+covdgk: no visible global function definition for ‘mahalanobis’
+covdgk: no visible global function definition for ‘median’
+covdgk: no visible global function definition for ‘qchisq’
+covl: no visible global function definition for ‘cov’
+covloc: no visible global function definition for ‘cov’
+covmba: no visible global function definition for ‘var’
+covmba: no visible global function definition for ‘mahalanobis’
+covmba: no visible global function definition for ‘median’
+covmba: no visible binding for global variable ‘median’
+covmba: no visible global function definition for ‘qchisq’
+covmba2: no visible global function definition for ‘var’
+covmba2: no visible global function definition for ‘mahalanobis’
+covmba2: no visible global function definition for ‘median’
+covmba2: no visible binding for global variable ‘median’
+covmba2: no visible global function definition for ‘qchisq’
+covmcd: no visible global function definition for ‘cov.mcd’
+covmve: no visible global function definition for ‘cov.mve’
+covout: no visible global function definition for ‘var’
+covroc: no visible global function definition for ‘covRob’
+covsim2: no visible global function definition for ‘rnorm’
+covsim2: no visible global function definition for ‘mahalanobis’
+ctrviews: no visible global function definition for ‘var’
+ctrviews: no visible global function definition for ‘mahalanobis’
+ctrviews: no visible global function definition for ‘quantile’
+ctrviews: no visible global function definition for ‘lsfit’
+ctrviews: no visible global function definition for ‘plot’
+ctrviews: no visible global function definition for ‘title’
+ctrviews: no visible global function definition for ‘identify’
+cumrelf: no visible global function definition for ‘plot’
+cumrelf: no visible global function definition for ‘lines’
+dcov: no visible global function definition for ‘var’
+ddcomp: no visible global function definition for ‘par’
+ddcomp: no visible global function definition for ‘var’
+ddcomp: no visible global function definition for ‘mahalanobis’
+ddcomp: no visible global function definition for ‘median’
+ddcomp: no visible global function definition for ‘qchisq’
+ddcomp: no visible global function definition for ‘plot’
+ddcomp: no visible global function definition for ‘abline’
+ddcomp: no visible global function definition for ‘identify’
+ddcomp: no visible global function definition for ‘title’
+ddcomp: no visible global function definition for ‘cov.mcd’
+ddcomp: no visible binding for global variable ‘median’
+ddep: no visible global function definition for ‘var’
+ddep: no visible global function definition for ‘mahalanobis’
+ddep: no visible global function definition for ‘plot’
+ddep: no visible global function definition for ‘chull’
+ddep: no visible global function definition for ‘lines’
+ddep: no visible global function definition for ‘abline’
+ddeptr: no visible global function definition for ‘var’
+ddeptr: no visible global function definition for ‘mahalanobis’
+ddeptr: no visible global function definition for ‘plot’
+ddeptr: no visible global function definition for ‘chull’
+ddeptr: no visible global function definition for ‘lines’
+ddeptr: no visible global function definition for ‘abline’
+ddmv: no visible global function definition for ‘rnorm’
+ddmv: no visible global function definition for ‘var’
+ddmv: no visible binding for global variable ‘median’
+ddmv: no visible global function definition for ‘mahalanobis’
+ddmv: no visible global function definition for ‘median’
+ddmv: no visible binding for global variable ‘mad’
+ddmv: no visible global function definition for ‘plot’
+ddmv: no visible global function definition for ‘points’
+ddmv: no visible global function definition for ‘identify’
+ddplot: no visible global function definition for ‘var’
+ddplot: no visible global function definition for ‘mahalanobis’
+ddplot: no visible global function definition for ‘cov.mcd’
+ddplot: no visible global function definition for ‘qchisq’
+ddplot: no visible global function definition for ‘median’
+ddplot: no visible global function definition for ‘plot’
+ddplot: no visible global function definition for ‘abline’
+ddplot: no visible global function definition for ‘identify’
+ddsim: no visible global function definition for ‘rnorm’
+ddsim: no visible global function definition for ‘var’
+ddsim: no visible global function definition for ‘mahalanobis’
+ddsim: no visible global function definition for ‘cov.mcd’
+ddsim: no visible global function definition for ‘qchisq’
+ddsim: no visible global function definition for ‘median’
+ddsim: no visible global function definition for ‘plot’
+ddsim: no visible global function definition for ‘abline’
+deciles: no visible global function definition for ‘pbeta’
+depth2: no visible global function definition for ‘plot’
+depth2: no visible global function definition for ‘points’
+depth2: no visible global function definition for ‘median’
+depth2: no visible global function definition for ‘chull’
+depth2: no visible global function definition for ‘lines’
+depthcomsub: no visible global function definition for ‘median’
+depthcomsub: no visible global function definition for ‘mad’
+depthg2: no visible global function definition for ‘plot’
+depthg2: no visible global function definition for ‘points’
+depthg2: no visible global function definition for ‘median’
+depthg2: no visible global function definition for ‘chull’
+depthg2: no visible global function definition for ‘lines’
+depthg2: no visible global function definition for ‘lsqs2.for’
+dfried: no visible global function definition for ‘cov.mcd’
+dfried: no visible global function definition for ‘boxplot’
+diagplot: no visible global function definition for ‘lsfit’
+diagplot: no visible global function definition for ‘ls.diag’
+diagplot: no visible global function definition for ‘pairs’
+difQpci: no visible global function definition for ‘plot’
+difQpci: no visible global function definition for ‘points’
+difQpci: no visible global function definition for ‘lines’
+difQpciMC: no visible global function definition for ‘plot’
+difQpciMC: no visible global function definition for ‘points’
+difQplot: no visible global function definition for ‘plot’
+difregMC: no visible global function definition for ‘mclapply’
+difregOLS: no visible binding for global variable ‘lsfit’
+difregOLS: no visible global function definition for ‘lsfit’
+difregOLS: no visible binding for global variable ‘sd’
+difregOLS: no visible global function definition for ‘pt’
+difregOLS: no visible global function definition for ‘qt’
+difregYvar: no visible binding for global variable ‘var’
+disband: no visible global function definition for ‘plot’
+disband: no visible global function definition for ‘lowess’
+disband: no visible global function definition for ‘lines’
+disc2.chi.sq: no visible global function definition for ‘chisq.test’
+disc2com: no visible global function definition for ‘chisq.test’
+disc2comSK: no visible global function definition for ‘rmultinomial’
+discANOVA: no visible global function definition for ‘rmultinomial’
+discANOVA.sub: no visible global function definition for ‘var’
+discmcp: possible error in disc2com(x[[j]], x[[k]], SEED = FALSE, nboot
+  = nboot): unbenutzte Argumente (SEED = FALSE, nboot = nboot)
+discmcp: no visible binding for global variable ‘test’
+discstep: no visible global function definition for ‘rmultinomial’
+disker: no visible global function definition for ‘plot’
+disker: no visible global function definition for ‘lines’
+disker: no visible global function definition for ‘runif’
+dmean: no visible global function definition for ‘median’
+dmedpb: no visible binding for global variable ‘median’
+dmedpb: no visible global function definition for ‘plot’
+dmedpb: no visible global function definition for ‘points’
+dmedpb: no visible global function definition for ‘var’
+dmedpb: no visible global function definition for ‘mahalanobis’
+dmedpb: no visible global function definition for ‘chull’
+dmedpb: no visible global function definition for ‘lines’
+dmedpb: no visible global function definition for ‘abline’
+dnormvar: no visible global function definition for ‘dnorm’
+dtrimpb: no visible global function definition for ‘plot’
+dtrimpb: no visible global function definition for ‘points’
+dtrimpb: no visible global function definition for ‘var’
+dtrimpb: no visible global function definition for ‘mahalanobis’
+dtrimpb: no visible global function definition for ‘chull’
+dtrimpb: no visible global function definition for ‘lines’
+dtrimpb: no visible global function definition for ‘abline’
+ebarplot: no visible global function definition for ‘par’
+ebarplot.med: no visible binding for global variable ‘uiw’
+ebarplot.med: no visible global function definition for ‘par’
+ebarplot.med: no visible global function definition for ‘median’
+ecor: no visible global function definition for ‘cor’
+effectg.sub: no visible global function definition for ‘var’
+elimna: no visible global function definition for ‘na.omit’
+ellipse: no visible global function definition for ‘var’
+ellipse: no visible global function definition for ‘qchisq’
+ellipse: no visible global function definition for ‘matplot’
+epow: no visible global function definition for ‘cor’
+esfun: no visible global function definition for ‘var’
+essp: no visible global function definition for ‘cov.mcd’
+essp: no visible global function definition for ‘mahalanobis’
+essp: no visible global function definition for ‘quantile’
+essp: no visible global function definition for ‘lsfit’
+essp: no visible global function definition for ‘plot’
+essp: no visible global function definition for ‘identify’
+exmed: no visible global function definition for ‘median’
+fbplot: no visible global function definition for ‘is.fdSmooth’
+fbplot: no visible global function definition for ‘is.fdPar’
+fbplot: no visible global function definition for ‘is.fd’
+fbplot: no visible global function definition for ‘eval.fd’
+fbplot: no visible global function definition for ‘matlines’
+fbplot: no visible global function definition for ‘lines’
+fbplot: no visible global function definition for ‘polygon’
+fdepth: no visible global function definition for ‘cov.mcd’
+fdepth: no visible global function definition for ‘cov.mve’
+fdepth: no visible binding for global variable ‘median’
+fdepth: no visible global function definition for ‘chull’
+fdepth: no visible global function definition for ‘plot’
+fdepth: no visible global function definition for ‘points’
+fdepth: no visible global function definition for ‘median’
+fdepth: no visible global function definition for ‘lines’
+fdepthv2: no visible global function definition for ‘chull’
+fdepthv2: no visible global function definition for ‘plot’
+fdepthv2: no visible global function definition for ‘median’
+fdepthv2: no visible global function definition for ‘lines’
+ffL: no visible global function definition for ‘lsfit’
+ffL: no visible global function definition for ‘pairs’
+ffL: no visible global function definition for ‘cor’
+fflynx: no visible binding for global variable ‘lynx’
+fflynx: no visible global function definition for ‘cor’
+fflynx: no visible global function definition for ‘pairs’
+ffplot: no visible global function definition for ‘lmsreg’
+ffplot: no visible global function definition for ‘pairs’
+ffplot2: no visible global function definition for ‘lmsreg’
+ffplot2: no visible global function definition for ‘pairs’
+ftrim: no visible global function definition for ‘dnorm’
+func.out: no visible global function definition for ‘plot’
+func.out: no visible global function definition for ‘lines’
+funloc: no visible global function definition for ‘p.adjust’
+funloc: no visible global function definition for ‘plot’
+funloc: no visible global function definition for ‘lines’
+funlocpb: no visible global function definition for ‘p.adjust’
+funlocpb: no visible global function definition for ‘plot’
+funlocpb: no visible global function definition for ‘lines’
+funyuenpb: no visible global function definition for ‘p.adjust’
+funyuenpb: no visible global function definition for ‘plot’
+funyuenpb: no visible global function definition for ‘lines’
+funyuenpb: no visible global function definition for ‘par’
+fysim: no visible global function definition for ‘ardata’
+fysim: no visible global function definition for ‘ar.yw’
+fysim: no visible global function definition for ‘plot’
+fysim: no visible global function definition for ‘abline’
+fysim: no visible global function definition for ‘cor’
+g2plot: no visible global function definition for ‘density’
+g2plot: no visible global function definition for ‘plot’
+g2plot: no visible global function definition for ‘lines’
+g2plot: no visible global function definition for ‘par’
+g5plot: no visible global function definition for ‘plot’
+g5plot: no visible global function definition for ‘lines’
+gamplot: no visible global function definition for ‘fitted’
+gamplot: no visible global function definition for ‘gam’
+gamplot: no visible global function definition for ‘plot’
+gamplot: no visible global function definition for ‘interp’
+gamplot: no visible global function definition for ‘persp’
+gamplotINT: no visible global function definition for ‘fitted’
+gamplotINT: no visible global function definition for ‘gam’
+gamplotINT: no visible global function definition for ‘interp’
+gamplotINT: no visible global function definition for ‘persp’
+gamplotv2: no visible global function definition for ‘fitted’
+gamplotv2: no visible global function definition for ‘gam’
+gamplotv2: no visible global function definition for ‘plot’
+gamplotv2: no visible global function definition for ‘interp’
+gamplotv2: no visible global function definition for ‘persp’
+gamplotv2: no visible global function definition for ‘gamplotv2.sub’
+gamplotv2: no visible global function definition for ‘median’
+ghdist: no visible global function definition for ‘rnorm’
+ghtrim: no visible global function definition for ‘qnorm’
+ghtrim: no visible global function definition for ‘integrate’
+givelabel: no visible global function definition for ‘text’
+givelabel: no visible global function definition for ‘par’
+gk.sigmamu: no visible global function definition for ‘median’
+gplot: no visible global function definition for ‘par’
+gplot: no visible global function definition for ‘plot’
+gvar: no visible global function definition for ‘var’
+gvar2g: no visible binding for global variable ‘n’
+gvar2g: no visible binding for global variable ‘skipcov.for’
+gyreg: no visible binding for global variable ‘lmsreg’
+gyreg: no visible global function definition for ‘mad’
+gyreg: no visible global function definition for ‘pnorm’
+gyreg: no visible global function definition for ‘lsfit’
+hard.rejection: no visible global function definition for ‘qchisq’
+hard.rejection: no visible global function definition for ‘median’
+hc4qtest: no visible global function definition for ‘lsfit’
+hc4qtest: no visible global function definition for ‘runif’
+hc4test: no visible global function definition for ‘lsfit’
+hc4test: no visible global function definition for ‘plot’
+hc4test: no visible global function definition for ‘abline’
+hc4test: no visible global function definition for ‘pchisq’
+hc4wmc: no visible global function definition for ‘lsfit’
+hc4wmc: no visible global function definition for ‘rbinom’
+hc4wtest: no visible global function definition for ‘lsfit’
+hc4wtest: no visible global function definition for ‘rbinom’
+hc4wtest: no visible global function definition for ‘runif’
+hd: no visible global function definition for ‘pbeta’
+hdep : DEP: no visible global function definition for ‘var’
+hdep: no visible global function definition for ‘var’
+hdseb: no visible global function definition for ‘var’
+hotel1: no visible global function definition for ‘pf’
+hotel1.tr: no visible global function definition for ‘pf’
+iband: no visible global function definition for ‘rnorm’
+iband: no visible global function definition for ‘ks.test’
+iband: no visible binding for global variable ‘v1’
+iband: no visible binding for global variable ‘v2’
+ifmest: no visible global function definition for ‘mad’
+ifmest: no visible global function definition for ‘qnorm’
+indt: no visible global function definition for ‘runif’
+indt0: no visible global function definition for ‘runif’
+indt0: no visible binding for global variable ‘tr’
+indt0: no visible binding for global variable ‘median’
+indtall: possible error in indt(x[, j], x[, jj], tr = tr, nboot =
+  nboot, SEED = SEED): unbenutztes Argument (tr = tr)
+indtall: possible error in indt(x[, j], y, tr = tr, nboot = nboot, SEED
+  = SEED): unbenutztes Argument (tr = tr)
+interplot: no visible global function definition for ‘interaction.plot’
+johan: no visible global function definition for ‘qchisq’
+johansp: no visible global function definition for ‘pf’
+kbcon: no visible global function definition for ‘qf’
+kbcon: no visible global function definition for ‘pf’
+kdplot: no visible global function definition for ‘plot’
+kdplot: no visible global function definition for ‘lines’
+kerSORT: no visible global function definition for ‘sd’
+kerSORT: no visible binding for global variable ‘n’
+kerSORT: no visible global function definition for ‘density’
+kerSORT: no visible global function definition for ‘plot’
+kerSORT: no visible global function definition for ‘lines’
+kercon: no visible global function definition for ‘median’
+kercon: no visible global function definition for ‘var’
+kercon: no visible global function definition for ‘lsfit’
+kercon: no visible global function definition for ‘plot’
+kercon: no visible global function definition for ‘lines’
+kerreg: no visible global function definition for ‘median’
+kerreg: no visible global function definition for ‘mad’
+kerreg: no visible global function definition for ‘var’
+kerreg: no visible global function definition for ‘lsfit’
+kerreg: no visible global function definition for ‘interp’
+kerreg: no visible global function definition for ‘persp’
+khomreg: no visible global function definition for ‘lsfit’
+khomreg: no visible global function definition for ‘pchisq’
+kslope: no visible global function definition for ‘var’
+kslope: no visible global function definition for ‘lsfit’
+l2dci: no visible binding for global variable ‘median’
+l2dci: no visible global function definition for ‘var’
+l2drmci: no visible binding for global variable ‘median’
+l2plot: no visible global function definition for ‘plot’
+l2plot: no visible global function definition for ‘lines’
+l2plot: no visible global function definition for ‘lowess’
+larsR: no visible global function definition for ‘lars’
+lband: no visible global function definition for ‘plot’
+lband: no visible global function definition for ‘lowess’
+lband: no visible global function definition for ‘lines’
+lband: no visible global function definition for ‘text’
+lincdm: no visible global function definition for ‘median’
+lincdm: no visible global function definition for ‘pt’
+lincdm: no visible global function definition for ‘qt’
+lincdtr: no visible global function definition for ‘pt’
+lincdtr: no visible global function definition for ‘qt’
+lincon: no visible global function definition for ‘pt’
+lincon: no visible global function definition for ‘qf’
+linconMpb: no visible global function definition for ‘cov’
+linconMpb: no visible global function definition for ‘mahalanobis’
+linconSpb: no visible global function definition for ‘cov’
+linconSpb: no visible global function definition for ‘mahalanobis’
+linconm: no visible global function definition for ‘var’
+lindm: no visible global function definition for ‘var’
+linpbg: no visible binding for global variable ‘tr’
+lintest: no visible global function definition for ‘runif’
+lintestMC: no visible global function definition for ‘runif’
+lintestMC: no visible global function definition for ‘mclapply’
+llocv2: no visible binding for global variable ‘median’
+llrdata: no visible global function definition for ‘rnorm’
+llrdata: no visible global function definition for ‘rpois’
+llressp: no visible global function definition for ‘glm’
+llressp: no visible binding for global variable ‘poisson’
+llressp: no visible global function definition for ‘plot’
+llressp: no visible global function definition for ‘abline’
+llressp: no visible global function definition for ‘lines’
+llressp: no visible global function definition for ‘lowess’
+llrplot: no visible global function definition for ‘glm’
+llrplot: no visible binding for global variable ‘poisson’
+llrplot: no visible global function definition for ‘par’
+llrplot: no visible global function definition for ‘plot’
+llrplot: no visible global function definition for ‘abline’
+llrplot: no visible global function definition for ‘lines’
+llrplot: no visible global function definition for ‘lowess’
+llrplot: no visible global function definition for ‘title’
+llrwtfrp: no visible global function definition for ‘glm’
+llrwtfrp: no visible binding for global variable ‘poisson’
+llrwtfrp: no visible global function definition for ‘lsfit’
+llrwtfrp: no visible global function definition for ‘par’
+llrwtfrp: no visible global function definition for ‘plot’
+llrwtfrp: no visible global function definition for ‘abline’
+llrwtfrp: no visible global function definition for ‘title’
+lmsviews: no visible global function definition for ‘cov.mcd’
+lmsviews: no visible global function definition for ‘mahalanobis’
+lmsviews: no visible global function definition for ‘quantile’
+lmsviews: no visible global function definition for ‘lmsreg’
+lmsviews: no visible global function definition for ‘plot’
+lmsviews: no visible global function definition for ‘title’
+lmsviews: no visible global function definition for ‘identify’
+loc2dif: no visible binding for global variable ‘median’
+locCV: no visible binding for global variable ‘median’
+locreg: no visible global function definition for ‘var’
+locreg: no visible global function definition for ‘lsfit’
+locreg: no visible global function definition for ‘plot’
+locreg: no visible global function definition for ‘lines’
+locvarsm: no visible global function definition for ‘plot’
+locvarsm: no visible global function definition for ‘lines’
+locvarsm: no visible binding for global variable ‘var’
+logSM: no visible global function definition for ‘cov.mve’
+logSM: no visible global function definition for ‘mahalanobis’
+logSM: no visible global function definition for ‘plot’
+logSM: no visible global function definition for ‘lines’
+logSM: no visible global function definition for ‘interp’
+logSM: no visible global function definition for ‘persp’
+logSMpred: no visible global function definition for ‘cov.mve’
+logSMpred: no visible global function definition for ‘mahalanobis’
+logadr: no visible global function definition for ‘var’
+logadr: no visible global function definition for ‘interp’
+logadr: no visible global function definition for ‘persp’
+logreg: no visible global function definition for ‘glm’
+logreg: no visible binding for global variable ‘binomial’
+logreg: no visible global function definition for ‘fitted.values’
+logreg: no visible global function definition for ‘plot’
+logreg: no visible global function definition for ‘lines’
+logreg: no visible global function definition for ‘interp’
+logreg: no visible global function definition for ‘persp’
+logreg.plot: no visible global function definition for ‘plot’
+logreg.plot: no visible global function definition for ‘lines’
+logrsm: no visible global function definition for ‘median’
+logrsm: no visible global function definition for ‘mad’
+logrsm: no visible global function definition for ‘plot’
+logrsm: no visible global function definition for ‘lines’
+longreg.plot: no visible global function definition for ‘plot’
+longreg.plot: no visible global function definition for ‘abline’
+lplot: no visible global function definition for ‘fitted’
+lplot: no visible global function definition for ‘loess’
+lplot: no visible global function definition for ‘interp’
+lplot: no visible global function definition for ‘persp’
+lplot: no visible global function definition for ‘plot’
+lplot: no visible global function definition for ‘lines’
+lplot: no visible global function definition for ‘lowess’
+lplot.pred: no visible global function definition for ‘loess’
+lplot.pred: no visible global function definition for ‘predict’
+lplot2g: no visible global function definition for ‘plot’
+lplot2g: no visible global function definition for ‘points’
+lplot2g: no visible global function definition for ‘lines’
+lplotv2: no visible global function definition for ‘fitted’
+lplotv2: no visible global function definition for ‘loess’
+lplotv2: no visible global function definition for ‘interp’
+lplotv2: no visible global function definition for ‘persp’
+lplotv2: no visible global function definition for ‘plot’
+lplotv2: no visible global function definition for ‘lines’
+lplotv2: no visible global function definition for ‘lowess’
+lplotv2: no visible global function definition for ‘lplot.sub’
+lplotv2: no visible global function definition for ‘median’
+lrdata: no visible global function definition for ‘rnorm’
+lrdata: no visible global function definition for ‘glm’
+lrdata: no visible binding for global variable ‘binomial’
+lressp: no visible global function definition for ‘glm’
+lressp: no visible binding for global variable ‘binomial’
+lressp: no visible global function definition for ‘plot’
+lressp: no visible global function definition for ‘abline’
+lressp: no visible global function definition for ‘lines’
+lsfitNci: no visible global function definition for ‘lsfit’
+lsfitNci: no visible global function definition for ‘qt’
+lsfitNci4: no visible global function definition for ‘lsfit’
+lsfitNci4: no visible global function definition for ‘qt’
+lsfitci: no visible binding for global variable ‘lsfit’
+lsqs2: no visible global function definition for ‘plot’
+lsqs2: no visible global function definition for ‘points’
+lsqs2: no visible global function definition for ‘median’
+lsqs2: no visible global function definition for ‘chull’
+lsqs2: no visible global function definition for ‘lines’
+lsqs2: no visible binding for global variable ‘median’
+lsqs2: no visible global function definition for ‘var’
+lsqs2: no visible global function definition for ‘mahalanobis’
+lsqs3: no visible global function definition for ‘plot’
+lsqs3: no visible global function definition for ‘points’
+lsqs3: no visible global function definition for ‘median’
+lsqs3: no visible global function definition for ‘chull’
+lsqs3: no visible global function definition for ‘lines’
+lsqs3: possible error in fdepthv2(y, x, plotit = FALSE, cop = cop):
+  unbenutztes Argument (cop = cop)
+lsqs3: possible error in fdepthv2(x, y, plotit = FALSE, cop = cop):
+  unbenutztes Argument (cop = cop)
+lsqs3: no visible global function definition for ‘lsqs3.sub’
+lsqtest4: no visible global function definition for ‘lsfit’
+lstest4: no visible global function definition for ‘lsfit’
+lsviews: no visible global function definition for ‘cov.mcd’
+lsviews: no visible global function definition for ‘mahalanobis’
+lsviews: no visible global function definition for ‘quantile’
+lsviews: no visible global function definition for ‘lsfit’
+lsviews: no visible global function definition for ‘plot’
+lsviews: no visible global function definition for ‘points’
+lsviews: no visible global function definition for ‘abline’
+lsviews: no visible global function definition for ‘title’
+lsviews: no visible global function definition for ‘identify’
+ltsgreg: no visible binding for global variable ‘plotit’
+ltsgreg: no visible global function definition for ‘ltsReg’
+ltsreg: no visible binding for global variable ‘plotit’
+ltsreg: no visible global function definition for ‘ltsReg’
+m2ci: no visible global function definition for ‘var’
+maha: no visible global function definition for ‘var’
+maha: no visible global function definition for ‘mahalanobis’
+man2pb: no visible global function definition for ‘pnorm’
+marpca.sub: no visible global function definition for ‘runif’
+mbalata: no visible global function definition for ‘lsfit’
+mbalata: no visible global function definition for ‘median’
+mbalata: no visible global function definition for ‘mahalanobis’
+mbamv: no visible global function definition for ‘mahalanobis’
+mbamv: no visible global function definition for ‘median’
+mbamv: no visible global function definition for ‘plot’
+mbamv: no visible global function definition for ‘points’
+mbamv: no visible global function definition for ‘abline’
+mbamv: no visible global function definition for ‘lsfit’
+mbamv: no visible global function definition for ‘identify’
+mbamv2: no visible global function definition for ‘mahalanobis’
+mbamv2: no visible global function definition for ‘median’
+mbamv2: no visible global function definition for ‘lsfit’
+mbamv2: no visible global function definition for ‘par’
+mbamv2: no visible global function definition for ‘plot’
+mbamv2: no visible global function definition for ‘points’
+mbamv2: no visible global function definition for ‘abline’
+mbamv2: no visible global function definition for ‘identify’
+mbareg: no visible global function definition for ‘lsfit’
+mbareg: no visible global function definition for ‘median’
+mbareg: no visible global function definition for ‘mahalanobis’
+mbmreg: no visible global function definition for ‘lmsreg’
+mbmreg: no visible global function definition for ‘median’
+mbmreg: no visible global function definition for ‘lsfit’
+mbmreg: no visible global function definition for ‘hat’
+mbmreg: no visible global function definition for ‘qnorm’
+mcdcov: no visible global function definition for ‘cov.mcd’
+mcpPV: no visible global function definition for ‘pchisq’
+mcpPV: no visible global function definition for ‘qnorm’
+mcpPV: no visible global function definition for ‘pbeta’
+mcslope: no visible global function definition for ‘lsfit’
+mdiflcr: no visible global function definition for ‘var’
+mdiflcr: no visible global function definition for ‘mahalanobis’
+mdiflcr: no visible binding for global variable ‘mdif’
+mdiflcr: no visible global function definition for ‘plot’
+mdiflcr: no visible global function definition for ‘points’
+mdiflcr: no visible binding for global variable ‘center’
+mdifloc: no visible binding for global variable ‘tukmed’
+med.effect: no visible binding for global variable ‘median’
+med.effect: no visible global function definition for ‘median’
+med.effect: no visible global function definition for ‘var’
+med.effect.sub: no visible global function definition for ‘median’
+med.effect.sub: no visible global function definition for ‘var’
+med1way: no visible global function definition for ‘median’
+med1way.crit: no visible global function definition for ‘rnorm’
+med1way.crit: no visible global function definition for ‘median’
+med2ci: no visible global function definition for ‘median’
+med2ci: no visible global function definition for ‘var’
+med2ci: no visible global function definition for ‘qt’
+med2g: no visible global function definition for ‘median’
+med2g: no visible binding for global variable ‘median’
+med2way: no visible global function definition for ‘median’
+med2way: no visible global function definition for ‘pf’
+med2way: no visible global function definition for ‘pchisq’
+med3mcp: no visible binding for global variable ‘x’
+medci: no visible global function definition for ‘median’
+medci: no visible global function definition for ‘qt’
+medcipb: no visible binding for global variable ‘median’
+medcurve: warning in FBplot(x, plot = FALSE): partielle Übereinstimmung
+  des Argumentes 'plot' mit 'plotit'
+medind: no visible global function definition for ‘median’
+medind: no visible global function definition for ‘rnorm’
+medindsub: no visible global function definition for ‘median’
+medpb: no visible binding for global variable ‘median’
+medpb2: no visible global function definition for ‘median’
+medpb2: no visible binding for global variable ‘median’
+medr: no visible binding for global variable ‘median’
+medr: no visible global function definition for ‘var’
+medr: no visible global function definition for ‘mahalanobis’
+medr: no visible global function definition for ‘cov.mcd’
+medr: no visible global function definition for ‘pdis.for’
+mee: no visible global function definition for ‘qnorm’
+meemul: no visible global function definition for ‘pnorm’
+mest: no visible global function definition for ‘mad’
+mest: no visible global function definition for ‘median’
+mestseb: no visible global function definition for ‘var’
+mgvcov: no visible global function definition for ‘var’
+mgvfreg: no visible binding for global variable ‘SEED’
+mgvfreg: no visible global function definition for ‘abline’
+mjse: no visible global function definition for ‘pbeta’
+mlrGtest: no visible global function definition for ‘cov’
+mlrGtest: no visible global function definition for ‘pf’
+mlrplot2: no visible global function definition for ‘par’
+mlrplot2: no visible global function definition for ‘plot’
+mlrplot2: no visible global function definition for ‘abline’
+mlrplot2: no visible global function definition for ‘identify’
+mlrplot2: no visible global function definition for ‘title’
+mlrreg: no visible binding for global variable ‘cov.mcd’
+mlrreg: no visible global function definition for ‘cov.mcd’
+mlrreg: no visible global function definition for ‘qchisq’
+mlrreg: no visible global function definition for ‘lsfit’
+mlrreg.Stest: no visible global function definition for ‘cov’
+mlrreg.Stest: no visible global function definition for ‘pf’
+mlrregCI: no visible global function definition for ‘mclapply’
+mlrregWtest: no visible global function definition for ‘mclapply’
+mlts: no visible global function definition for ‘runif’
+mlts: no visible global function definition for ‘pchisq’
+mlts: no visible global function definition for ‘qchisq’
+mom: no visible global function definition for ‘median’
+mom: no visible global function definition for ‘mad’
+mplot: no visible global function definition for ‘var’
+mplot: no visible global function definition for ‘mahalanobis’
+mplot: no visible global function definition for ‘qchisq’
+mplot: no visible global function definition for ‘median’
+mplot: no visible global function definition for ‘plot’
+mplot: no visible global function definition for ‘abline’
+mplot: no visible global function definition for ‘identify’
+mrm1way: no visible global function definition for ‘median’
+mrm1way: no visible global function definition for ‘pf’
+mscale: no visible global function definition for ‘mad’
+mscor: no visible global function definition for ‘lsfit’
+mscor: no visible global function definition for ‘qchisq’
+mscov: no visible global function definition for ‘var’
+msmed: no visible global function definition for ‘median’
+msmed: no visible global function definition for ‘pt’
+msmed: no visible global function definition for ‘qnorm’
+msmedci: no visible global function definition for ‘median’
+msmedci: no visible global function definition for ‘qnorm’
+msmedci: no visible global function definition for ‘pnorm’
+msmedse: no visible global function definition for ‘qnorm’
+msmedsub: no visible global function definition for ‘rnorm’
+msmedsub: no visible global function definition for ‘median’
+msplit: no visible global function definition for ‘pf’
+mulrank: no visible global function definition for ‘pf’
+mulwmw: no visible global function definition for ‘cov.mcd’
+mulwmw: no visible binding for global variable ‘median’
+mulwmw: no visible global function definition for ‘par’
+mulwmw: no visible global function definition for ‘plot’
+mulwmw: no visible global function definition for ‘points’
+mulwmw: no visible global function definition for ‘boxplot’
+mulwmwcrit: no visible global function definition for ‘cov.mcd’
+mulwmwcrit: no visible binding for global variable ‘median’
+mulwmwv2: no visible global function definition for ‘cov.mcd’
+mulwmwv2: no visible binding for global variable ‘median’
+mulwmwv2: no visible global function definition for ‘par’
+mulwmwv2: no visible global function definition for ‘plot’
+mulwmwv2: no visible global function definition for ‘points’
+mulwmwv2: no visible global function definition for ‘boxplot’
+mvecov: no visible global function definition for ‘cov.mve’
+mwmw: no visible global function definition for ‘cov.mcd’
+mwmw: no visible binding for global variable ‘median’
+mwmw: no visible global function definition for ‘cov.mve’
+mwmw: no visible global function definition for ‘plot’
+mwmw: no visible global function definition for ‘points’
+nav: no visible global function definition for ‘qnorm’
+nav: no visible global function definition for ‘dnorm’
+nav: no visible global function definition for ‘pnorm’
+near: no visible global function definition for ‘mad’
+near: no visible global function definition for ‘qnorm’
+near3d: no visible global function definition for ‘mahalanobis’
+near3dl1: no visible global function definition for ‘mahalanobis’
+nearl: no visible global function definition for ‘mad’
+nearl: no visible global function definition for ‘qnorm’
+nearr: no visible global function definition for ‘mad’
+nearr: no visible global function definition for ‘qnorm’
+nltv: no visible global function definition for ‘qnorm’
+nltv: no visible global function definition for ‘dnorm’
+normTmm: no visible global function definition for ‘rnorm’
+oancpb: no visible global function definition for ‘var’
+oancpb: no visible global function definition for ‘mahalanobis’
+ocor: no visible global function definition for ‘cor’
+oddata: no visible global function definition for ‘rnorm’
+oddata: no visible global function definition for ‘rnbinom’
+ols: no visible global function definition for ‘lm’
+ols: no visible global function definition for ‘plot’
+ols: no visible global function definition for ‘abline’
+ols: no visible global function definition for ‘pf’
+ols.plot.inter: no visible global function definition for ‘lsfit’
+ols.plot.inter: no visible global function definition for ‘interp’
+ols.plot.inter: no visible global function definition for ‘persp’
+ols.pred.ci: no visible global function definition for ‘lm’
+ols.pred.ci: no visible global function definition for ‘predict’
+ols.pred.ci: no visible global function definition for ‘plot’
+ols.pred.ci: no visible global function definition for ‘abline’
+ols.pred.ci: no visible global function definition for ‘lines’
+ols1way: no visible global function definition for ‘var’
+ols1way: no visible global function definition for ‘qchisq’
+ols1way: no visible global function definition for ‘pchisq’
+ols1way2g: no visible global function definition for ‘var’
+ols1way2g: no visible binding for global variable ‘temp1’
+ols1way2g: no visible global function definition for ‘qchisq’
+ols1way2g: no visible global function definition for ‘pchisq’
+ols1wayISO: no visible global function definition for ‘var’
+ols1wayISO: no visible binding for global variable ‘temp1’
+ols1wayISO: no visible global function definition for ‘qchisq’
+ols1wayISO: no visible global function definition for ‘pchisq’
+olsJ2: no visible global function definition for ‘plot’
+olsJ2: no visible global function definition for ‘points’
+olsJ2: no visible global function definition for ‘abline’
+olsJ2: no visible global function definition for ‘lsfit’
+olsJmcp: no visible global function definition for ‘var’
+olsLmcp: no visible global function definition for ‘var’
+olsMUL: no visible global function definition for ‘lm’
+olsMUL: no visible global function definition for ‘pf’
+olsW2g: no visible global function definition for ‘var’
+olsW2g: no visible binding for global variable ‘temp1’
+olsW2g: no visible global function definition for ‘pt’
+olsW2g: no visible global function definition for ‘qt’
+olsWmcp: no visible global function definition for ‘var’
+olsci: no visible global function definition for ‘lsfit’
+olsci: no visible global function definition for ‘qt’
+olsci: no visible global function definition for ‘qnorm’
+olsci: no visible global function definition for ‘pt’
+olsci: no visible global function definition for ‘pnorm’
+olsci: no visible global function definition for ‘plot’
+olsci: no visible global function definition for ‘abline’
+olshc4: no visible global function definition for ‘lsfit’
+olshc4: no visible global function definition for ‘qt’
+olshc4: no visible global function definition for ‘qnorm’
+olshc4: no visible global function definition for ‘pt’
+olshc4: no visible global function definition for ‘pnorm’
+olshc4: no visible global function definition for ‘plot’
+olshc4: no visible global function definition for ‘abline’
+olshomci: no visible global function definition for ‘qt’
+olstest: no visible global function definition for ‘lsfit’
+olstest: no visible global function definition for ‘rbinom’
+olstest: no visible global function definition for ‘runif’
+olstests1: no visible global function definition for ‘lsfit’
+olswbtest: no visible global function definition for ‘lsfit’
+olswbtest: no visible global function definition for ‘rbinom’
+olswbtest: no visible global function definition for ‘runif’
+olswbtest.sub: no visible global function definition for ‘lsfit’
+omega: no visible global function definition for ‘median’
+omega: no visible global function definition for ‘qnorm’
+onestep: no visible global function definition for ‘median’
+onestep: no visible global function definition for ‘mad’
+opregMC: no visible binding for global variable ‘tsregMC’
+opregpb: no visible global function definition for ‘qchisq’
+opregpb: no visible global function definition for ‘var’
+opregpb: possible error in pdis(temp2, pr = FALSE, center =
+  temp[2:p1]): unbenutztes Argument (pr = FALSE)
+opregpb: no visible global function definition for ‘mahalanobis’
+opregpb: no visible global function definition for ‘plot’
+opregpb: no visible global function definition for ‘chull’
+opregpb: no visible global function definition for ‘lines’
+opregpbMC: no visible global function definition for ‘qchisq’
+opregpbMC: no visible global function definition for ‘var’
+opregpbMC: possible error in pdisMC(temp2, pr = FALSE, center =
+  temp[2:p1]): unbenutztes Argument (pr = FALSE)
+opregpbMC: no visible global function definition for ‘mahalanobis’
+opregpbMC: no visible global function definition for ‘plot’
+opregpbMC: no visible global function definition for ‘chull’
+opregpbMC: no visible global function definition for ‘lines’
+out: no visible binding for global variable ‘cov.mve’
+out: no visible global function definition for ‘median’
+out: no visible global function definition for ‘mad’
+out: no visible global function definition for ‘qchisq’
+out: no visible global function definition for ‘mahalanobis’
+out: no visible global function definition for ‘plot’
+out: no visible global function definition for ‘points’
+out3d: no visible global function definition for ‘scatterplot3d’
+outbox: no visible global function definition for ‘boxplot’
+outbox: no visible global function definition for ‘median’
+outcov: no visible global function definition for ‘var’
+outmah: no visible global function definition for ‘pnorm’
+outmah: no visible global function definition for ‘cov’
+outmah: no visible global function definition for ‘mahalanobis’
+outmah: no visible global function definition for ‘qchisq’
+outmah: no visible global function definition for ‘plot’
+outmah: no visible global function definition for ‘points’
+outmgv: no visible global function definition for ‘qchisq’
+outmgv: no visible global function definition for ‘plot’
+outmgv: no visible global function definition for ‘points’
+outmgv.v2: no visible global function definition for ‘qchisq’
+outmgvad: no visible global function definition for ‘qchisq’
+outmgvad: no visible binding for global variable ‘gval’
+outmgvf: no visible global function definition for ‘median’
+outmgvf: no visible global function definition for ‘mad’
+outmgvf: no visible global function definition for ‘plot’
+outmgvf: no visible global function definition for ‘points’
+outms: no visible global function definition for ‘sd’
+outmve: no visible global function definition for ‘mahalanobis’
+outmve: no visible global function definition for ‘median’
+outmve: no visible global function definition for ‘mad’
+outmve: no visible global function definition for ‘qchisq’
+outmve: no visible global function definition for ‘cov.mve’
+outmve: no visible global function definition for ‘cov.mcd’
+outmve: no visible global function definition for ‘plot’
+outmve: no visible global function definition for ‘points’
+outogk: no visible global function definition for ‘plot’
+outogk: no visible global function definition for ‘points’
+outpca: no visible global function definition for ‘princomp’
+outpca: no visible global function definition for ‘plot’
+outpca: no visible global function definition for ‘points’
+outpca: no visible global function definition for ‘lines’
+outpro: no visible global function definition for ‘median’
+outpro: no visible global function definition for ‘mad’
+outpro: no visible global function definition for ‘qchisq’
+outpro: no visible binding for global variable ‘median’
+outpro: no visible binding for global variable ‘mad’
+outpro: no visible global function definition for ‘cov.mcd’
+outpro: no visible global function definition for ‘cov.mve’
+outpro: no visible global function definition for ‘plot’
+outpro: no visible global function definition for ‘points’
+outpro: no visible global function definition for ‘chull’
+outpro: no visible global function definition for ‘lines’
+outproMC: no visible global function definition for ‘median’
+outproMC: no visible global function definition for ‘mad’
+outproMC: no visible global function definition for ‘qchisq’
+outproMC: no visible binding for global variable ‘median’
+outproMC: no visible binding for global variable ‘mad’
+outproMC: no visible global function definition for ‘cov.mcd’
+outproMC: no visible global function definition for ‘cov.mve’
+outproMC: no visible global function definition for ‘mclapply’
+outproMC: no visible global function definition for ‘plot’
+outproMC: no visible global function definition for ‘points’
+outproMC: no visible global function definition for ‘chull’
+outproMC: no visible global function definition for ‘lines’
+outproMC.sub2: no visible global function definition for ‘median’
+outproMC.sub2: no visible global function definition for ‘mad’
+outproad: no visible global function definition for ‘qchisq’
+outproadMC: no visible global function definition for ‘qchisq’
+pb2gen: no visible global function definition for ‘var’
+pb2genMC: no visible global function definition for ‘mclapply’
+pb2genMC: no visible global function definition for ‘var’
+pb3trmcp: no visible binding for global variable ‘x’
+pbad2way: no visible global function definition for ‘var’
+pbad2way: no visible global function definition for ‘mahalanobis’
+pbadepth: no visible global function definition for ‘var’
+pbadepth: no visible global function definition for ‘mahalanobis’
+pbadepth: no visible global function definition for ‘cov.mcd’
+pball: no visible global function definition for ‘pchisq’
+pbanovag: no visible binding for global variable ‘crit’
+pbcan: no visible binding for global variable ‘alpha’
+pbcor: no visible global function definition for ‘median’
+pbcor: no visible global function definition for ‘pt’
+pbos: no visible global function definition for ‘median’
+pbtest: no visible global function definition for ‘pchisq’
+pbvar: no visible global function definition for ‘median’
+pcorb: no visible global function definition for ‘cor’
+pcorbsub: no visible global function definition for ‘cor’
+pcorbv4: no visible global function definition for ‘cor’
+pcorhc4: no visible global function definition for ‘var’
+pcorhc4sub: no visible global function definition for ‘var’
+pcorhc4sub: no visible global function definition for ‘olshc4sub’
+pdclose: no visible binding for global variable ‘sd’
+pdis: no visible global function definition for ‘median’
+pdis: no visible global function definition for ‘mad’
+pdis: no visible global function definition for ‘cov.mcd’
+pdis: no visible binding for global variable ‘median’
+pdis: no visible global function definition for ‘cov.mve’
+pdisMC: no visible global function definition for ‘median’
+pdisMC: no visible global function definition for ‘mad’
+pdisMC: no visible global function definition for ‘cov.mcd’
+pdisMC: no visible binding for global variable ‘median’
+pdisMC: no visible global function definition for ‘cov.mve’
+pdisMC: no visible global function definition for ‘mclapply’
+piplot: no visible global function definition for ‘lsfit’
+piplot: no visible global function definition for ‘ls.diag’
+piplot: no visible global function definition for ‘quantile’
+piplot: no visible global function definition for ‘plot’
+piplot: no visible global function definition for ‘points’
+piplot: no visible global function definition for ‘abline’
+pisim: no visible global function definition for ‘rnorm’
+pisim: no visible global function definition for ‘rt’
+pisim: no visible global function definition for ‘rexp’
+pisim: no visible global function definition for ‘runif’
+pisim: no visible global function definition for ‘rbinom’
+pisim: no visible global function definition for ‘lsfit’
+pisim: no visible global function definition for ‘qt’
+pisim: no visible global function definition for ‘quantile’
+plotCI: no visible global function definition for ‘par’
+plotCI: no visible global function definition for ‘points’
+plotCI: no visible global function definition for ‘plot’
+plotCI: no visible global function definition for ‘arrows’
+plot_robpca: no visible global function definition for ‘plot’
+plot_robpca: no visible global function definition for ‘abline’
+plot_robpca: no visible global function definition for ‘title’
+poireg: no visible binding for global variable ‘var’
+poireg: no visible global function definition for ‘glm’
+poireg: no visible binding for global variable ‘poisson’
+poireg: no visible global function definition for ‘plot’
+poireg: no visible global function definition for ‘lines’
+pow1: no visible global function definition for ‘qt’
+pow1: no visible global function definition for ‘pt’
+pow2an: no visible global function definition for ‘plot’
+pow2an: no visible global function definition for ‘lines’
+power.chisq.test: no visible global function definition for
+  ‘pwr.chisq.test’
+powt1an: no visible global function definition for ‘plot’
+powt1an: no visible global function definition for ‘lines’
+print.trq: no visible global function definition for ‘pf’
+print.trq: no visible global function definition for ‘pt’
+prodepth: no visible global function definition for ‘depthProjection’
+ptests: no visible global function definition for ‘pchisq’
+ptests: no visible global function definition for ‘qnorm’
+q2gci: no visible global function definition for ‘plot’
+q2gci: no visible global function definition for ‘points’
+q2gci: no visible global function definition for ‘lines’
+qci: no visible global function definition for ‘qnorm’
+qcom.sub: no visible global function definition for ‘mclapply’
+qcom.sub: no visible global function definition for ‘var’
+qcomhd: no visible global function definition for ‘plot’
+qcomhd: no visible global function definition for ‘points’
+qcomhd: no visible global function definition for ‘lines’
+qcomhdMC: no visible global function definition for ‘plot’
+qcomhdMC: no visible global function definition for ‘points’
+qcomhdMC: no visible global function definition for ‘lines’
+qcor: no visible binding for global variable ‘plotit’
+qcor: no visible global function definition for ‘var’
+qdec2ci: no visible binding for global variable ‘n’
+qdec2ci: no visible global function definition for ‘par’
+qdec2ci: no visible global function definition for ‘plot’
+qdec2ci: no visible global function definition for ‘points’
+qdmcp: no visible global function definition for ‘median’
+qdmcp: no visible global function definition for ‘qt’
+qdmcpdif: no visible global function definition for ‘median’
+qdtest: no visible global function definition for ‘pt’
+qhdplotsm: no visible global function definition for ‘plot’
+qhdplotsm: no visible global function definition for ‘lines’
+qhdsm: no visible global function definition for ‘plot’
+qhdsm: no visible global function definition for ‘lines’
+qhdsm2g: no visible global function definition for ‘plot’
+qhdsm2g: no visible global function definition for ‘points’
+qhdsm2g: no visible global function definition for ‘lines’
+qhomt: no visible global function definition for ‘var’
+qhomt: no visible global function definition for ‘qnorm’
+qhomt: no visible global function definition for ‘pnorm’
+qhomtv2: no visible global function definition for ‘var’
+qhomtv2: no visible global function definition for ‘qnorm’
+qhomtv2: no visible global function definition for ‘pnorm’
+qint: no visible global function definition for ‘pbinom’
+qmjci: no visible global function definition for ‘qnorm’
+qplotreg: no visible global function definition for ‘plot’
+qplotreg: no visible global function definition for ‘abline’
+qrchk: no visible global function definition for ‘lsfit’
+qrchk: no visible global function definition for ‘mclapply’
+qreg: no visible global function definition for ‘rq’
+qreg: no visible global function definition for ‘plot’
+qreg: no visible global function definition for ‘abline’
+qregci: no visible binding for global variable ‘var’
+qregci: no visible global function definition for ‘var’
+qregplots: no visible global function definition for ‘plot’
+qregplots: no visible global function definition for ‘coefficients’
+qregplots: no visible global function definition for ‘rq’
+qregplots: no visible global function definition for ‘abline’
+qregsm: no visible global function definition for ‘plot’
+qregsm: no visible global function definition for ‘lines’
+qsm: no visible global function definition for ‘plot’
+qsm: no visible global function definition for ‘points’
+qsm: no visible global function definition for ‘lines’
+qsmcobs: no visible global function definition for ‘plot’
+qsmcobs: no visible global function definition for ‘lines’
+qsmcobs: no visible global function definition for ‘predict’
+qsmcobs: no visible global function definition for ‘cobs’
+qwmwhd: no visible global function definition for ‘plot’
+qwmwhd: no visible global function definition for ‘points’
+r.gauss.pro: no visible global function definition for ‘mvrnorm’
+rananova: no visible global function definition for ‘var’
+rananova: no visible global function definition for ‘pf’
+ratmn: no visible global function definition for ‘mad’
+ratmn: no visible global function definition for ‘median’
+ratmn: no visible binding for global variable ‘trmn’
+rbbinom: no visible global function definition for ‘rbeta’
+rbbinom: no visible global function definition for ‘rbinom’
+rd2plot: no visible global function definition for ‘plot’
+rd2plot: no visible global function definition for ‘lines’
+rdplot: no visible global function definition for ‘mad’
+rdplot: no visible global function definition for ‘plot’
+rdplot: no visible global function definition for ‘lines’
+rdplot: no visible global function definition for ‘cov.mve’
+rdplot: no visible global function definition for ‘interp’
+rdplot: no visible global function definition for ‘persp’
+reg.plot.inter: no visible global function definition for ‘interp’
+reg.plot.inter: no visible global function definition for ‘persp’
+reg1mcp: no visible global function definition for ‘var’
+reg1way: no visible global function definition for ‘var’
+reg1way: no visible global function definition for ‘qchisq’
+reg1way: no visible global function definition for ‘pchisq’
+reg1wayISO: no visible global function definition for ‘var’
+reg1wayISO: no visible global function definition for ‘qchisq’
+reg1wayISO: no visible global function definition for ‘pchisq’
+reg1wayISOMC: no visible global function definition for ‘var’
+reg1wayISOMC: no visible global function definition for ‘mclapply’
+reg1wayISOMC: no visible global function definition for ‘pchisq’
+reg1wayISOMC: no visible global function definition for ‘qchisq’
+reg1wayMC: no visible global function definition for ‘var’
+reg1wayMC: no visible global function definition for ‘mclapply’
+reg1wayMC: no visible global function definition for ‘qchisq’
+reg1wayMC: no visible global function definition for ‘pchisq’
+reg2ci: no visible global function definition for ‘plot’
+reg2ci: no visible global function definition for ‘points’
+reg2ci: no visible global function definition for ‘abline’
+reg2ciMC: no visible global function definition for ‘mclapply’
+reg2ciMC: no visible global function definition for ‘plot’
+reg2ciMC: no visible global function definition for ‘points’
+reg2ciMC: no visible global function definition for ‘abline’
+reg2difplot: no visible global function definition for ‘scatterplot3d’
+reg2g.p2plot: no visible global function definition for ‘scatterplot3d’
+reg2plot: no visible global function definition for ‘plot’
+reg2plot: no visible global function definition for ‘points’
+reg2plot: no visible global function definition for ‘abline’
+regG: no visible global function definition for ‘plot’
+regG: no visible global function definition for ‘points’
+regG: no visible global function definition for ‘abline’
+regGmcp: no visible global function definition for ‘var’
+regIVcom: no visible global function definition for ‘mclapply’
+regYband: no visible global function definition for ‘plot’
+regYband: no visible global function definition for ‘abline’
+regYband: no visible global function definition for ‘points’
+regYband: no visible global function definition for ‘lines’
+regYci: no visible global function definition for ‘qnorm’
+regYci: no visible global function definition for ‘pnorm’
+regYci: no visible global function definition for ‘plot’
+regYci: no visible global function definition for ‘scatterplot3d’
+regYci2G: no visible global function definition for ‘qnorm’
+regYci2G: no visible global function definition for ‘pnorm’
+regYci2G: no visible global function definition for ‘plot’
+regYci2G: no visible global function definition for ‘points’
+regYci2G: no visible global function definition for ‘abline’
+regYci2Gv2: no visible global function definition for ‘qnorm’
+regYci2Gv2: no visible global function definition for ‘pnorm’
+regYci2Gv2: no visible global function definition for ‘plot’
+regYci2Gv2: no visible global function definition for ‘points’
+regYci2Gv2: no visible global function definition for ‘abline’
+regYciCV: no visible global function definition for ‘mclapply’
+regYciCV2G: no visible global function definition for ‘mclapply’
+regYvar: no visible binding for global variable ‘var’
+regci: no visible global function definition for ‘var’
+regci: no visible global function definition for ‘plot’
+regciMC: no visible global function definition for ‘mclapply’
+regciMC: no visible global function definition for ‘var’
+regciMC: no visible global function definition for ‘plot’
+regi: no visible global function definition for ‘median’
+regi: no visible global function definition for ‘abline’
+reglev: no visible global function definition for ‘lmsreg’
+reglev: no visible global function definition for ‘median’
+reglev: no visible global function definition for ‘cov.mve’
+reglev: no visible global function definition for ‘mad’
+reglev: no visible global function definition for ‘mahalanobis’
+reglev: no visible global function definition for ‘qchisq’
+reglev: no visible global function definition for ‘plot’
+reglev: no visible global function definition for ‘abline’
+regmediate: no visible global function definition for ‘mclapply’
+regout: no visible global function definition for ‘plot’
+regout: no visible global function definition for ‘points’
+regout: no visible global function definition for ‘abline’
+regp2plot: no visible global function definition for ‘scatterplot3d’
+regpca: no visible global function definition for ‘princomp’
+regpca: no visible global function definition for ‘plot’
+regpca: no visible global function definition for ‘points’
+regpca: no visible global function definition for ‘lines’
+regplot: no visible global function definition for ‘plot’
+regplot: no visible global function definition for ‘abline’
+regpord: no visible binding for global variable ‘var’
+regpord: no visible global function definition for ‘outfun’
+regpord: no visible global function definition for ‘plot’
+regpord: no visible global function definition for ‘points’
+regpre: no visible binding for global variable ‘lsfit’
+regpre: no visible global function definition for ‘plot’
+regpreCV: no visible global function definition for ‘plot’
+regpreS: no visible binding for global variable ‘lsfit’
+regse: no visible global function definition for ‘var’
+regtest: no visible global function definition for ‘var’
+regtest: no visible global function definition for ‘mahalanobis’
+regtest: no visible global function definition for ‘plot’
+regtest: no visible global function definition for ‘points’
+regtest: no visible global function definition for ‘chull’
+regtest: no visible global function definition for ‘lines’
+regtestMC: no visible global function definition for ‘mclapply’
+regtestMC: no visible global function definition for ‘var’
+regtestMC: no visible global function definition for ‘mahalanobis’
+regtestMC: no visible global function definition for ‘plot’
+regtestMC: no visible global function definition for ‘points’
+regtestMC: no visible global function definition for ‘chull’
+regtestMC: no visible global function definition for ‘lines’
+regvarp: no visible binding for global variable ‘var’
+rejpt.bt.lim: no visible global function definition for ‘pchisq’
+relfun: no visible global function definition for ‘median’
+relfun: no visible global function definition for ‘plot’
+relfun: no visible global function definition for ‘points’
+relplot: no visible global function definition for ‘median’
+relplot: no visible global function definition for ‘plot’
+relplot: no visible global function definition for ‘points’
+rfanova: no visible global function definition for ‘var’
+rfanova: no visible global function definition for ‘ginv’
+rfanova: no visible global function definition for ‘pchisq’
+rfitv2: no visible global function definition for ‘model.matrix’
+rfitv2: no visible global function definition for ‘model.response’
+rfitv2: no visible global function definition for ‘rq’
+rfitv2: no visible global function definition for ‘lsfit’
+rfitv2: no visible global function definition for ‘disp’
+rfitv2: no visible global function definition for ‘jaeckel’
+rfitv2: no visible global function definition for ‘signedrank’
+rfitv2: no visible global function definition for ‘median’
+rfitv2: no visible binding for global variable ‘gettauF0’
+rfitv2: no visible binding for global variable ‘gettau’
+rfitv2: no visible global function definition for ‘taustar’
+rgvarseb: no visible global function definition for ‘var’
+rhom: no visible binding for global variable ‘median’
+rimul: no visible global function definition for ‘pnorm’
+ritest: possible error in indt(x, res, flag = flag, nboot = nboot,
+  alpha = alpha, tr = tr): unbenutzte Argumente (alpha = alpha, tr =
+  tr)
+rmaha: no visible global function definition for ‘cov.mcd’
+rmaha: no visible global function definition for ‘mahalanobis’
+rmaha: no visible global function definition for ‘qchisq’
+rmaha: no visible global function definition for ‘median’
+rmanova: no visible global function definition for ‘pf’
+rmanovab1: no visible global function definition for ‘pf’
+rmaseq: possible error in rmmcp(x, est = est, alpha = alpha, con = con,
+  nboot = nboot, ...): unbenutzte Argumente (est = est, nboot = nboot)
+rmba: no visible global function definition for ‘var’
+rmba: no visible global function definition for ‘mahalanobis’
+rmba: no visible global function definition for ‘median’
+rmba: no visible binding for global variable ‘median’
+rmba: no visible global function definition for ‘qchisq’
+rmdzD: no visible global function definition for ‘mclapply’
+rmdzD: no visible global function definition for ‘var’
+rmdzero: no visible global function definition for ‘var’
+rmdzero: no visible global function definition for ‘mahalanobis’
+rmdzeroG: no visible global function definition for ‘var’
+rmdzeroG: no visible global function definition for ‘mahalanobis’
+rmdzeroGMC: no visible global function definition for ‘mclapply’
+rmdzeroGMC: no visible global function definition for ‘var’
+rmdzeroGMC: no visible global function definition for ‘mahalanobis’
+rmdzeroOP: no visible binding for global variable ‘plotit’
+rmmcp: no visible global function definition for ‘pt’
+rmmcp: no visible global function definition for ‘qt’
+rmmcppb: no visible global function definition for ‘plot’
+rmmcppb: no visible global function definition for ‘points’
+rmmcppb: no visible global function definition for ‘var’
+rmmcppb: no visible global function definition for ‘mahalanobis’
+rmmcppb: no visible global function definition for ‘chull’
+rmmcppb: no visible global function definition for ‘lines’
+rmmcppb: no visible global function definition for ‘abline’
+rmmcppbd: no visible global function definition for ‘plot’
+rmmcppbd: no visible global function definition for ‘points’
+rmmcppbd: no visible global function definition for ‘abline’
+rmmest: no visible global function definition for ‘plot’
+rmmest: no visible global function definition for ‘points’
+rmmest: no visible global function definition for ‘var’
+rmmest: no visible global function definition for ‘mahalanobis’
+rmmest: no visible global function definition for ‘chull’
+rmmest: no visible global function definition for ‘lines’
+rmmest: no visible global function definition for ‘abline’
+rmmismcp: no visible global function definition for ‘plot’
+rmmismcp: no visible global function definition for ‘points’
+rmmismcp: no visible global function definition for ‘var’
+rmmismcp: no visible global function definition for ‘mahalanobis’
+rmmismcp: no visible global function definition for ‘chull’
+rmmismcp: no visible global function definition for ‘lines’
+rmmismcp: no visible global function definition for ‘abline’
+rmrvar: no visible global function definition for ‘plot’
+rmrvar: no visible global function definition for ‘points’
+rmrvar: no visible global function definition for ‘var’
+rmrvar: no visible global function definition for ‘mahalanobis’
+rmrvar: no visible global function definition for ‘chull’
+rmrvar: no visible global function definition for ‘lines’
+rmrvar: no visible global function definition for ‘abline’
+rmul: no visible binding for global variable ‘rnorm’
+rmulnorm: no visible global function definition for ‘rnorm’
+rngh: no visible global function definition for ‘mvrnorm’
+rngh.sub: no visible global function definition for ‘mvrnorm’
+rngh.sub: no visible global function definition for ‘cor’
+robci: no visible global function definition for ‘median’
+robci: no visible global function definition for ‘mad’
+robci: no visible global function definition for ‘var’
+robci: no visible global function definition for ‘qt’
+robpca: no visible global function definition for ‘cov.mcd’
+robpca: no visible global function definition for ‘plot’
+robpca: no visible global function definition for ‘points’
+robpca: no visible global function definition for ‘lines’
+robpca: no visible global function definition for ‘axis’
+robpca: no visible global function definition for ‘text’
+robpca: no visible global function definition for ‘par’
+robpca: no visible global function definition for ‘dialogbox’
+robpca: no visible global function definition for
+  ‘dialogbox.add.control’
+robpca: no visible global function definition for ‘statictext.control’
+robpca: no visible global function definition for ‘editfield.control’
+robpca: no visible global function definition for ‘dialogbox.display’
+robpca: no visible global function definition for ‘qnorm’
+robpca: no visible global function definition for ‘mahalanobis’
+rplot.bin: no visible global function definition for ‘rung3dv2’
+rplot.res: no visible global function definition for ‘na.omit’
+rplot2g: no visible global function definition for ‘plot’
+rplot2g: no visible global function definition for ‘points’
+rplot2g: no visible global function definition for ‘lines’
+rplotCI: no visible binding for global variable ‘nreps’
+rplotCI: no visible global function definition for ‘lines’
+rplotCI.pv: no visible global function definition for ‘mclapply’
+rplotCIM: no visible global function definition for ‘lines’
+rplotCIS: no visible global function definition for ‘qt’
+rplotCIS: no visible global function definition for ‘plot’
+rplotCIS: no visible global function definition for ‘lines’
+rplotCIS: no visible global function definition for ‘points’
+rplotCITAP.pv: no visible global function definition for ‘mclapply’
+rplotCIv2: no visible global function definition for ‘lines’
+rplotCIv2.pv: no visible global function definition for ‘mclapply’
+rplotpbCI: no visible global function definition for ‘plot’
+rplotpbCI: no visible global function definition for ‘lines’
+rplotpbCI: no visible global function definition for ‘points’
+rqfit: no visible global function definition for ‘rq’
+rqtest: no visible global function definition for ‘var’
+rqtest: no visible global function definition for ‘pf’
+rregci: no visible global function definition for ‘var’
+rrplot: no visible global function definition for ‘lsfit’
+rrplot: no visible global function definition for ‘l1fit’
+rrplot: no visible global function definition for ‘lmsreg’
+rrplot: no visible binding for global variable ‘mba’
+rrplot: no visible global function definition for ‘pairs’
+rrplot2: no visible global function definition for ‘lsfit’
+rrplot2: no visible global function definition for ‘lmsreg’
+rrplot2: no visible binding for global variable ‘mba’
+rrplot2: no visible global function definition for ‘pairs’
+rslope: no visible global function definition for ‘plot’
+rslope: no visible global function definition for ‘lines’
+rslopesm: no visible global function definition for ‘outfun’
+rstmn: no visible global function definition for ‘mad’
+rstmn: no visible global function definition for ‘median’
+rtdep: no visible global function definition for ‘var’
+rtdep: no visible global function definition for ‘lsfit’
+run3bo: no visible global function definition for ‘cov.mve’
+run3bo: no visible global function definition for ‘interp’
+run3bo: no visible global function definition for ‘persp’
+run3hat: no visible global function definition for ‘cov.mcd’
+runcor: no visible global function definition for ‘cor’
+runcor: no visible global function definition for ‘plot’
+runcor: no visible global function definition for ‘lines’
+rundis: no visible global function definition for ‘plot’
+rundis: no visible global function definition for ‘lines’
+rung3d: no visible global function definition for ‘median’
+rung3d: no visible global function definition for ‘mad’
+rung3d: no visible global function definition for ‘cov.mve’
+rung3d: no visible global function definition for ‘interp’
+rung3d: no visible global function definition for ‘persp’
+rung3dlchk: no visible global function definition for ‘runm3ds1’
+rung3dlchk: no visible binding for global variable ‘tr’
+rung3hat: no visible global function definition for ‘cov.mve’
+rungen: no visible global function definition for ‘plot’
+rungen: no visible global function definition for ‘points’
+rungen: no visible global function definition for ‘lines’
+runm3d: no visible global function definition for ‘median’
+runm3d: no visible global function definition for ‘mad’
+runm3d: no visible global function definition for ‘cov.mve’
+runm3d: no visible global function definition for ‘interp’
+runm3d: no visible global function definition for ‘persp’
+runmbo: no visible global function definition for ‘plot’
+runmbo: no visible global function definition for ‘points’
+runmbo: no visible global function definition for ‘lines’
+runmean: no visible global function definition for ‘plot’
+runmean: no visible global function definition for ‘lines’
+runmean2g: no visible global function definition for ‘plot’
+runmean2g: no visible global function definition for ‘points’
+runmean2g: no visible global function definition for ‘lines’
+runmq: no visible global function definition for ‘plot’
+runmq: no visible global function definition for ‘lines’
+runpd: no visible global function definition for ‘interp’
+runpd: no visible global function definition for ‘persp’
+runsm2g: no visible global function definition for ‘median’
+s2plot: no visible global function definition for ‘plot’
+s2plot: no visible global function definition for ‘points’
+s2plot: no visible global function definition for ‘lines’
+sband: no visible global function definition for ‘plot’
+sband: no visible global function definition for ‘lowess’
+sband: no visible global function definition for ‘lines’
+sband: no visible global function definition for ‘text’
+scat2d2g: no visible global function definition for ‘plot’
+scat2d2g: no visible global function definition for ‘points’
+scat3d2g: no visible global function definition for ‘scatterplot3d’
+scorciMC: no visible global function definition for ‘mclapply’
+sdwe: no visible global function definition for ‘median’
+shiftdhd: no visible global function definition for ‘var’
+shiftdhd: no visible global function definition for ‘par’
+shiftdhd: no visible global function definition for ‘plot’
+shiftdhd: no visible global function definition for ‘points’
+shifthd: no visible global function definition for ‘var’
+shifthd: no visible global function definition for ‘par’
+shifthd: no visible global function definition for ‘plot’
+shifthd: no visible global function definition for ‘points’
+sint: no visible global function definition for ‘qbinom’
+sint: no visible global function definition for ‘pbinom’
+sintmcp: no visible global function definition for ‘median’
+sir: no visible global function definition for ‘var’
+sirviews: no visible global function definition for ‘cov.mcd’
+sirviews: no visible global function definition for ‘mahalanobis’
+sirviews: no visible global function definition for ‘quantile’
+sirviews: no visible global function definition for ‘plot’
+sirviews: no visible global function definition for ‘title’
+sirviews: no visible global function definition for ‘identify’
+sisplit: no visible global function definition for ‘pnorm’
+skerd: no visible global function definition for ‘density’
+skerd: no visible global function definition for ‘bandwidth.sj’
+skerd: no visible global function definition for ‘plot’
+skerd: no visible global function definition for ‘lines’
+skew: no visible global function definition for ‘var’
+skip: no visible global function definition for ‘var’
+skipcov: no visible global function definition for ‘var’
+skipogk: no visible global function definition for ‘cor’
+skiptbs: no visible global function definition for ‘cor’
+skmcp: no visible binding for global variable ‘test’
+sm2str: no visible global function definition for ‘cor’
+sm2strv7: no visible global function definition for ‘cor’
+smean2: no visible global function definition for ‘plot’
+smean2: no visible global function definition for ‘points’
+smean2: no visible global function definition for ‘chull’
+smean2: no visible global function definition for ‘lines’
+smean2v2: no visible global function definition for ‘plot’
+smean2v2: no visible global function definition for ‘points’
+smean2v2: no visible global function definition for ‘chull’
+smean2v2: no visible global function definition for ‘lines’
+smeancr: no visible global function definition for ‘plot’
+smeancr: no visible global function definition for ‘points’
+smeancr: no visible global function definition for ‘chull’
+smeancr: no visible global function definition for ‘lines’
+smeancrv2: no visible global function definition for ‘plot’
+smeancrv2: no visible global function definition for ‘points’
+smeancrv2: no visible global function definition for ‘chull’
+smeancrv2: no visible global function definition for ‘lines’
+smgvcr: no visible global function definition for ‘plot’
+smgvcr: no visible global function definition for ‘points’
+smgvcr: no visible global function definition for ‘chull’
+smgvcr: no visible global function definition for ‘lines’
+smmcrit: no visible global function definition for ‘qt’
+smmcrit01: no visible global function definition for ‘qt’
+smmval: no visible global function definition for ‘rt’
+smmvalv2: no visible global function definition for ‘rt’
+smmvalv3: no visible global function definition for ‘rt’
+smvar: no visible binding for global variable ‘var’
+smvar: no visible global function definition for ‘plot’
+smvar: no visible global function definition for ‘points’
+smvar: no visible global function definition for ‘lines’
+snmreg: no visible binding for global variable ‘plotit’
+snmreg: no visible global function definition for ‘median’
+snmregv2: no visible global function definition for ‘median’
+snmregv2: no visible global function definition for ‘mad’
+spag.plot: no visible global function definition for ‘par’
+spag.plot: no visible global function definition for ‘interaction.plot’
+spat: no visible binding for global variable ‘median’
+spat: no visible global function definition for ‘optim’
+spatcen: no visible binding for global variable ‘median’
+spatcen: no visible global function definition for ‘optim’
+spca: no visible global function definition for ‘var’
+spear: no visible global function definition for ‘cor’
+spear: no visible global function definition for ‘pt’
+splot: no visible global function definition for ‘plot’
+splot: no visible global function definition for ‘points’
+splot: no visible global function definition for ‘lines’
+splotg2: no visible global function definition for ‘plot’
+splotg2: no visible global function definition for ‘points’
+splotg2: no visible global function definition for ‘lines’
+sppba: possible error in pdisMC(bcon, center = tvec, na.rm = FALSE):
+  unbenutztes Argument (na.rm = FALSE)
+sppba: no visible global function definition for ‘var’
+sppba: no visible global function definition for ‘mahalanobis’
+sppba: no visible global function definition for ‘ginv’
+sppbi: no visible global function definition for ‘var’
+sppbi: no visible global function definition for ‘mahalanobis’
+sppbi: no visible global function definition for ‘ginv’
+sqmad: no visible global function definition for ‘mad’
+standm: no visible binding for global variable ‘var’
+standmar: no visible binding for global variable ‘var’
+stein1: no visible global function definition for ‘var’
+stein1: no visible global function definition for ‘qt’
+stein1.tr: no visible global function definition for ‘qt’
+stein2: no visible global function definition for ‘var’
+stein2: no visible global function definition for ‘qt’
+stein2: no visible global function definition for ‘pt’
+stein2.tr: no visible global function definition for ‘qt’
+stmci: no visible global function definition for ‘median’
+stmci: no visible global function definition for ‘mad’
+stmci: no visible global function definition for ‘var’
+stmci: no visible global function definition for ‘qt’
+stsreg: no visible global function definition for ‘median’
+stsregp1: no visible binding for global variable ‘plotit’
+stsregp1: no visible global function definition for ‘median’
+sumplot2g: no visible global function definition for ‘par’
+sumplot2g: no visible global function definition for ‘boxplot’
+symviews: no visible global function definition for ‘lsfit’
+symviews: no visible global function definition for ‘median’
+symviews: no visible global function definition for ‘cov.mcd’
+symviews: no visible global function definition for ‘mahalanobis’
+symviews: no visible global function definition for ‘quantile’
+symviews: no visible global function definition for ‘plot’
+symviews: no visible global function definition for ‘identify’
+t1way: no visible global function definition for ‘pf’
+t1way.effect: no visible global function definition for ‘pf’
+t1way.effect: no visible global function definition for ‘var’
+t1wayF: no visible global function definition for ‘pf’
+t1wayv2: no visible binding for global variable ‘median’
+t1wayv2: no visible global function definition for ‘pf’
+t1wayv2: no visible global function definition for ‘var’
+t2way.no.p: no visible global function definition for ‘pf’
+t2way.no.p: no visible global function definition for ‘qchisq’
+tamhane: no visible global function definition for ‘var’
+tau: no visible global function definition for ‘qnorm’
+tau: no visible global function definition for ‘pnorm’
+tauloc: no visible global function definition for ‘qnorm’
+tauloc: no visible global function definition for ‘mad’
+tauloc: no visible global function definition for ‘median’
+tauvar: no visible global function definition for ‘qnorm’
+tauvar: no visible global function definition for ‘mad’
+tbs: no visible binding for global variable ‘cov.mcd’
+tbs: no visible global function definition for ‘rnorm’
+tbs: no visible global function definition for ‘mahalanobis’
+tbscov: no visible global function definition for ‘cov.mve’
+tbscov: no visible global function definition for ‘mahalanobis’
+tkmcp: no visible global function definition for ‘qtukey’
+tkmcp: no visible global function definition for ‘ptukey’
+tkmcp: no visible global function definition for ‘pt’
+tmci: no visible global function definition for ‘var’
+tmci: no visible global function definition for ‘qt’
+trange: no visible global function definition for ‘rt’
+trimci: no visible global function definition for ‘qt’
+trimci: no visible global function definition for ‘pt’
+trimcimul: no visible global function definition for ‘na.omit’
+trimciv2: no visible global function definition for ‘qt’
+trimciv2: no visible global function definition for ‘pt’
+trimciv2: no visible global function definition for ‘area’
+trimciv2: no visible global function definition for ‘qnorm’
+trimpb: no visible binding for global variable ‘rval’
+trimpb: no visible global function definition for ‘boxplot’
+trimpb: no visible global function definition for ‘stem’
+trimpb: no visible global function definition for ‘hist’
+trimww: no visible global function definition for ‘pf’
+trq.fit: no visible global function definition for ‘rq.fit.br’
+trq.fit: no visible global function definition for ‘qnorm’
+trq.fit: no visible global function definition for ‘lsfit’
+trqreg: ... may be used in an incorrect context: ‘outfun(x, plotit =
+  FALSE, ...)’
+trqreg: no visible global function definition for ‘rq.fit.br’
+trviews: no visible global function definition for ‘cov.mcd’
+trviews: no visible global function definition for ‘mahalanobis’
+trviews: no visible global function definition for ‘quantile’
+trviews: no visible global function definition for ‘lsfit’
+trviews: no visible global function definition for ‘plot’
+trviews: no visible global function definition for ‘title’
+trviews: no visible global function definition for ‘identify’
+tsgreg: no visible global function definition for ‘median’
+tsgregs1: no visible global function definition for ‘lsfit’
+tshd: no visible global function definition for ‘median’
+tshd: no visible global function definition for ‘plot’
+tshd: no visible global function definition for ‘abline’
+tsp1reg: no visible global function definition for ‘median’
+tsp1reg: no visible global function definition for ‘plot’
+tsp1reg: no visible global function definition for ‘abline’
+tsreg: no visible global function definition for ‘median’
+tsreg: no visible global function definition for ‘plot’
+tsreg: no visible global function definition for ‘abline’
+tsregF: no visible global function definition for ‘median’
+tsregNW: no visible global function definition for ‘median’
+tssnmreg: no visible global function definition for ‘median’
+tssnmreg: no visible global function definition for ‘mad’
+tstsreg: no visible global function definition for ‘median’
+tstsreg: no visible global function definition for ‘mad’
+tvreg: no visible global function definition for ‘cov.mcd’
+tvreg: no visible global function definition for ‘mahalanobis’
+tvreg: no visible global function definition for ‘quantile’
+tvreg: no visible global function definition for ‘lsfit’
+tvreg: no visible global function definition for ‘plot’
+tvreg: no visible global function definition for ‘abline’
+tvreg: no visible global function definition for ‘title’
+tvreg: no visible global function definition for ‘identify’
+tvreg2: no visible global function definition for ‘cov.mcd’
+tvreg2: no visible global function definition for ‘mahalanobis’
+tvreg2: no visible global function definition for ‘quantile’
+tvreg2: no visible global function definition for ‘lsfit’
+tvreg2: no visible global function definition for ‘plot’
+tvreg2: no visible global function definition for ‘abline’
+tvreg2: no visible global function definition for ‘identify’
+twoDNOV: no visible global function definition for ‘mclapply’
+twoDcorR: no visible global function definition for ‘mclapply’
+twoDcorR: no visible global function definition for ‘cor’
+twoKlin: no visible global function definition for ‘pchisq’
+twoKlin: no visible global function definition for ‘qnorm’
+twoKlin: no visible global function definition for ‘pbeta’
+twobici: no visible global function definition for ‘qchisq’
+twobinom: no visible global function definition for ‘pbeta’
+twodcor10: no visible global function definition for ‘cor’
+twodcor8: no visible global function definition for ‘var’
+twodcor8: no visible global function definition for ‘cor.test’
+twohc4cor: no visible global function definition for ‘sd’
+twohc4cor: no visible global function definition for ‘pt’
+twolsreg: no visible global function definition for ‘lsfit’
+twolsregsub: no visible global function definition for ‘lsfit’
+twomanbt: no visible binding for global variable ‘mat’
+twopcor: no visible global function definition for ‘cor’
+unimcd: no visible global function definition for ‘var’
+unimcd: no visible global function definition for ‘qchisq’
+wband: no visible global function definition for ‘plot’
+wband: no visible global function definition for ‘lines’
+wband: no visible global function definition for ‘text’
+wddplot: no visible global function definition for ‘var’
+wddplot: no visible global function definition for ‘mahalanobis’
+wddplot: no visible global function definition for ‘cov.mcd’
+wddplot: no visible global function definition for ‘qchisq’
+wddplot: no visible global function definition for ‘median’
+wddplot: no visible global function definition for ‘plot’
+weightmecov: no visible global function definition for ‘cov.wt’
+winci: no visible global function definition for ‘qt’
+winci: no visible global function definition for ‘pt’
+wincor: no visible global function definition for ‘cor’
+wincor: no visible global function definition for ‘var’
+wincor: no visible global function definition for ‘pt’
+winvar: no visible global function definition for ‘var’
+winvarN: no visible global function definition for ‘area’
+winvarN: no visible global function definition for ‘qnorm’
+wlogreg: no visible global function definition for ‘cov.mcd’
+wlogreg: no visible global function definition for ‘mahalanobis’
+wlogreg: no visible global function definition for ‘qchisq’
+wlogreg: no visible global function definition for ‘glm’
+wlogreg: no visible binding for global variable ‘binomial’
+wlogreg: no visible global function definition for ‘nlminb’
+wlogregci: no visible global function definition for ‘mclapply’
+wlogregci: no visible global function definition for ‘var’
+wmcp: no visible global function definition for ‘pt’
+wmcp: no visible global function definition for ‘qt’
+wmve: no visible global function definition for ‘var’
+wmw: no visible global function definition for ‘pnorm’
+wmwaov: no visible binding for global variable ‘median’
+wmwloc: no visible binding for global variable ‘median’
+wmwloc2: no visible binding for global variable ‘median’
+wmwpb: no visible binding for global variable ‘median’
+wreg: no visible global function definition for ‘median’
+wsp1reg: no visible global function definition for ‘median’
+wsp1reg: no visible global function definition for ‘plot’
+wsp1reg: no visible global function definition for ‘abline’
+wwtrim: no visible global function definition for ‘pf’
+wwwtrim: no visible global function definition for ‘pf’
+ydbt: no visible global function definition for ‘boxplot’
+yuen: no visible global function definition for ‘qt’
+yuen: no visible global function definition for ‘pt’
+yuen.effect: no visible global function definition for ‘qt’
+yuen.effect: no visible global function definition for ‘pt’
+yuen.effect: no visible global function definition for ‘var’
+yuen.effect: no visible global function definition for ‘area’
+yuen.effect: no visible global function definition for ‘qnorm’
+yuen.effect: no visible global function definition for ‘plot’
+yuen.effect: no visible global function definition for ‘points’
+yuen.effect: no visible global function definition for ‘lines’
+yuend: no visible global function definition for ‘qt’
+yuend: no visible global function definition for ‘pt’
+yuenv2: no visible binding for global variable ‘median’
+yuenv2: no visible global function definition for ‘qt’
+yuenv2: no visible global function definition for ‘pt’
+yuenv2: no visible global function definition for ‘var’
+yuenv2: no visible global function definition for ‘area’
+yuenv2: no visible global function definition for ‘qnorm’
+yuenv2: no visible global function definition for ‘plot’
+yuenv2: no visible global function definition for ‘points’
+yuenv2: no visible global function definition for ‘lines’
+z.power: no visible global function definition for ‘qnorm’
+z.power: no visible global function definition for ‘pnorm’
+zdepth: no visible binding for global variable ‘median’
+zdepth: no visible binding for global variable ‘mad’
+zdepth.sub: no visible binding for global variable ‘median’
+zdepth.sub: no visible binding for global variable ‘mad’
+zdist: no visible binding for global variable ‘median’
+zdist: no visible binding for global variable ‘mad’
+zoudepth: no visible binding for global variable ‘median’
+zoudepth: no visible binding for global variable ‘mad’
+Undefined global functions or variables:
+  CovOgk CovSest DancGLOB_pv_C JNH_sub1 JNH_sub2 PcaLocantore SEED
+  TukeyHSD abline alpha ancGLOB_pv_C aov approx ar.yw ardata area
+  arrows axis bandwidth.sj binomial boxplot center chisq.test chull
+  cobs coefficients con cor cor.test cov cov.mcd cov.mve cov.wt covRob
+  crit data dbinom dchisq density depthProjection dialogbox
+  dialogbox.add.control dialogbox.display disp dnorm editfield.control
+  eval.fd fitted fitted.values gam gamplotv2.sub gettau gettauF0 ginv
+  glm gprc grp gval hat hist identify integrate interaction.plot interp
+  is.fd is.fdPar is.fdSmooth jaeckel kmeans knn ks.test l1fit lars
+  lines lm lmRob lmrob lmsreg loess lowess lplot.sub ls.diag lsfit
+  lsqs2.for lsqs3.sub ltsReg lynx mad mahalanobis mat matlines matplot
+  mba mclapply mdif median model.matrix model.response mvrnorm n
+  na.fail na.omit na.rm nboot nlminb nreps olshc4sub optim outfun
+  p.adjust p.crit2 pairs pairwise.t.test par pbeta pbinom pchisq
+  pdis.for persp pf plot plotit pnorm points poisson polygon
+  power.anova.test predict princomp pt ptukey pwr.chisq.test qbinom
+  qchisq qf qnorm qt qtukey quantile rbeta rbinom rexp rfit rlnorm
+  rmultinomial rnbinom rnorm rpois rq rq.fit.br rt rung3dv2 runif
+  runm3ds1 rval scatterplot3d sd signedrank skipcov.for
+  statictext.control stem summary.aov taustar temp1 test text title tr
+  trimkmeans trmn tsregMC tukmed uiw v1 v2 var x
+Consider adding
+  importFrom("datasets", "lynx")
+  importFrom("grDevices", "chull")
+  importFrom("graphics", "abline", "arrows", "axis", "boxplot", "hist",
+             "identify", "lines", "matlines", "matplot", "pairs", "par",
+             "persp", "plot", "points", "polygon", "stem", "text",
+             "title")
+  importFrom("stats", "TukeyHSD", "aov", "approx", "ar.yw", "binomial",
+             "chisq.test", "coefficients", "cor", "cor.test", "cov",
+             "cov.wt", "dbinom", "dchisq", "density", "dnorm", "fitted",
+             "fitted.values", "glm", "hat", "integrate",
+             "interaction.plot", "kmeans", "ks.test", "lm", "loess",
+             "lowess", "ls.diag", "lsfit", "mad", "mahalanobis",
+             "median", "model.matrix", "model.response", "na.fail",
+             "na.omit", "nlminb", "optim", "p.adjust", "pairwise.t.test",
+             "pbeta", "pbinom", "pchisq", "pf", "pnorm", "poisson",
+             "power.anova.test", "predict", "princomp", "pt", "ptukey",
+             "qbinom", "qchisq", "qf", "qnorm", "qt", "qtukey",
+             "quantile", "rbeta", "rbinom", "rexp", "rlnorm", "rnbinom",
+             "rnorm", "rpois", "rt", "runif", "sd", "summary.aov", "var")
+  importFrom("utils", "data")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘Aband’ ‘BCI’ ‘BD2’ ‘BD3’ ‘Bband’ ‘BpBCa’ ‘CLASSanc’ ‘COVreg’
+  ‘Ckappa’ ‘CompClassicDist’ ‘CompRobustDist’ ‘D.akp.effect’ ‘DEPanc’
+  ‘DEPancpb’ ‘DancCR’ ‘DancGLOB_pv’ ‘DancGLOB_sub’ ‘DancGLOBv2’
+  ‘Dancdet’ ‘Dancols’ ‘Dancols_sub’ ‘Dancols_sub1’ ‘Dancols_sub2’
+  ‘Dancova’ ‘DancovaUB’ ‘DancovaV2’ ‘Dancovamp’ ‘Dancovapb’
+  ‘Dancovapts’ ‘Dancts’ ‘Danctspb’ ‘Danctspb.sub’ ‘DanctspbMC’ ‘Dp’
+  ‘Dqcomhd’ ‘Dqdif’ ‘DqdifMC’ ‘DregG’ ‘DregGMC’ ‘DregGOLS’ ‘ESmainMCP’
+  ‘FBplot’ ‘FQplot’ ‘FisherLSD’ ‘Flplot’ ‘Flplot2g’ ‘GBY3Fs’ ‘GBY3Fsm’
+  ‘HuberTun’ ‘IQRstand’ ‘KNN’ ‘KNNdist’ ‘Kmeans’ ‘Kmeans.grp’
+  ‘L1medcen’ ‘L1median’ ‘LCO.CI’ ‘M1M2’ ‘M2gbt’ ‘M2m.loc’ ‘MADstand’
+  ‘MARONNA.sub’ ‘MARest’ ‘MAT2list’ ‘MBD’ ‘MEDanova’ ‘MLEst’ ‘MLRplot’
+  ‘MMreg’ ‘MULAOVp’ ‘MULMreg’ ‘MULR.yhat’ ‘MULtr.anova’ ‘MULtsreg’
+  ‘MeanCov’ ‘Mpca’ ‘Mreglde’ ‘Mreglde.sub’ ‘NMpca’ ‘ODDSR.CI’ ‘OGK’
+  ‘Ppca’ ‘Ppca.sum.sub’ ‘Ppca.summary’ ‘Q2anova’ ‘Q3anova’ ‘Qancsm’
+  ‘Qanova’ ‘Qdepthcom’ ‘Qdepthcomsub’ ‘Qindbt.sub’ ‘Qinterplot’ ‘Qmcp’
+  ‘Qreg’ ‘Qregci’ ‘Quart’ ‘RANGE’ ‘Rcoefalpha’ ‘Rfit’ ‘RobRsq’ ‘Rpca’
+  ‘Rsq’ ‘SEML’ ‘SErob’ ‘SMpre’ ‘SPCA’ ‘Scheffe’ ‘Scov’ ‘T.HSD’
+  ‘TKmeans’ ‘TKmeans.grp’ ‘TWOpNOV’ ‘TWOpNOVPV’ ‘TWOpov’ ‘TWOpovPV’
+  ‘Tplt’ ‘YYmanova’ ‘YYmcp’ ‘ZYmediate’ ‘absfun’ ‘acbinomci’
+  ‘acbinomcipv’ ‘acbinomciv2’ ‘adcom’ ‘adjboxout’ ‘adpchk’ ‘adrun’
+  ‘adrunl’ ‘adtest’ ‘adtestl’ ‘adtestls1’ ‘adtests1’ ‘adtestv2’ ‘akerd’
+  ‘akerdcdf’ ‘akerdmul’ ‘akp.effect’ ‘anc2COV.CV’ ‘anc2COV.sub’ ‘ancCR’
+  ‘ancGLOB’ ‘ancGLOB_pv’ ‘ancGLOB_pv_pts’ ‘ancGLOB_sub2’ ‘ancGLOB_sub3’
+  ‘ancGLOB_sub4’ ‘ancGLOB_sub5’ ‘ancGpar’ ‘ancGparMC’ ‘ancJN’ ‘ancJNmp’
+  ‘ancJNmpcp’ ‘ancJNmpcp.sub’ ‘ancbbmed’ ‘ancbbpb’ ‘ancboot’ ‘ancbootg’
+  ‘ancdes’ ‘ancdet’ ‘ancdet.pv’ ‘ancdet.sub’ ‘ancdet2C’ ‘ancdet2C.pv’
+  ‘ancdet2C.sub’ ‘ancdifplot’ ‘anclin’ ‘ancmg’ ‘ancmg1’ ‘ancmpbpb’
+  ‘ancmppb’ ‘ancom’ ‘ancov2COV’ ‘ancova’ ‘ancovaG’ ‘ancovaUB’
+  ‘ancovaUB.pv’ ‘ancovaV2’ ‘ancovaV2.pv’ ‘ancovaV2pv.sub’ ‘ancovaWMW’
+  ‘ancovam’ ‘ancovamp’ ‘ancovampG’ ‘ancpar’ ‘ancpb’ ‘ancsm’ ‘anctgen’
+  ‘ancts’ ‘anctsmcp’ ‘anctsmp’ ‘anctspb’ ‘anova.nestA’ ‘anova.nestAP’
+  ‘anova1’ ‘anova_power’ ‘aov2depth’ ‘apanova’ ‘apdis’ ‘apgdis’
+  ‘aprops’ ‘attract’ ‘b1way’ ‘b2ci’ ‘bbbmcp’ ‘bbbmcppb’ ‘bbbmcppb.sub’
+  ‘bbbtrim’ ‘bbmcp’ ‘bbmcppb’ ‘bbmcppb.sub’ ‘bbtrim’ ‘bbw2list’
+  ‘bbwcovm’ ‘bbwmatna’ ‘bbwmcp’ ‘bbwmcppb’ ‘bbwmcppb.sub’ ‘bbwna’
+  ‘bbwtrim’ ‘bbwtrimbt’ ‘bd1GLOB’ ‘bd1GLOB1’ ‘bd1way’ ‘bd1way1’
+  ‘bdanova1’ ‘bdanova2’ ‘bdiag’ ‘bdm’ ‘bdm2way’ ‘bdms1’ ‘bg2ci’ ‘bi2CR’
+  ‘bi2KMS’ ‘bi2KMSv2’ ‘bicov’ ‘bicovm’ ‘biloc’ ‘binband’ ‘binmat’
+  ‘binomLCO’ ‘binomci’ ‘binomcipv’ ‘bireg’ ‘bivar’ ‘bkreg’ ‘block.diag’
+  ‘bmcppb’ ‘bmp’ ‘bmpmul’ ‘bmreg’ ‘bootcov’ ‘bootdep’ ‘bootdepsub’
+  ‘bootdpci’ ‘bootdse’ ‘bootse’ ‘box1way’ ‘boxdif’ ‘bpmed’ ‘bpmedse’
+  ‘bprm’ ‘bptd’ ‘bptdmean’ ‘bptdpsi’ ‘bptdsub’ ‘bsqrm’ ‘bsqrmbt’
+  ‘btrim’ ‘btsqrk’ ‘bw2list’ ‘bwamcp’ ‘bwbmcp’ ‘bwiJ2plot’ ‘bwimcp’
+  ‘bwimcpES’ ‘bwmarpb’ ‘bwmcp’ ‘bwmcppb’ ‘bwmcppb.sub’ ‘bwmedbmcp’
+  ‘bwmedimcp’ ‘bwrank’ ‘bwrmcp’ ‘bwtrim’ ‘bwtrimbt’ ‘bwwcovm’
+  ‘bwwmatna’ ‘bwwmcp’ ‘bwwmcppb’ ‘bwwmcppb.sub’ ‘bwwna’ ‘bwwtrim’
+  ‘bwwtrim.sub’ ‘bwwtrimbt’ ‘calwork’ ‘cav’ ‘cbmhd’ ‘cbmhdMC’
+  ‘cbmhd_subMC’ ‘cci’ ‘cgci’ ‘cgen.bt’ ‘chi.int’ ‘chi.int.p’ ‘chi.int2’
+  ‘chi.int2.p’ ‘chi.test.ind’ ‘chreg’ ‘chregF’ ‘ci2bin’ ‘cid’ ‘cidM’
+  ‘cidmcp’ ‘cidmul’ ‘cidmulv2’ ‘cidv2’ ‘cjMAT’ ‘classSVD’ ‘clnorm’
+  ‘cltv’ ‘cmanova’ ‘cmba2’ ‘cnorm’ ‘cobs2g’ ‘coefalpha’ ‘cohen2xi’
+  ‘combinat’ ‘comdvar’ ‘comvar2’ ‘comvar2d’ ‘con1way’ ‘con2way’
+  ‘con3way’ ‘conCON’ ‘conc2’ ‘concmv’ ‘concsim’ ‘contab’ ‘cor2M’
+  ‘cor2xy’ ‘corCOMmcp’ ‘corCOMmcp_sub’ ‘corb’ ‘corbMC’ ‘corbsub’
+  ‘corbsubMC’ ‘cori’ ‘correg’ ‘correg.sub’ ‘corrsim’ ‘cov.funl’
+  ‘cov.mba’ ‘cov.ogk’ ‘cov.roc’ ‘cov2cor’ ‘cov2med’ ‘covdgk’ ‘covl’
+  ‘covloc’ ‘covmba’ ‘covmba2’ ‘covmcd’ ‘covmmed’ ‘covmtrim’ ‘covmve’
+  ‘covogk’ ‘covout’ ‘covroc’ ‘covsim2’ ‘ctrviews’ ‘cumrelf’ ‘cumrelfT’
+  ‘dat2form’ ‘dbetabin’ ‘dcov’ ‘ddcomp’ ‘ddep’ ‘ddeptr’ ‘ddmv’ ‘ddplot’
+  ‘ddsim’ ‘deav’ ‘deciles’ ‘deltv’ ‘depreg’ ‘depth’ ‘depth2’ ‘depthcom’
+  ‘depthcomsub’ ‘depthg2’ ‘depths1’ ‘der2phiBY3’ ‘derphiBY3’
+  ‘derpsiBY3’ ‘dfried’ ‘diagplot’ ‘difQMC_sub’ ‘difQpci’ ‘difQpciMC’
+  ‘difQplot’ ‘difreg’ ‘difregMC’ ‘difregOLS’ ‘difregYvar’ ‘disband’
+  ‘disc2.chi.sq’ ‘disc2com’ ‘disc2comSK’ ‘discANOVA’ ‘discANOVA.sub’
+  ‘discmcp’ ‘discstep’ ‘disker’ ‘dmean’ ‘dmedian’ ‘dmedpb’ ‘dnormvar’
+  ‘dtrimpb’ ‘ebarplot’ ‘ebarplot.med’ ‘ecdf’ ‘ecor’ ‘ees.ci’ ‘effectg’
+  ‘effectg.sub’ ‘elimna’ ‘ellipse’ ‘epmod’ ‘epow’ ‘epowv2’ ‘erho.bt’
+  ‘erho.bt.lim’ ‘erho.bt.lim.p’ ‘errfun’ ‘esI’ ‘esImcp’ ‘esfun’ ‘esmcp’
+  ‘essp’ ‘estBetaParams’ ‘estaEntre’ ‘exmed’ ‘extradir’ ‘fac2BBMlist’
+  ‘fac2Mlist’ ‘fac2list’ ‘fbplot’ ‘fdepth’ ‘fdepthv2’ ‘ffL’ ‘fflynx’
+  ‘ffplot’ ‘ffplot2’ ‘ftrim’ ‘func.out’ ‘func.plot’ ‘funloc’ ‘funlocpb’
+  ‘funyuenpb’ ‘fysim’ ‘g2plot’ ‘g2plotdifxy’ ‘g5plot’ ‘gamindt’
+  ‘gamper’ ‘gamper2’ ‘gamplot’ ‘gamplotINT’ ‘gamplotv2’ ‘getSE’
+  ‘gethdot’ ‘ghdist’ ‘ghmean’ ‘ghmul’ ‘ghtrim’ ‘givelabel’ ‘gk’
+  ‘gk.sigmamu’ ‘gkcor’ ‘gkcov’ ‘gplot’ ‘greatsort’ ‘grit’ ‘gvar’
+  ‘gvar2g’ ‘gvarg’ ‘gyreg’ ‘hard.rejection’ ‘hc4qtest’ ‘hc4test’
+  ‘hc4wmc’ ‘hc4wtest’ ‘hd’ ‘hdci’ ‘hdep’ ‘hdpb’ ‘hdseb’ ‘hochberg’
+  ‘hotel1’ ‘hotel1.tr’ ‘hpsi’ ‘hratio’ ‘iband’ ‘idb’ ‘idealf’
+  ‘idealfIQR’ ‘idmatch’ ‘idmatchv2’ ‘idrange’ ‘ifmest’ ‘indepth’ ‘indt’
+  ‘indt0’ ‘indt0sub’ ‘indtall’ ‘interplot’ ‘is.wholenumber’ ‘johan’
+  ‘johansp’ ‘kbcon’ ‘kdplot’ ‘kerSORT’ ‘kercon’ ‘kerden’ ‘kernelEVD’
+  ‘kerreg’ ‘khomreg’ ‘kron’ ‘ks’ ‘kslope’ ‘ksolve.bt’ ‘kssig’
+  ‘kstiesig’ ‘kswsig’ ‘l2dci’ ‘l2drmci’ ‘l2plot’ ‘l2v’ ‘larsR’ ‘lband’
+  ‘lband.fun’ ‘lband.fun2’ ‘lin2plot’ ‘lincdm’ ‘lincdtr’ ‘linchk’
+  ‘lincon’ ‘linconMpb’ ‘linconMpb.sub’ ‘linconSpb’ ‘linconSpb.sub’
+  ‘linconb’ ‘linconbt’ ‘linconm’ ‘linconpb’ ‘lindep’ ‘lindep.sub’
+  ‘lindepbt’ ‘lindm’ ‘lindmsub’ ‘linhat’ ‘linpbg’ ‘linplot’ ‘lintest’
+  ‘lintestMC’ ‘lintests1’ ‘lintpb’ ‘list.dif’ ‘list2mat’ ‘list2matrix’
+  ‘list2vec’ ‘listm’ ‘lloc’ ‘llocv2’ ‘llrdata’ ‘llressp’ ‘llrplot’
+  ‘llrsim’ ‘llrwtfrp’ ‘lmsviews’ ‘loc2dif’ ‘loc2plot’ ‘locCV’ ‘locpre’
+  ‘locpres1’ ‘locreg’ ‘locvar’ ‘locvarsm’ ‘logSM’ ‘logSMpred’ ‘logadr’
+  ‘logreg’ ‘logreg.plot’ ‘logrsm’ ‘long2g’ ‘long2mat’ ‘longcov2mat’
+  ‘longreg’ ‘longreg.plot’ ‘lpindt’ ‘lplot’ ‘lplot.pred’ ‘lplot2g’
+  ‘lplotPV’ ‘lplotv2’ ‘lrdata’ ‘lressp’ ‘lscale’ ‘lsfitNci’ ‘lsfitNci4’
+  ‘lsfitci’ ‘lsqs2’ ‘lsqs3’ ‘lsqtest4’ ‘lstest4’ ‘lsviews’ ‘lta.sub’
+  ‘ltareg’ ‘lts.sub’ ‘lts1reg’ ‘ltsR’ ‘ltsgreg’ ‘ltsreg’ ‘m1way’ ‘m2ci’
+  ‘m2l’ ‘m2way’ ‘maha’ ‘man2pb’ ‘marpca’ ‘marpca.sub’ ‘mat2grp’
+  ‘mat2list’ ‘matl’ ‘matrix2list’ ‘matsplit’ ‘matsqrt’ ‘mbalata’
+  ‘mbamv’ ‘mbamv2’ ‘mbareg’ ‘mbmreg’ ‘mcdcen’ ‘mcdcov’ ‘mch2num’
+  ‘mcp.nestAP’ ‘mcp2a’ ‘mcp2atm’ ‘mcp3atm’ ‘mcp3med’ ‘mcpKadjp’ ‘mcpOV’
+  ‘mcpPV’ ‘mcppb’ ‘mcppb20’ ‘mcskew’ ‘mcslope’ ‘mdepreg’ ‘mdepreg.sub’
+  ‘mdiflcr’ ‘mdifloc’ ‘med.effect’ ‘med.effect.sub’ ‘med1way’
+  ‘med1way.crit’ ‘med2ci’ ‘med2g’ ‘med2mcp’ ‘med2way’ ‘med3mcp’ ‘medci’
+  ‘medcipb’ ‘medcurve’ ‘medhd2g’ ‘medind’ ‘medindsub’ ‘medpb’ ‘medpb2’
+  ‘medr’ ‘mee’ ‘meemul’ ‘mest’ ‘mestci’ ‘mestse’ ‘mestseb’ ‘mgvar’
+  ‘mgvcov’ ‘mgvdep’ ‘mgvfreg’ ‘mgvmean’ ‘mgvreg’ ‘miss2na’ ‘mjse’
+  ‘mlrGtest’ ‘mlrplot2’ ‘mlrreg’ ‘mlrreg.Stest’ ‘mlrreg.est’
+  ‘mlrreg.subest’ ‘mlrregCI’ ‘mlrregWtest’ ‘mlts’ ‘mmean’ ‘modgen’
+  ‘mom’ ‘momci’ ‘mopreg’ ‘mplot’ ‘mregdepth’ ‘mrm1way’ ‘mscale’
+  ‘mscale.sub’ ‘mscor’ ‘mscov’ ‘msmed’ ‘msmedci’ ‘msmedse’ ‘msmedsub’
+  ‘msplit’ ‘mulgreg’ ‘mulrank’ ‘mulwmw’ ‘mulwmwcrit’ ‘mulwmwv2’
+  ‘mvecen’ ‘mvecov’ ‘mwmw’ ‘mwwmcp’ ‘nav’ ‘near’ ‘near3d’ ‘near3dl1’
+  ‘nearl’ ‘nearr’ ‘nelder’ ‘nelderv2’ ‘nltv’ ‘normTmm’ ‘oancpb’ ‘ocor’
+  ‘oddata’ ‘ogk’ ‘ogk.center’ ‘ogk.pairwise’ ‘ogkcor’ ‘ols’ ‘ols.coef’
+  ‘ols.plot.inter’ ‘ols.pred.ci’ ‘ols1way’ ‘ols1way2g’ ‘ols1wayISO’
+  ‘ols2ci’ ‘olsJ2’ ‘olsJmcp’ ‘olsLmcp’ ‘olsMUL’ ‘olsW2g’ ‘olsWmcp’
+  ‘olsci’ ‘olshc4’ ‘olshc4.inter’ ‘olshomci’ ‘olstest’ ‘olstests1’
+  ‘olswbtest’ ‘olswbtest.sub’ ‘omega’ ‘onesampb’ ‘onestep’ ‘opreg’
+  ‘opregMC’ ‘opregpb’ ‘opregpbMC’ ‘ortho’ ‘out’ ‘out3d’ ‘outbox’
+  ‘outcov’ ‘outmah’ ‘outmgv’ ‘outmgv.v2’ ‘outmgvad’ ‘outmgvf’ ‘outms’
+  ‘outmve’ ‘outogk’ ‘outpca’ ‘outpro’ ‘outproMC’ ‘outproMC.sub’
+  ‘outproMC.sub2’ ‘outproad’ ‘outproadMC’ ‘outtbs’ ‘pairdepb’ ‘pb2gen’
+  ‘pb2genMC’ ‘pb2trmcp’ ‘pb3trmcp’ ‘pbad2way’ ‘pbadepth’ ‘pball’
+  ‘pbanova’ ‘pbanovag’ ‘pbcan’ ‘pbcor’ ‘pbmcp’ ‘pbmcpSR’ ‘pbos’
+  ‘pbtest’ ‘pbtrmcp’ ‘pbvar’ ‘pcor’ ‘pcorb’ ‘pcorbsub’ ‘pcorbv4’
+  ‘pcorhc4’ ‘pcorhc4sub’ ‘pdclose’ ‘pdep’ ‘pdepth’ ‘pdis’ ‘pdisMC’
+  ‘permg’ ‘phiBY3’ ‘pifclean’ ‘piplot’ ‘pisim’ ‘plotCI’ ‘plot_robpca’
+  ‘poireg’ ‘pool.a.list’ ‘pow1’ ‘pow2an’ ‘power.chisq.test’ ‘powest’
+  ‘powt1an’ ‘powt1est’ ‘print.trq’ ‘prodepth’ ‘prplot’ ‘psi.bt’
+  ‘psiBY3’ ‘psihat’ ‘psip.bt’ ‘ptests’ ‘pull’ ‘push’ ‘q2by2’ ‘q2gci’
+  ‘qci’ ‘qcipb’ ‘qcom.sub’ ‘qcomhd’ ‘qcomhdMC’ ‘qcor’ ‘qcorp1’ ‘qdec’
+  ‘qdec2ci’ ‘qdmcp’ ‘qdmcpdif’ ‘qdtest’ ‘qest’ ‘qfun’ ‘qhat’ ‘qhatd’
+  ‘qhatds1’ ‘qhati’ ‘qhdplotsm’ ‘qhdsm’ ‘qhdsm.pred’ ‘qhdsm2g’ ‘qhomt’
+  ‘qhomtsub’ ‘qhomtsub2’ ‘qhomtv2’ ‘qindbt.sub’ ‘qint’ ‘qmjci’
+  ‘qplotreg’ ‘qrchk’ ‘qrchkv2’ ‘qrchkv2.sub2’ ‘qreg’ ‘qreg.sub’
+  ‘qregci’ ‘qregplots’ ‘qregsm’ ‘qrq’ ‘qse’ ‘qsm’ ‘qsmcobs’ ‘qsplit’
+  ‘qwmwhd’ ‘r.gauss.pro’ ‘r1mcp’ ‘r2mcp’ ‘rananova’ ‘randomset’ ‘ranki’
+  ‘rankisub’ ‘ratmn’ ‘rbbinom’ ‘rd2plot’ ‘rdepth’ ‘rdplot’
+  ‘reg.plot.inter’ ‘reg1mcp’ ‘reg1way’ ‘reg1wayISO’ ‘reg1wayISOMC’
+  ‘reg1wayMC’ ‘reg2ci’ ‘reg2ciMC’ ‘reg2cimcp’ ‘reg2difplot’
+  ‘reg2g.p2plot’ ‘reg2plot’ ‘regG’ ‘regGmcp’ ‘regIVcom’ ‘regIVcom_sub’
+  ‘regY2G.sub’ ‘regYband’ ‘regYci’ ‘regYci.sum’ ‘regYci2G’ ‘regYci2Gv2’
+  ‘regYciCV’ ‘regYciCV2G’ ‘regYhat’ ‘regYsub’ ‘regYval’ ‘regYvar’
+  ‘regboot’ ‘regbootMC’ ‘regbootg’ ‘regci’ ‘regci.inter’ ‘regciCV.sub’
+  ‘regciCV2G.sub’ ‘regciMC’ ‘regcits’ ‘regi’ ‘reglev’ ‘regmed2’
+  ‘regmediate’ ‘regout’ ‘regp2plot’ ‘regpca’ ‘regpecv’ ‘regplot’
+  ‘regpord’ ‘regpord.sub’ ‘regpre’ ‘regpreCV’ ‘regpreS’ ‘regpres1’
+  ‘regse’ ‘regtest’ ‘regtestMC’ ‘regts1’ ‘regunstack’ ‘regvarp’
+  ‘rejpt.bt.lim’ ‘relfun’ ‘relplot’ ‘resdepth’ ‘resdepth.sub’ ‘rfanova’
+  ‘rfit.est’ ‘rfitv2’ ‘rgvar’ ‘rgvar2g’ ‘rgvarseb’ ‘rho.bt’ ‘rhoBY3’
+  ‘rhom’ ‘rimul’ ‘riplot’ ‘ritest’ ‘rm2mcp’ ‘rm2miss’ ‘rm2miss.sub’
+  ‘rm3mcp’ ‘rmaha’ ‘rmanog’ ‘rmanogsub’ ‘rmanova’ ‘rmanovab’
+  ‘rmanovab1’ ‘rmaseq’ ‘rmba’ ‘rmblo’ ‘rmc2list’ ‘rmdG_sub’ ‘rmdat2mat’
+  ‘rmdzD’ ‘rmdzero’ ‘rmdzeroG’ ‘rmdzeroGMC’ ‘rmdzeroOP’ ‘rmmcp’
+  ‘rmmcppb’ ‘rmmcppbd’ ‘rmmcppbtm’ ‘rmmest’ ‘rmmismcp’ ‘rmrvar’ ‘rmul’
+  ‘rmulnorm’ ‘rngh’ ‘rngh.sub’ ‘robEst’ ‘robR2w’ ‘robci’ ‘robpca’
+  ‘robpcaS’ ‘rplot’ ‘rplot.bin’ ‘rplot.pred’ ‘rplot.res’ ‘rplot2g’
+  ‘rplotCI’ ‘rplotCI.pv’ ‘rplotCIM’ ‘rplotCIS’ ‘rplotCITAP.pv’
+  ‘rplotCITAP.sub’ ‘rplotCIv2’ ‘rplotCIv2.pv’ ‘rplotCIv2.sub’ ‘rplotCV’
+  ‘rplotpbCI’ ‘rplotsm’ ‘rqfit’ ‘rqfitpv’ ‘rqtest’ ‘rqtest.sub’
+  ‘rregci’ ‘rrplot’ ‘rrplot2’ ‘rslope’ ‘rslopesm’ ‘rstmn’ ‘rtdep’
+  ‘run3bo’ ‘run3hat’ ‘runYhat’ ‘runcor’ ‘rundis’ ‘rung3d’ ‘rung3dlchk’
+  ‘rung3hat’ ‘rungen’ ‘rungenv2’ ‘runhat’ ‘runm3d’ ‘runmbo’ ‘runmean’
+  ‘runmean2g’ ‘runmq’ ‘runpd’ ‘runse’ ‘runsm2g’ ‘s2plot’ ‘sband’
+  ‘scat2d2g’ ‘scat3d2g’ ‘scor’ ‘scorci’ ‘scorciMC’ ‘scorsubMC’ ‘sdwe’
+  ‘sedm’ ‘selby’ ‘selby2’ ‘selbybbw’ ‘selbybw’ ‘shiftdhd’ ‘shifthd’
+  ‘sigmaBY3’ ‘signt’ ‘signtpv’ ‘sint’ ‘sintmcp’ ‘sintv2’ ‘sir’
+  ‘sirviews’ ‘sisplit’ ‘skerd’ ‘skew’ ‘skip’ ‘skip.cov’ ‘skipSPR’
+  ‘skipcov’ ‘skipogk’ ‘skiptbs’ ‘skmcp’ ‘sm2str’ ‘sm2str.sub’
+  ‘sm2strv7’ ‘smRstr’ ‘smcorcom’ ‘smean’ ‘smean2’ ‘smean2v2’ ‘smeanMC’
+  ‘smeancr’ ‘smeancrv2’ ‘smgvcr’ ‘smmcrit’ ‘smmcrit01’ ‘smmval’
+  ‘smmvalv2’ ‘smmvalv3’ ‘smstrcom’ ‘smvar’ ‘snmreg’ ‘snmreg.sub’
+  ‘snmregv2’ ‘spag.plot’ ‘spat’ ‘spat.sub’ ‘spatcen’ ‘spca’ ‘spear’
+  ‘spearci’ ‘splot’ ‘splotg2’ ‘spmcpa’ ‘spmcpb’ ‘spmcpi’ ‘sppba’
+  ‘sppbb’ ‘sppbi’ ‘sqfun’ ‘sqmad’ ‘stackit’ ‘stacklist’ ‘standm’
+  ‘standmar’ ‘stein1’ ‘stein1.tr’ ‘stein2’ ‘stein2.tr’ ‘stepmcp’
+  ‘sterby3’ ‘stmci’ ‘stsreg’ ‘stsregp1’ ‘sumplot2g’ ‘symviews’ ‘t1way’
+  ‘t1way.effect’ ‘t1wayF’ ‘t1waybt’ ‘t1waybtsqrk’ ‘t1waybtv2’
+  ‘t1waysub’ ‘t1wayv2’ ‘t2way’ ‘t2way.no.p’ ‘t2waybt’ ‘t2waypb’
+  ‘t2waypbg’ ‘t2wayv2’ ‘t3pval’ ‘t3way’ ‘t3wayv2’ ‘tamhane’ ‘tau’
+  ‘tauall’ ‘tauci’ ‘taulc’ ‘tauloc’ ‘taureg’ ‘tauvar’ ‘tbs’ ‘tbscor’
+  ‘tbscov’ ‘tkmcp’ ‘tlist’ ‘tmci’ ‘tmcppb’ ‘tmean’ ‘trange’ ‘trimci’
+  ‘trimcibt’ ‘trimcimul’ ‘trimciv2’ ‘trimparts’ ‘trimpartt’ ‘trimpb’
+  ‘trimpb2’ ‘trimse’ ‘trimww’ ‘trimww.sub’ ‘trq.fit’ ‘trqreg’ ‘trviews’
+  ‘ts2str.sub’ ‘tscor’ ‘tscorci’ ‘tsgreg’ ‘tsgregs1’ ‘tshd’ ‘tshdreg’
+  ‘tsp1reg’ ‘tsplit’ ‘tsplitbt’ ‘tsreg’ ‘tsregF’ ‘tsregNW’ ‘tssnmreg’
+  ‘tstsreg’ ‘tsub’ ‘tsubrmanovab’ ‘tvreg’ ‘tvreg2’ ‘twoDNOV’ ‘twoDcorR’
+  ‘twoDcorR_sub’ ‘twoKlin’ ‘twobici’ ‘twobicipv’ ‘twobinom’ ‘twocor’
+  ‘twodcor10’ ‘twodcor8’ ‘twohc4cor’ ‘twolsreg’ ‘twolsregsub’
+  ‘twomanbt’ ‘twopcor’ ‘tworegwb’ ‘twwmcp’ ‘unidepth’ ‘unimcd’ ‘uniran’
+  ‘v.bt’ ‘vech’ ‘vecnorm’ ‘wband’ ‘wddplot’ ‘weightmecov’ ‘whimed’
+  ‘win’ ‘winall’ ‘winci’ ‘wincor’ ‘wincorci’ ‘wincov’ ‘winmean’
+  ‘winreg’ ‘winsd’ ‘winse’ ‘winval’ ‘winvar’ ‘winvarN’ ‘wlogreg’
+  ‘wlogreg.sub’ ‘wlogregci’ ‘wmcp’ ‘wmcppb’ ‘wmean.cov’ ‘wmve’ ‘wmw’
+  ‘wmwaov’ ‘wmwloc’ ‘wmwloc2’ ‘wmwpb’ ‘wreg’ ‘wrregfun’ ‘wsp1reg’
+  ‘wsumsq’ ‘wt.bt’ ‘wwmcp’ ‘wwmcpbt’ ‘wwmcppb’ ‘wwtrim’ ‘wwtrimbt’
+  ‘wwwmcp’ ‘wwwmcppb’ ‘wwwmcppb.sub’ ‘wwwtrim’ ‘wwwtrimbt’ ‘xi2cohen’
+  ‘ydbt’ ‘yhall’ ‘yhbt’ ‘yuen’ ‘yuen.effect’ ‘yuen.effect.ci’ ‘yuenbt’
+  ‘yuend’ ‘yuendna’ ‘yuendv2’ ‘yuenv2’ ‘z.power’ ‘zdepth’ ‘zdepth.sub’
+  ‘zdist’ ‘zoudepth’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking examples ... NONE
+* checking PDF version of manual ... OK
+* DONE
+Status: 2 WARNINGs, 4 NOTEs
