@@ -31,4 +31,11 @@ for (nm in list.files(".", pattern=".*\\.Rd", recursive=TRUE)) {
 devtools::check("pkg")
 devtools::install("pkg")
 
+# ---------------------------------------------------------------------
+# Test some functions
 
+library(WRS)
+timevec <- c(77, 87, 88, 114, 151, 210, 219, 246, 253, 262, 296, 299, 306, 376, 428, 515, 666, 1310, 2611)
+trimse(timevec, 0.1)
+winmean(timevec, 0.1)
+msmedse(timevec)

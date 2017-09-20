@@ -26,8 +26,11 @@ Suggests:
     DepthProc,
     class,
     fda,
-    parallel
+    parallel,
+		e1071,
+		rankFD
 Description: This is a packaged version of the robust statistic functions
     provided by R. R. Wilcox (http://dornsife.usc.edu/labs/rwilcox/software/).
 License: GPL (>=2)
 LazyLoad: yes
+RoxygenNote: 6.0.1
