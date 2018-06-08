@@ -2,8 +2,8 @@ Encoding: UTF-8
 Package: WRS
 Type: Package
 Title: A Package of R.R. Wilcox' Robust Statistics Functions
-Version: 0.30.1
-Date: 2017-01-18
+Version: 0.35
+Date: 2018-06-08
 Author: Rand R. Wilcox, Felix Schönbrodt
 Maintainer: Felix Schönbrodt <felix@nicebread.de>
 Suggests:
@@ -31,6 +31,6 @@ Suggests:
 		rankFD
 Description: This is a packaged version of the robust statistic functions
     provided by R. R. Wilcox (http://dornsife.usc.edu/labs/rwilcox/software/).
-License: GPL (>=2)
+License: file LICENSE
 LazyLoad: yes
 RoxygenNote: 6.0.1
