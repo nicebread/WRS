@@ -1,2 +1,24 @@
 # Export all names
 exportPattern("^[^\\.]")
+
+    importFrom("grDevices", "chull")
+    importFrom("graphics", "abline", "arrows", "axis", "boxplot", "hist",
+               "identify", "lines", "matlines", "matplot", "pairs", "par",
+               "persp", "plot", "points", "polygon", "stem", "stripchart",
+               "text", "title")
+    importFrom("stats", "TukeyHSD", "aov", "approx", "ar.yw", "binom.test",
+               "binomial", "chisq.test", "coef", "coefficients",
+               "complete.cases", "cor", "cor.test", "cov", "cov.wt",
+               "dbinom", "dchisq", "density", "dnorm", "fitted",
+               "fitted.values", "glm", "hat", "integrate",
+               "interaction.plot", "kmeans", "ks.test", "lm", "loess",
+               "lowess", "ls.diag", "lsfit", "mad", "mahalanobis",
+               "median", "model.matrix", "model.response", "na.fail",
+               "na.omit", "nlminb", "optim", "optimize", "p.adjust",
+               "pairwise.t.test", "pbeta", "pbinom", "pchisq", "pf",
+               "pnorm", "poisson", "power.anova.test", "predict",
+               "princomp", "pt", "ptukey", "qbinom", "qchisq", "qf",
+               "qnorm", "qt", "qtukey", "quantile", "rbeta", "rbinom",
+               "rexp", "rlnorm", "rnbinom", "rnorm", "rpois", "rt",
+               "runif", "sd", "summary.aov", "var", "vcov")
+    importFrom("utils", "data")
