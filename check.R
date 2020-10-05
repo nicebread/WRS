@@ -1,14 +1,6 @@
-sourceDir <- function(path, trace = TRUE, ...) {
-   for (nm in list.files(path, pattern = "\\.[RrSsQq]$")) {
-      if(trace) cat(nm,":")           
-      source(file.path(path, nm), ...)
-      if(trace) cat("\n")
-   }
-}
-sourceDir("pkg/R")
+install.packages(c('akima', 'cobs', 'robust', 'scatterplot3d', 'rrcov', 'lars', 'trimcluster', 'mc2d', 'Rfit', 'WRScpp', 'DepthProc', 'fda', 'rankFD'))
 
-
-
+load_all("pkg/R")
 
 library(tools)
 library(devtools)
@@ -28,7 +20,7 @@ for (nm in list.files(".", pattern=".*\\.Rd", recursive=TRUE)) {
 }
 
 
-devtools::check("pkg")
+devtools::check("pkg", document=FALSE)
 devtools::install("pkg")
 
 # ---------------------------------------------------------------------
@@ -39,3 +31,10 @@ timevec <- c(77, 87, 88, 114, 151, 210, 219, 246, 253, 262, 296, 299, 306, 376, 
 trimse(timevec, 0.1)
 winmean(timevec, 0.1)
 msmedse(timevec)
+
+x <- rnorm(100)
+y <- .3*x+rnorm(100)
+m <- matrix(cbind(x, y), ncol=2)
+outproMC(m)
+wmw.RZR(x, y)
+runbin.CI(x, y)

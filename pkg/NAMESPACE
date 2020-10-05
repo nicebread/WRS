@@ -22,3 +22,4 @@ exportPattern("^[^\\.]")
                "rexp", "rlnorm", "rnbinom", "rnorm", "rpois", "rt",
                "runif", "sd", "summary.aov", "var", "vcov")
     importFrom("utils", "data")
+    importFrom("stats", "rmultinom")

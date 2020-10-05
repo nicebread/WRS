@@ -1,3 +1,6 @@
+# Changes in WRS version 0.37 #
+Implements many new and improved techniques described in the 5th edition of the robust book.
+
 # Changes in WRS version 0.35 #
 - Changed LICENSE
 - Included various functions related to ridge estimators and the lasso.

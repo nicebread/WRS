@@ -2,8 +2,8 @@ Encoding: UTF-8
 Package: WRS
 Type: Package
 Title: A Package of R.R. Wilcox' Robust Statistics Functions
-Version: 0.36
-Date: 2019-07-15
+Version: 0.37
+Date: 2020-10-05
 Author: Rand R. Wilcox
 Maintainer: Felix Schönbrodt <felix@nicebread.de>
 Suggests:
@@ -22,15 +22,13 @@ Suggests:
     mc2d,
     psych,
     Rfit,
-    WRScpp,
     DepthProc,
     class,
     fda,
     parallel,
-		e1071,
-		rankFD
+	e1071,
+	rankFD
 Description: This is a packaged version of the robust statistic functions
     provided by R. R. Wilcox (http://dornsife.usc.edu/labs/rwilcox/software/).
 License: file LICENSE
 LazyLoad: yes
-RoxygenNote: 6.1.1
