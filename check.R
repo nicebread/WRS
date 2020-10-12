@@ -1,6 +1,7 @@
-install.packages(c('akima', 'cobs', 'robust', 'scatterplot3d', 'rrcov', 'lars', 'trimcluster', 'mc2d', 'Rfit', 'WRScpp', 'DepthProc', 'fda', 'rankFD'))
+install.packages(c('akima', 'cobs', 'robust', 'scatterplot3d', 'rrcov', 'lars', 'trimcluster', 'mc2d', 'Rfit', 'DepthProc', 'fda', 'rankFD'))
 
-load_all("pkg/R")
+# WRScpp does not work any more
+# install.package('WRScpp')
 
 library(tools)
 library(devtools)
