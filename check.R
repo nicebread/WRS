@@ -13,12 +13,6 @@ for (nm in list.files("pkg/R", full.names=TRUE)) {
 	cat("\n")
 }
 
-# check Rd files - any line longer than 100 characters etc?
-for (nm in list.files(".", pattern=".*\\.Rd", recursive=TRUE)) {
-	cat(nm,":")    
-   checkRd(nm)    
-	cat("\n")
-}
 
 
 devtools::check("pkg", document=FALSE)

@@ -1,6 +1,6 @@
 # WRS #
-[![Last-changedate](https://img.shields.io/badge/last%20change-2020--10--12-yellowgreen.svg)](/commits/master)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.37.1-orange.svg?style=flat-square)](commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2020--11--10-yellowgreen.svg)](/commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.37.2-orange.svg?style=flat-square)](commits/master)
 
 
 A package of R.R. Wilcox' robust statistics functions.
@@ -15,11 +15,12 @@ Note: On Mac OS you might need to install some developer tools (see here: [https
     install.packages(c("MASS", "akima", "robustbase"))
     
     # second: install suggested packages
-    install.packages(c("cobs", "robust", "mgcv", "scatterplot3d", "quantreg", "rrcov", "lars", "pwr", "trimcluster", "mc2d", "psych", "Rfit", "DepthProc", "class", "fda"))
+    install.packages(c("akima", "cobs", "robust", "mgcv", "scatterplot3d", "quantreg", "rrcov", "lars", "pwr", "trimcluster", "mc2d", "psych", "Rfit", "DepthProc", "class", "fda", "rankFD"))
     
     # third: install an additional package which provides some C functions
     # install.packages("devtools")
-    devtools::install_github("mrxiaohe/WRScpp")
+    # NOTE: This seems to be stalled and not functional any more
+    # devtools::install_github("mrxiaohe/WRScpp")
     
     # fourth: install WRS
     install_github("nicebread/WRS", subdir="pkg")
