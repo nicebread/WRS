@@ -59496,8 +59496,8 @@ kerSORT<-function(x,xlab='',ylab='',pts=NA){
 #
 #
 A=min(c(sd(x),idealfIQR(x)/1.34))
-bw=.9*A/n^.2
-init=density(x,bw=bw,kernel='ep')
+bw=1.06*A/length(x)^.2
+init=density(x,bw=bw,kernel='epanechnikov')
 plot(init$x,init$y,xlab=xlab,ylab=ylab,type='n')
 lines(init$x,init$y)
 }
