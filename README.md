@@ -1,6 +1,6 @@
 # WRS #
-[![Last-changedate](https://img.shields.io/badge/last%20change-2020--11--10-yellowgreen.svg)](/commits/master)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.37.2-orange.svg?style=flat-square)](commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2022--10--04-yellowgreen.svg)](/commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.41-orange.svg?style=flat-square)](commits/master)
 
 
 A package of R.R. Wilcox' robust statistics functions.

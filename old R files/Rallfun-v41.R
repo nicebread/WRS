@@ -59496,8 +59496,8 @@ kerSORT<-function(x,xlab='',ylab='',pts=NA){
 #
 #
 A=min(c(sd(x),idealfIQR(x)/1.34))
-bw=1.06*A/length(x)^.2
-init=density(x,bw=bw,kernel='epanechnikov')
+bw=.9*A/n^.2
+init=density(x,bw=bw,kernel='ep')
 plot(init$x,init$y,xlab=xlab,ylab=ylab,type='n')
 lines(init$x,init$y)
 }
@@ -84994,18 +84994,17 @@ mat2table<-function(x,SP1,SP2){
 #   the counts
 #
 flag=(x[,1]<=SP1 & x[,2]<=SP2)
-n=sum(flag,na.rm=TRUE)
+n=sum(flag)
 flag=(x[,1]<=SP1 & x[,2]>SP2)
-n[2]=sum(flag,na.rm=TRUE)
+n[2]=sum(flag)
 flag=(x[,1]>SP1 & x[,2]<=SP2)
-n[3]=sum(flag,na.rm=TRUE)
+n[3]=sum(flag)
 flag=(x[,1]>SP1 & x[,2]>SP2)
-n[4]=sum(flag,na.rm=TRUE)
+n[4]=sum(flag)
 m=matrix(n,2,2,byrow=TRUE)
 dimnames(m)=list(c('V1.less','V1.greater'),c('V2.less','V2.greater'))
 m
 }
-
 
 
 
@@ -90574,15 +90573,14 @@ ic=ic+1
 a=ydbt(x[,j]^2,x[,k]^2,tr=tr,nboot=nboot)
 output[ic,1]=j
 output[ic,2]=k
-output[ic,3]=RMSAE(elimna(x[,j]))
-output[ic,4]=RMSAE(elimna(x[,k]))
+output[ic,3]=RMSAE(x[,j])
+output[ic,4]=RMSAE(x[,k])
 output[ic,5]=output[ic,3]-output[ic,4]
 output[ic,6]=a$p.value
 }}}
 output[,7]=p.adjust(output[,6],method=method)
 output
 }
-
 RMSAE<-function(x) sqrt(sum(x^2)/(length(x)))
 
 oph.indep.comRMSAE<-function(x,y=NULL,method='hoch',invalid=4,STOP=TRUE,tr=0,nboot=999){
@@ -91083,14 +91081,14 @@ oph.mcnemar<-function(x,method='holm',invalid=4){
 if(is.null(dim(x)))stop('x should be a matrix or data frame')
 x=abs(x)
 J=ncol(x)  #number of formulas
-flag=max(abs(x),na.rm=TRUE)>invalid
-if(flag){
+flag=abs(elimna(x))>invalid
+if(sum(flag)>0){
 nr=c(1:nrow(x))
-if(sum(flag,na.rm=TRUE)>1){
+if(sum(flag)>1){
 print(paste('The value of argument invalid indicates that any value greater in absolute value than', invalid,' is invalid'))
 print('The following rows have invalid values')
 }
-if(sum(flag,na.rm=TRUE)==1){
+if(sum(flag)==1){
 print(paste('The value of argument invalid indicates that any value greater in absolute value than', invalid,' is invalid'))
 print('The following row has an  invalid value')
 }
@@ -91099,7 +91097,7 @@ ic=0
 N=nrow(x)
 for(i  in 1:N){
 iflag=abs(x[i,])>invalid
-if(sum(iflag,na.rm=TRUE)>0){
+if(sum(iflag)>0){
 ic=ic+1
 irow[ic]=i
 }}
@@ -91120,10 +91118,10 @@ for (k in 1:J){
 if (j < k){
 ic=ic+1
 a=mat2table(x[,c(j,k)],D[L],D[L])
-n1=sum(x[[j]]<=D[L],na.rm=TRUE)
-pn1=mean(x[[j]]<=D[L],na.rm=TRUE)
-n2=sum(x[[k]]<=D[L],na.rm=TRUE)
-pn2=mean(x[[k]]<=D[L],na.rm=TRUE)
+n1=sum(x[[j]]<=D[L])
+pn1=mean(x[[j]]<=D[L])
+n2=sum(x[[k]]<=D[L])
+pn2=mean(x[[k]]<=D[L])
 if(sum(is.na(a)>0))print(paste('No data for VAR',j,'VAR',k,'D=',D[L]))
 if(sum(is.na(a))==0){
 mct=mcnemar.test(a)
