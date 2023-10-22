@@ -61671,11 +61671,11 @@ y=elimna(y)
 n1=length(x)
 n2=length(y)
 v=NA
-ef=shiftes(x,y,locfun=locfun,SEED=FALSE)$Q.Effect
+ef=shiftes(x,y,locfun=locfun,SEED=FALSE, ...)$Q.Effect
 for(i in 1:nboot){
 X=sample(x,n1,replace=TRUE)
 Y=sample(y,n2,replace=TRUE)
-v[i]=shiftes(X,Y,locfun=locfun,SEED=FALSE)$Q.Effect
+v[i]=shiftes(X,Y,locfun=locfun,SEED=FALSE, ...)$Q.Effect
 }
 v=sort(v)
 ilow<-round((alpha/2) * nboot)
