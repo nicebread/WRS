@@ -26,3 +26,8 @@ exportPattern("^[^\\.]")
     importFrom("graphics", "plot.new")
     importFrom("methods", "new", "setClass")
     importFrom("stats", "mcnemar.test", "shapiro.test", "uniroot")
+    importFrom("grDevices", "dev.off")
+    importFrom("graphics", "legend", "segments")
+    importFrom("stats", "dbeta")
+    importFrom("utils", "combn", "head", "read.table", "tail",
+               "write.table")

@@ -1,6 +1,6 @@
 # WRS #
-[![Last-changedate](https://img.shields.io/badge/last%20change-2022--10--04-yellowgreen.svg)](/commits/master)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.41-orange.svg?style=flat-square)](commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--10--31-yellowgreen.svg)](/commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.44-orange.svg?style=flat-square)](commits/master)
 
 
 A package of R.R. Wilcox' robust statistics functions.
@@ -8,8 +8,6 @@ For more information, see [http://dornsife.usc.edu/labs/rwilcox/software/](http:
 
 
 ## Installation ##
-
-Note: On Mac OS you might need to install some developer tools (see here: [https://cran.rstudio.com/bin/macosx/tools/](https://cran.rstudio.com/bin/macosx/tools/)) for the installation of the WRScpp package.
 
     # first: install dependent packages
     install.packages(c("MASS", "akima", "robustbase"))
