@@ -8168,8 +8168,11 @@ if(test<0)G=mean(test>tval[1:nboot])
 if(test>=0)G=mean(test<tval[1:nboot])
 p.value=2*G
 }
-list(ci=CI,test.stat=test,p.value=p.value,est.1=mean(x,tr),est.2=mean(y,tr),est.dif=mean(x,tr)-mean(y,tr),
-n1=length(x),n2=length(y))
+result = list(ci=CI,test.stat=test,crit=crit,p.value=p.value,
+              est.1=mean(x,tr),est.2=mean(y,tr),est.dif=mean(x,tr)-mean(y,tr),
+              n1=length(x),n2=length(y))
+if(side) { result$crit = tval[icrit] }
+result
 }
 
 
