@@ -10053,7 +10053,7 @@ bvec[j,]<-apply(data,1,est,...) # A J by nboot matrix
 }
 teststat<-wsumsq(gest,nval)
 testb<-apply(bvec,2,wsumsq,nval)
-p.value<-1 - sum(teststat >= testb)/nboot
+p.value<-1 - sum(teststat >= testb, na.rm = TRUE)/nboot
 teststat<-wsumsq(gest,nval)
 if(teststat == 0)p.value <- 1
 list(teststat=teststat,p.value=p.value)
