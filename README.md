@@ -6,6 +6,7 @@
 A package of R.R. Wilcox' robust statistics functions.
 For more information, see [http://dornsife.usc.edu/labs/rwilcox/software/](http://dornsife.usc.edu/labs/rwilcox/software/).
 
+**Note: Version 0.45 (2025-10-29) is the final update of the WRS package. No further updates are planned.**
 
 ## Installation ##
 
